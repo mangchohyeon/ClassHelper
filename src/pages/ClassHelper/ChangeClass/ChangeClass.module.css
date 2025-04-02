@@ -1,0 +1,29 @@
+.Main {
+    width : 100%;
+    height : auto;
+    padding : 2%;
+}
+
+.Header {
+    width : 100%;
+    align-items: center;
+}
+
+.Header .Title {
+    width : 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.QuestionSection {
+    width : 100%;
+    height : 10%;
+    margin-top : 10%;
+    padding-left : 75%;
+}
+
+.QuestionIcon {
+    width : auto;
+    height : 10%;
+    max-height: 11%;
+}

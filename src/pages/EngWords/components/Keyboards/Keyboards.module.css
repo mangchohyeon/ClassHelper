@@ -1,0 +1,52 @@
+.KeyboardsLinesLists {
+  display : block;
+  width : 100%;
+  height : auto;
+  list-style: none;
+}
+
+.KeyboardLineList {
+  display : block;
+  width : 100%;
+  height : auto;
+  align-items: center;
+}
+
+.KeyboardLists {
+  display : block;
+  width : 100%;
+  height : auto;
+  padding-left : 1%;
+  padding-right : 1%;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.KeyboardList {
+  font-family:'Winky_Sans';
+  display: inline-block;
+  width : 6%;
+  height : 10vh;
+  line-height: 10vh;
+  border : 1px solid black;
+  border-radius: 10%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  vertical-align:baseline;
+  background-color: #CCE1FF;
+  margin:0.1%;
+  font-size: 1.5rem;
+}
+
+.KeyboardList:hover {
+  cursor: pointer;
+}
+
+@font-face {
+  font-family: "Winky_Sans";
+  src: url(../../../../fonts/Winky_Sans/WinkySans-Regular.ttf);
+  font-weight: 400;
+}

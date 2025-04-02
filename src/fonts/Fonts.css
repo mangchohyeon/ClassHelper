@@ -1,0 +1,16 @@
+/*조선가는고딕*/
+/*https://event.chosun.com/100/100font.html*/
+@font-face {
+    font-family: 'Chosun Sg';
+    font-style: normal;
+    font-weight: normal;
+    src: url("./ChosunSg/ChosunSg.otf") format("otf");
+}
+
+/*Winky_Sans*/
+@font-face {
+    font-family: 'Winky_Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: url("./Winky_Sans/WinkySans-Black.ttf") format("ttf");
+}
