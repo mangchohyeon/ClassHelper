@@ -1,0 +1,29 @@
+/*조선가는고딕*/
+@font-face {
+  font-family: "Chosun Sg";
+  font-style: normal;
+  font-weight: 100;
+  src: url("./fonts/ChosunSg/ChosunSg.otf") format("opentype");
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Chosun Sg";
+}
+
+code {
+  font-family: "Chosun Sg"
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  padding:0;
+  margin:0;
+}
