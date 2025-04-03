@@ -1,29 +1,22 @@
-import { JSX } from "react";
-import styled from "styled-components";
-import { ComponentsProps, ComponentsSettings } from '@utils/ComponentsSettings'
+import { ComponentsProps } from '@utils/ComponentsSettings'
 
-interface HBlockProps extends ComponentsProps {
-    num?: 1 | 2 | 3 | 4 | 5 | 6 | undefined;  
-    children?: React.ReactNode;
-    onClick? : React.MouseEventHandler<Element>
+interface HBlockProps extends ComponentsProps{
+  num: number;
+  onClick?: () => void;
+  children: React.ReactNode;
 }
 
-function HBlock(props: HBlockProps) 
-{    
-    let Tag;
-    props.num !== undefined
-    ? Tag = `h${props.num}` as keyof JSX.IntrinsicElements
-    : Tag = "div"
-
-    const StyledHblock = styled(Tag)`
-        display : block;
-    `;
-
-    return (        
-        <StyledHblock {...ComponentsSettings({...props})}>            
-            {props.children}
-        </StyledHblock>
-    );
-}
+const HBlock: React.FC<HBlockProps> = ({ num, id, style, onClick, children, className }) => {
+  return (
+    <div 
+      className={`${className || ''} hblock-${num}`}
+      id={id}
+      style={style}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default HBlock;
