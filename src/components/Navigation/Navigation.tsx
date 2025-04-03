@@ -25,7 +25,9 @@ function Navigation({Home, MenuLists} : NavigationProps) {
             className={styles.SubMenuLists} 
             id={`SubMenuLists${index}`}
             style={{ display: hoveredIndex === index ? 'flex' : 'none',
-              gap : '1rem'
+              gap : '1rem',
+              marginTop : "5%"
+              
              }}
           >
             {menu.SubMenu.map((submenu, submenuIndex) => (
