@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
-import { ComponentsSettings, ComponentsProps } from 'utils/ComponentsSettings';
+import { ComponentsSettings, ComponentsProps } from '@utils/ComponentsSettings';
 import React from 'react';
 
 const StyledLink = styled(Link)`

@@ -1,6 +1,6 @@
 import { JSX } from "react";
 import styled from "styled-components";
-import { ComponentsProps, ComponentsSettings } from 'utils/ComponentsSettings'
+import { ComponentsProps, ComponentsSettings } from '@utils/ComponentsSettings'
 
 interface HBlockProps extends ComponentsProps {
     num?: 1 | 2 | 3 | 4 | 5 | 6 | undefined;  

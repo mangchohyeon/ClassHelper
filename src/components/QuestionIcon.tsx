@@ -1,5 +1,5 @@
-import QuestionCircleSvg from 'assets/QuestionCirclelcon.svg'
-import { ComponentsProps } from 'utils/ComponentsSettings'
+import QuestionCircleSvg from '@assets/QuestionCirclelcon.svg'
+import { ComponentsProps } from '@utils/ComponentsSettings'
 
 interface QuestionIconProps extends ComponentsProps {
     width?: string;

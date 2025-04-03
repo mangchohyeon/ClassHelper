@@ -1,5 +1,5 @@
 import styles from './ClassHelper.module.css'
-import HBlock from 'components/HBlock'
+import HBlock from '@components/HBlock'
 
 function ClassHelper() {
     return (

@@ -1,6 +1,6 @@
 import styles from './Home.module.css'
-import TextSection from 'components/TextSection'
-import HBlock from 'components/HBlock'
+import TextSection from '@components/TextSection'
+import HBlock from '@components/HBlock'
 
 
 function Home() {

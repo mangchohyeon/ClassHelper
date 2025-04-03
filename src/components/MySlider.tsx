@@ -1,8 +1,9 @@
-import { Slider, useSlider } from "@chakra-ui/react";
+import { Slider, } from "@chakra-ui/react";
 import { ComponentsProps } from '@utils/ComponentsSettings';
+import { useState } from 'react'
 
-interface SliderNumProps extends ComponentsProps {
-    defaultValue? : number[];
+interface MySliderProps extends ComponentsProps {
+    defaultValue : number[];
     min? : number;
     max? : number;
     step? : number;
@@ -11,25 +12,33 @@ interface SliderNumProps extends ComponentsProps {
     Label? : string;
     color? : string;
     ValueText? : boolean;
+    getValue? : (v : number) => void
 }
 
-function SliderNum(props : SliderNumProps) {
-    const slider = useSlider({
-        defaultValue: [40],
-        thumbAlignment: "center",
-      })
-    
 
+function MySlider(props : MySliderProps) {
+    const [value, setValue] = useState(props.defaultValue[0]);
+
+    function onVChange(val : number) {
+        setValue(val);
+        if(props.getValue) {
+            props.getValue(val);
+        }
+    }
+    
     return (
         <Slider.RootProvider width={props.width} 
         variant={props.variant}
         defaultValue={props.defaultValue}
+        step={props.step}
+        colorPallete={props.color}
+        onValueChange={(val : number) => (onVChange(val))}
+        value={value}
         className={props.className}
         id={props.id}
-        key={props.key}
-        colorPallete={props.color}>
+        key={props.key}>
             <Slider.Label>
-                {props.ValueText === true 
+                {props.ValueText !== undefined 
                 ? <Slider.ValueText />
                 : <></>}
                 <Slider.Control>
@@ -40,5 +49,8 @@ function SliderNum(props : SliderNumProps) {
                 </Slider.Control>
             </Slider.Label>
         </Slider.RootProvider>
-    )
+    );
+    
 }
+
+export {MySlider};

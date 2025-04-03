@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import Navigation from 'components/Navigation/Navigation';
-import { Menu } from 'types/MenuType';
-import HBlock from 'components/HBlock';
+import Navigation from '@components/Navigation/Navigation';
+import HBlock from '@components/HBlock';
+import { Menu } from '@/types/MenuType';
 import styles from './Layout.module.css'
-import DivLink  from 'components/DivLink';
+import DivLink  from '@components/DivLink';
 import Swal from 'sweetalert2';
 
 function AlertMessage() {
