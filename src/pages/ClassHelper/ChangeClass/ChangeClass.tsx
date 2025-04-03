@@ -25,7 +25,7 @@ function Button2(props : Button2Props) {
       )
 }
 
-function ChangeClass() {
+const ChangeClass: React.FC = () => {
     const [RowNum, setRowNum] = useState(5);
     const [ColumnNum, setColumnNum] = useState(6);
 
