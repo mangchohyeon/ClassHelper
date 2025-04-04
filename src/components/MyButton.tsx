@@ -20,7 +20,6 @@ function MyButton(props : MyButtonProps) {
       rounded={props.rounded}
       className={props.className}
       id={props.id}
-      key={props.key}
       onClick={() => props.onClick()}
       >
       {props.children}

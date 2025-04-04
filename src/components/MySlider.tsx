@@ -35,8 +35,7 @@ function MySlider(props : MySliderProps) {
         onValueChange={(val : number) => (onVChange(val))}
         value={value}
         className={props.className}
-        id={props.id}
-        key={props.key}>
+        id={props.id}>
             <Slider.Label>
                 {props.ValueText !== undefined 
                 ? <Slider.ValueText />
