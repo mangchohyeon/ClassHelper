@@ -33,7 +33,6 @@ function DivLink(props : DivLinkProps) {
         <StyledLink {...ComponentsSettings({
             className : props.className,
             id: props.id,
-            key : props.key,
             style : props.style
         })}
         to={props.to}
