@@ -18,7 +18,6 @@ function Button2(props : Button2Props) {
             rounded={props.rounded}
             className={props.className}
             id={props.id}
-            key={props.key}
             onClick={() => props.onClick !== undefined ? props.onClick() : undefined}>
           {props.children}
         </MyButton>
