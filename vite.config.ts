@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path' //추가
+import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), svgr()],
   resolve:{ //추가
     alias:[{ find : "@src", replacement : path.resolve(__dirname, "src")},
            { find : "@assets", replacement : path.resolve(__dirname, "src/assets")},
