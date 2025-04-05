@@ -7,13 +7,20 @@ import DivLink  from '@components/DivLink';
 import Swal from 'sweetalert2';
 
 function AlertMessage() {
-    Swal.fire({
-        position: 'top',
-        title: '죄송합니다.',
-        text: '현재 열심히 개발 중인 페이지입니다.\n조금만 기다려 주시면 더 나은 서비스로 찾아뵙겠습니다!',
-        icon: 'info',
-        confirmButtonText: '확인'
-    })
+  Swal.fire({
+      position: 'top',
+      title: '죄송합니다.',
+      text: '현재 열심히 개발 중인 페이지입니다.\n조금만 기다려 주시면 더 나은 서비스로 찾아뵙겠습니다!',
+      icon: 'error',
+      confirmButtonText: '확인',
+      allowOutsideClick: false, // 외부 클릭 방지
+      showClass: {
+          popup: 'swal2-show'
+      },
+      customClass: {
+          container: 'swal2-container-custom' // 커스텀 클래스 추가
+      }
+  })
 }
 
 const menulist: Menu[] = [
