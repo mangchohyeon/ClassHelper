@@ -1,25 +1,28 @@
 import { ComponentsProps, ComponentsSettings } from 'utils/ComponentsSettings'
 
 interface TableProps extends ComponentsProps {
-  row : number;
-  column : number;
+  row: number;
+  column: number;
+  width?: string;
+  RowStyle?: Array<Record<string, string | number>>;
+  DataStyle? : Array<Record<string, string | number>>;
 }
+
+
 
 function Table(props : TableProps) {
   return (
-    
-    <table {...ComponentsSettings({...props})}>
+    <table
+    className={props.className}
+    id={props.id}
+    style={props.style}
+    width={props.width}
+    >
       <tbody>
-        {Array.from({ length: props.row }).map((_, r) => (
-          <tr key={r}>
-            {Array.from({ length: props.column }).map((_, c) => (
-              <td key={c}>({r}, {c})</td>
-            ))}
-          </tr>
-        ))}
+        
       </tbody>
     </table>
-  );
+  )
 }
 
 export default Table;
