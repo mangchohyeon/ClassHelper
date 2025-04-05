@@ -1,4 +1,4 @@
-import { Slider, } from "@chakra-ui/react";
+import { Slider, HStack } from "@chakra-ui/react";
 import { ComponentsProps } from '@utils/ComponentsSettings';
 import { useState } from 'react'
 
@@ -8,6 +8,8 @@ interface MySliderProps extends ComponentsProps {
     max? : number;
     step? : number;
     width? : string;
+    maxW? : string;
+    size? : "sm" | "md" | "lg";
     variant? : "outline" | "solid";
     Label? : string;
     color? : string;
@@ -17,37 +19,44 @@ interface MySliderProps extends ComponentsProps {
 
 
 function MySlider(props : MySliderProps) {
-    const [value, setValue] = useState(props.defaultValue[0]);
+    const [value, setValue] = useState(props.defaultValue);
 
     function onVChange(val : number) {
-        setValue(val);
+        setValue([val]);
         if(props.getValue) {
             props.getValue(val);
         }
     }
     
     return (
-        <Slider.RootProvider width={props.width} 
-        variant={props.variant}
-        defaultValue={props.defaultValue}
+        <Slider.Root
+        maxW={props.maxW}
+        width={props.width}
+        size={props.size}
+        defaultValue={value}
+        onValueChange={(e : any) => setValue(e.value)}
+        min={props.min}
+        max={props.max}
         step={props.step}
         colorPallete={props.color}
-        onValueChange={(val : number) => (onVChange(val))}
-        value={value}
-        className={props.className}
-        id={props.id}>
-            <Slider.Label>
-                {props.ValueText !== undefined 
+        variant={props.variant}
+        >
+            <HStack justify="space-between">
+                <Slider.Label>{props.Label}</Slider.Label>
+                {props.ValueText != undefined
                 ? <Slider.ValueText />
-                : <></>}
-                <Slider.Control>
-                    <Slider.Track>
-                        <Slider.Range />
-                    </Slider.Track>
-                    <Slider.Thumbs />
-                </Slider.Control>
-            </Slider.Label>
-        </Slider.RootProvider>
+                : ""}
+            </HStack>
+
+            <Slider.Control>
+                <Slider.Track>
+                    <Slider.Range />
+                </Slider.Track>
+                <Slider.Thumbs />
+            </Slider.Control>
+        </Slider.Root>
+
+
     );
     
 }
