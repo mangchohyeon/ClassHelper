@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import styles from './ChangeClass.module.css'
-import HBlock from '@components/HBlock'
-import { QuestionIcon } from '@components/QuestionIcon'
+import styles from './ChangeClass.module.css';
+import HBlock from '@components/HBlock';
+import { QuestionIcon } from '@components/QuestionIcon';
 import { MySlider } from '@components/MySlider';
-import { MyButton, MyButtonProps} from "@components/MyButton"
+import { MyButton, MyButtonProps} from "@components/MyButton";
+import { Stack } from '@chakra-ui/react';
 
 interface Button2Props extends MyButtonProps {
     onClick? : () => void;
@@ -25,8 +26,8 @@ function Button2(props : Button2Props) {
 }
 
 const ChangeClass: React.FC = () => {
-    const [RowNum, setRowNum] = useState(5);
-    const [ColumnNum, setColumnNum] = useState(6);
+    const [ColumnNum, setColumnNum] = useState(6);  // 분단 개수수
+    const [RowNum, setRowNum] = useState(5);        //분단 학생 수
 
     function getRowNum(RN : number) {
         setRowNum(RN);
@@ -58,33 +59,49 @@ const ChangeClass: React.FC = () => {
             </section>
 
             <section className={styles.InputWrapper}>
-                <MySlider
-                    variant="outline"
-                    defaultValue={[RowNum]}
-                    width="20%"
-                    color="gray"
-                    id="SliderRowNum"
-                    className={styles.Slider}
-                    getValue={(v : number) => getRowNum(v)}/>
-
-                <MySlider
+                
+                <Stack className={styles.Stack}
+                width="100%"
+                gap="6">
+                    {/**분단 개수 입력받기기*/}
+                    <MySlider
                     variant="outline"
                     defaultValue={[ColumnNum]}
                     width="20%"
                     color="gray"
+                    Label='분단 수'
+                    ValueText={true}
+                    min={1}
+                    max={10}
                     id="SliderColumnNum"
                     className={styles.Slider}
                     getValue={(v : number) => getColumnNum(v)}/>
 
-                <Button2
-                    size="md"
-                    variant="solid"
+                    {/**분단의 학생수 입력받기기 */}
+                    <MySlider
+                    variant="outline"
+                    defaultValue={[RowNum]}
+                    width="20%"
                     color="gray"
-                    rounded="lg"
-                    onClick={() => genTable()}>
-                    자리 생성하기
-                </Button2>
-
+                    min={1}
+                    max={10}
+                    Label="행의 수"
+                    ValueText={true}
+                    id="SliderRowNum"
+                    className={styles.Slider}
+                    getValue={(v : number) => getRowNum(v)}/>
+                </Stack>
+                
+                <div className={styles.SubmitBtnWrapper}>
+                    <Button2
+                        size="md"
+                        variant="solid"
+                        color="gray"
+                        rounded="lg"
+                        onClick={() => genTable()}>
+                        자리 생성하기
+                    </Button2>
+                </div>
             </section>
         </main>
     )
