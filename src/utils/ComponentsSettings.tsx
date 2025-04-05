@@ -2,6 +2,8 @@ export interface ComponentsProps {
     className?: string;
     id?: string;
     style?: React.CSSProperties;
+    width? : string;
+    height? : string;
 }
 
 export function ComponentsSettings(props: ComponentsProps) {
