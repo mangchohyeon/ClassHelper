@@ -16,7 +16,10 @@ function MyStack(props : StackProps) {
         width={props.width}
         height={props.height}
         gap={props.gap}
-        align={props.align}>
+        align={props.align}
+        className={props.className}
+        id={props.id}
+        style={props.style}>
             {props.children}
         </Stack>
     );
