@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { ComponentsProps, ComponentsSettings } from '@utils/ComponentsSettings'
+import styled from 'styled-components';
+import { ComponentsProps } from '@/types/ComponentsProps';
 
 interface TextSectionProps extends ComponentsProps {
     children: React.ReactNode;
@@ -12,10 +12,12 @@ const StyledSection = styled.section`
 `;
 
 function TextSection(props: TextSectionProps) {
-    const componentProps = ComponentsSettings(props);
     
     return (
-        <StyledSection {...componentProps}>
+        <StyledSection 
+        className={props.className}
+        id={props.id}
+        style={props.style}>
             {props.children}
         </StyledSection>
     );

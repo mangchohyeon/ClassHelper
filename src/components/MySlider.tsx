@@ -1,5 +1,5 @@
 import { Slider, HStack } from "@chakra-ui/react";
-import { ComponentsProps } from '@utils/ComponentsSettings';
+import { ComponentsProps } from '@/types/ComponentsProps';
 import { useState } from 'react'
 
 interface MySliderProps extends ComponentsProps {
@@ -11,7 +11,7 @@ interface MySliderProps extends ComponentsProps {
     maxW? : string;
     size? : "sm" | "md" | "lg";
     variant? : "outline" | "solid";
-    Label? : string;
+    Label? : string | React.ReactNode;
     color? : string;
     ValueText? : boolean;
     getValue? : (v : number) => void
@@ -34,7 +34,7 @@ function MySlider(props : MySliderProps) {
         width={props.width}
         size={props.size}
         defaultValue={value}
-        onValueChange={(e : any) => setValue(e.value)}
+        onValueChange={(e : any) => onVChange(e.value)}
         min={props.min}
         max={props.max}
         step={props.step}

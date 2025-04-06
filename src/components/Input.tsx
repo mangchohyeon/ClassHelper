@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ComponentsProps, ComponentsSettings } from 'utils/ComponentsSettings'
+import { ComponentsProps } from '@/types/ComponentsProps';
 
 interface InputProps extends ComponentsProps {
     type? : string;
@@ -15,7 +15,12 @@ function Input(props : InputProps) {
     `;
 
     return (
-        <StyledInput {...ComponentsSettings({...props})} type={Type} />
+        <StyledInput 
+        className={props.className}
+        id={props.id}
+        style={props.style} 
+        type={Type}
+        />
     )
 }
 

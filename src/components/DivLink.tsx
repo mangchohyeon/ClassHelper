@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'
-import { ComponentsSettings, ComponentsProps } from '@utils/ComponentsSettings';
+import { Link } from 'react-router-dom';
+import { ComponentsProps } from '@/types/ComponentsProps';
 import React from 'react';
 
 const StyledLink = styled(Link)`
@@ -30,11 +30,10 @@ interface DivLinkProps extends ComponentsProps {
 function DivLink(props : DivLinkProps) {
     
     return (
-        <StyledLink {...ComponentsSettings({
-            className : props.className,
-            id: props.id,
-            style : props.style
-        })}
+        <StyledLink 
+        className={props.className}
+        id={props.id}
+        style={props.style}
         to={props.to}
         onClick={props.onClick}>
             {props.children}

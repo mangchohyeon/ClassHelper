@@ -1,4 +1,4 @@
-import { ComponentsProps, ComponentsSettings } from 'utils/ComponentsSettings'
+import { ComponentsProps } from '@/types/ComponentsProps';
 
 interface TableProps extends ComponentsProps {
   row: number;

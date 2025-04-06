@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ComponentsProps, ComponentsSettings } from 'utils/ComponentsSettings'
+import { ComponentsProps } from '@/types/ComponentsProps';
 
 interface TableListsProps extends ComponentsProps {
     row : number;
@@ -36,7 +36,10 @@ const TableCell = styled.li`
 
 function TableLists(props : TableListsProps) {
     return (
-        <TableLines {...ComponentsSettings({...props})}>
+        <TableLines 
+        className={props.className}
+        id={props.id}
+        style={props.style}>
             {Array.from({length : props.row}).map((_, LineIndex) => (
             <TableLineWrapper>
                 <TableLine key={`TableLine${LineIndex}`}>

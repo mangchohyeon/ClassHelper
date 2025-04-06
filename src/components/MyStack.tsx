@@ -1,5 +1,5 @@
 import { Stack } from "@chakra-ui/react";
-import { ComponentsProps } from "@/utils/ComponentsSettings";
+import { ComponentsProps } from '@/types/ComponentsProps';
 import React from "react";
 
 interface StackProps extends ComponentsProps {

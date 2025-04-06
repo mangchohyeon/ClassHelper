@@ -1,5 +1,5 @@
-import { Button, HStack } from "@chakra-ui/react";
-import { ComponentsProps } from '@utils/ComponentsSettings';
+import { Button } from "@chakra-ui/react";
+import { ComponentsProps } from '@/types/ComponentsProps';
 
 interface MyButtonProps extends ComponentsProps {
   children? : React.ReactNode;
