@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import styles from './ChangeClass.module.css';
 import HBlock from '@components/HBlock';
-import { QuestionIcon } from '@components/QuestionIcon';
+import QuestionCircleIcon from '@components/QuestionCircleIcon';
 import { MySlider } from '@components/MySlider';
 import { MyButton, MyButtonProps} from "@components/MyButton";
 import { Stack } from '@chakra-ui/react';
+import questioncircleicon from '@assets/QuestionCirclelcon.svg'
 
 interface Button2Props extends MyButtonProps {
     onClick? : () => void;
@@ -55,11 +56,16 @@ const ChangeClass: React.FC = () => {
             </header>
 
             <section className={styles.QuestionSection}>
-                <QuestionIcon className={styles.QuestionIcon} />
+                <QuestionCircleIcon className={styles.QuestionIcon} 
+                src={questioncircleicon}
+                alt="자리 바꾸기 아이콘"
+                height="100%"
+                width="auto"
+                />
             </section>
 
+            {/**Slider들감싸주는 section */}
             <section className={styles.InputWrapper}>
-                
                 <Stack className={styles.Stack}
                 width="100%"
                 gap="6">
@@ -69,7 +75,7 @@ const ChangeClass: React.FC = () => {
                     defaultValue={[ColumnNum]}
                     width="20%"
                     color="gray"
-                    Label='분단 수'
+                    Label={<HBlock num={2}>분단 수</HBlock>}
                     ValueText={true}
                     min={1}
                     max={10}
