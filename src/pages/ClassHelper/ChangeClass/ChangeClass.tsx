@@ -5,7 +5,11 @@ import QuestionCircleIcon from '@components/QuestionCircleIcon';
 import { MySlider } from '@components/MySlider';
 import { MyButton, MyButtonProps} from "@components/MyButton";
 import { Stack } from '@chakra-ui/react';
-import questioncircleicon from '@assets/QuestionCirclelcon.svg'
+import questioncircleicon from '@assets/QuestionCirclelcon.svg';
+import { TableProps, Table } from '@components/Table';
+import { getArray, get2DArray } from '@utils/getArray';
+import { v4 as uuidv4 } from 'uuid';
+import { ComponentsProps } from '@/types/ComponentsProps';
 
 interface Button2Props extends MyButtonProps {
     onClick? : () => void;
@@ -28,7 +32,22 @@ function Button2(props : Button2Props) {
 
 const ChangeClass: React.FC = () => {
     const [ColumnNum, setColumnNum] = useState(6);  // 분단 개수수
-    const [RowNum, setRowNum] = useState(5);        //분단 학생 수
+    const [RowNum, setRowNum] = useState(5);        // 분단 학생 수
+    const [isFileUploaded, SetisFileUploded] = useState(false);    // 학생 명단 파일 업로드 됐는지 체크
+    const [isTableGen, SetisTableGen] = useState(false);
+
+    let tArr1 = get2DArray<(string | number | undefined)>(ColumnNum, RowNum, undefined);
+    
+    let t = 1;
+    for(let i = 0; i < tArr1.length; i++) {
+        for(let j = 0; j < tArr1[i].length; j++) {
+            tArr1[i][j] = t;
+            t++;
+        }
+    }
+
+    const [StudentsNames, SetStudentsName] = useState(tArr1);    // 학생 명단
+    
 
     function getRowNum(RN : number) {
         setRowNum(RN);
@@ -37,9 +56,23 @@ const ChangeClass: React.FC = () => {
     function getColumnNum(CN : number) {
         setColumnNum(CN);
     }
-
+    
     function genTable() {
-        
+         return (
+             <Table
+                 row={RowNum}
+                 column={ColumnNum}
+                 RowProps={{
+                     className: styles.TableRow
+                 }}
+
+                 TdProps ={{
+                     className : styles.TableTd
+                 }}
+                 
+                 TdLists={StudentsNames}
+             />
+         )
     }
 
     return (
@@ -108,6 +141,12 @@ const ChangeClass: React.FC = () => {
                         자리 생성하기
                     </Button2>
                 </div>
+            </section>
+
+            <section 
+                className={styles.TableSection}
+                id={"TableSection"}>
+                {genTable()}
             </section>
         </main>
     )
