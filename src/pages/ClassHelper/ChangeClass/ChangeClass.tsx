@@ -34,18 +34,8 @@ const ChangeClass: React.FC = () => {
     const [ColumnNum, setColumnNum] = useState(6);  // 분단 개수수
     const [RowNum, setRowNum] = useState(5);        // 분단 학생 수
     const [isFileUploaded, SetisFileUploded] = useState(false);    // 학생 명단 파일 업로드 됐는지 체크
-    const [isTableGen, SetisTableGen] = useState(false);
 
-    let tArr1 = get2DArray<(string | number | undefined)>(ColumnNum, RowNum, undefined);
-    
-    let t = 1;
-    for(let i = 0; i < tArr1.length; i++) {
-        for(let j = 0; j < tArr1[i].length; j++) {
-            tArr1[i][j] = t;
-            t++;
-        }
-    }
-
+    let tArr1 = get2DArray<string>(ColumnNum, RowNum, "");
     const [StudentsNames, SetStudentsName] = useState(tArr1);    // 학생 명단
     
 
@@ -57,20 +47,22 @@ const ChangeClass: React.FC = () => {
         setColumnNum(CN);
     }
     
+    //Table생성 함수
     function genTable() {
-         return (
-             <Table
-                 row={RowNum}
-                 column={ColumnNum}
-                 RowProps={{
-                     className: styles.TableRow
-                 }}
-
-                 TdProps ={{
-                     className : styles.TableTd
-                 }}
-                 
-                 TdLists={StudentsNames}
+        return (
+        <Table
+        className={styles.StudentsTable}
+        id={"StudentsTable"}
+        row={RowNum}
+        column={ColumnNum}
+        width="100%"  // 명시적으로 width 설정
+        RowProps={{
+            className: styles.TableRow
+        }}
+        TdProps ={{
+            className : styles.TableTd
+        }}
+        TdLists={StudentsNames}
              />
          )
     }
