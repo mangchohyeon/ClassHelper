@@ -70,7 +70,34 @@ const menulist: Menu[] = [
         팀 나누기
       </HBlock>
     ]
-  }    
+  },
+  {
+    MainMenu: <DivLink to="/Math">
+      <HBlock num={2}
+      style={{fontSize : "1.4em"}}
+      onClick={AlertMessage}>
+        수학
+      </HBlock>
+      </DivLink>,
+    SubMenu: [
+      <DivLink to="/Math/Fibonacci"
+      onClick={AlertMessage}>
+        <HBlock num={3}
+        style={{fontSize : "1.3em"}}>
+          피보나치 수열
+        </HBlock>
+      </DivLink>,
+      
+      <DivLink to="/Math/Pascal">
+        <HBlock 
+        num={3}
+        onClick={AlertMessage}
+        style={{fontSize : "1.3em"}}>
+          파스칼의 삼각형
+        </HBlock>
+      </DivLink>
+    ]
+  },   
 ];
 
 function Layout() {
@@ -79,7 +106,7 @@ function Layout() {
       {/* Navigation 컴포넌트는 모든 페이지에서 공통적으로 사용됩니다. */}
       <Navigation 
         Home={<DivLink to='/'>
-          <HBlock num={1} className={styles.HomeWrapper}>
+          <HBlock num={1} className={styles.Home}>
             Class{'\n'}Helper
             </HBlock></DivLink>}
             MenuLists={menulist} 
