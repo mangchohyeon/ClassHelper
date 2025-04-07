@@ -1,0 +1,25 @@
+.Table {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.TableRow {
+    height: calc(100% / var(--row-count)); /* 동적으로 높이 계산 */
+    border: 1px solid black;
+}
+
+.TableData {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    height: 100%;
+    vertical-align: middle; /* 세로 중앙 정렬 추가 */
+}
+
+/* tbody 스타일 추가 */
+.TBody {
+    height: 100%;
+}
