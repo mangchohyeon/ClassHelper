@@ -57,10 +57,11 @@ const ChangeClass: React.FC = () => {
         column={ColumnNum}
         width="100%"  // 명시적으로 width 설정
         RowProps={{
-            className: styles.TableRow
+            className: styles.TableRow,
+            style: { width: "100%" }
         }}
-        TdProps ={{
-            className : styles.TableTd
+        TdProps={{
+            className: styles.TableTd
         }}
         TdLists={StudentsNames}
              />
@@ -84,7 +85,6 @@ const ChangeClass: React.FC = () => {
                 <QuestionCircleIcon className={styles.QuestionIcon} 
                 src={questioncircleicon}
                 alt="자리 바꾸기 아이콘"
-                height="100%"
                 width="auto"
                 />
             </section>
@@ -98,9 +98,13 @@ const ChangeClass: React.FC = () => {
                     <MySlider
                     variant="outline"
                     defaultValue={[ColumnNum]}
-                    width="20%"
+                    width="40%"
                     color="gray"
-                    Label={<HBlock num={2}>분단 수</HBlock>}
+                    Label={<HBlock num={2} 
+                    className={styles.Label1}>
+                        분단 수
+                        </HBlock>}
+                        
                     ValueText={true}
                     min={1}
                     max={10}
@@ -112,11 +116,17 @@ const ChangeClass: React.FC = () => {
                     <MySlider
                     variant="outline"
                     defaultValue={[RowNum]}
-                    width="20%"
+                    width="40%"
                     color="gray"
                     min={1}
                     max={10}
-                    Label="행의 수"
+
+                    Label= { <HBlock 
+                        num={2}
+                        className={styles.Label1}>
+                            행의 수
+                        </HBlock> }
+
                     ValueText={true}
                     id="SliderRowNum"
                     className={styles.Slider}
@@ -130,7 +140,11 @@ const ChangeClass: React.FC = () => {
                         color="gray"
                         rounded="lg"
                         onClick={() => genTable()}>
-                        자리 생성하기
+                        <HBlock 
+                        num={2}
+                        className={styles.Label2}>
+                            자리 생성하기
+                        </HBlock>
                     </Button2>
                 </div>
             </section>
