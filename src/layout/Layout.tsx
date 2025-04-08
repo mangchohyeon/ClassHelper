@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import Navigation from '@components/Navigation/Navigation';
+import { Menu, Navigation} from '@components/Navigation/Navigation';
 import HBlock from '@components/HBlock';
-import { Menu } from '@/types/MenuType';
 import styles from './Layout.module.css'
 import DivLink  from '@components/DivLink';
 import Swal from 'sweetalert2';
@@ -104,13 +103,14 @@ function Layout() {
   return (
     <>
       {/* Navigation 컴포넌트는 모든 페이지에서 공통적으로 사용됩니다. */}
-      <Navigation 
-        Home={<DivLink to='/'>
-          <HBlock num={1} className={styles.Home}>
-            Class{'\n'}Helper
-            </HBlock></DivLink>}
-            MenuLists={menulist} 
-            />
+      <Navigation
+      className={styles.Navigation}
+      Home={<DivLink to='/'>
+        <HBlock num={1} className={styles.Home}>
+          Class{'\n'}Helper
+          </HBlock></DivLink>}
+          MenuLists={menulist} 
+          />
       {/* Outlet : 현재 라우트에 해당하는 자식 컴포넌트를 렌더링*/}
       <Outlet />
     </>

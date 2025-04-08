@@ -1,3 +1,19 @@
+.Navigation {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  height: 30vh;
+  max-height: 32vh;
+  min-height: 28vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5%;
+  color: #A0AFFF;
+  box-shadow: 0 10px 10px -5px #b0d8ee;
+  padding-top: 2%;
+}
+
 .Home {
   font-weight: 200%;
   font-family: sans-serif;
