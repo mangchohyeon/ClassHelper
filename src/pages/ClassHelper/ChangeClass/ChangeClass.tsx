@@ -6,10 +6,8 @@ import { MySlider } from '@components/MySlider';
 import { MyButton, MyButtonProps} from "@components/MyButton";
 import { Stack } from '@chakra-ui/react';
 import questioncircleicon from '@assets/QuestionCirclelcon.svg';
-import { TableProps, Table } from '@components/Table';
-import { getArray, get2DArray } from '@utils/getArray';
-import { v4 as uuidv4 } from 'uuid';
-import { ComponentsProps } from '@/types/ComponentsProps';
+import { Table } from '@components/Table';
+import { get2DArray } from '@utils/getArray';
 
 interface Button2Props extends MyButtonProps {
     onClick? : () => void;
@@ -24,48 +22,51 @@ function Button2(props : Button2Props) {
             rounded={props.rounded}
             className={props.className}
             id={props.id}
-            onClick={() => props.onClick !== undefined ? props.onClick() : undefined}>
+            onClick={() => props.onClick !== undefined 
+            ? props.onClick() 
+            : undefined}>
           {props.children}
         </MyButton>
       )
 }
 
 const ChangeClass: React.FC = () => {
-    const [ColumnNum, setColumnNum] = useState(6);  // 분단 개수수
-    const [RowNum, setRowNum] = useState(5);        // 분단 학생 수
-    const [isFileUploaded, SetisFileUploded] = useState(false);    // 학생 명단 파일 업로드 됐는지 체크
-
-    let tArr1 = get2DArray<string>(ColumnNum, RowNum, "");
-    const [StudentsNames, SetStudentsName] = useState(tArr1);    // 학생 명단
+    // 슬라이더 값을 위한 state
+    const [tempRowNum, setTempRowNum] = useState(6);    // 분단당 학생수
+    const [tempColumnNum, setTempColumnNum] = useState(5);  // 분단 수
     
+    // 실제 테이블에 적용될 값을 위한 state
+    const [tableRowNum, setTableRowNum] = useState(6);
+    const [tableColumnNum, setTableColumnNum] = useState(5);
+    
+    //학생명단 리스트
+    const [studentsNames, setStudentsNames] = useState(() => 
+        get2DArray<string>(tableColumnNum, tableRowNum, ""));
 
-    function getRowNum(RN : number) {
-        setRowNum(RN);
+    //슬라이더 state변경하는 함수
+    function handleRowNumChange(RN: number) {
+        setTempRowNum(RN);
     }
 
-    function getColumnNum(CN : number) {
-        setColumnNum(CN);
+    function handleColumnNumChange(CN: number) {
+        setTempColumnNum(CN);
     }
     
-    //Table생성 함수
-    function genTable() {
-        return (
-        <Table
-        className={styles.StudentsTable}
-        id={"StudentsTable"}
-        row={RowNum}
-        column={ColumnNum}
-        width="100%"  // 명시적으로 width 설정
-        RowProps={{
-            className: styles.TableRow,
-            style: { width: "100%" }
-        }}
-        TdProps={{
-            className: styles.TableTd
-        }}
-        TdLists={StudentsNames}
-             />
-         )
+    function handleGenerateTable() {
+        setTableRowNum(tempRowNum);
+        setTableColumnNum(tempColumnNum);
+        setStudentsNames(get2DArray<string>(tempColumnNum, tempRowNum, ""));
+
+        // 렌더링 완료를 보장하기 위해 timeout 시간 증가
+        setTimeout(() => {
+            const tableSection = document.getElementById('TableSection');
+            if (tableSection) {
+                tableSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center' // 중앙 정렬로 변경
+                });
+            }
+        }, 300);
     }
 
     return (
@@ -97,7 +98,7 @@ const ChangeClass: React.FC = () => {
                     {/**분단 개수 입력받기기*/}
                     <MySlider
                     variant="outline"
-                    defaultValue={[ColumnNum]}
+                    defaultValue={[tempColumnNum]}
                     width="40%"
                     color="gray"
                     Label={<HBlock num={2} 
@@ -110,12 +111,12 @@ const ChangeClass: React.FC = () => {
                     max={10}
                     id="SliderColumnNum"
                     className={styles.Slider}
-                    getValue={(v : number) => getColumnNum(v)}/>
+                    getValue={(v : number) => handleColumnNumChange(v)}/>
 
                     {/**분단의 학생수 입력받기기 */}
                     <MySlider
                     variant="outline"
-                    defaultValue={[RowNum]}
+                    defaultValue={[tempRowNum]}
                     width="40%"
                     color="gray"
                     min={1}
@@ -130,7 +131,7 @@ const ChangeClass: React.FC = () => {
                     ValueText={true}
                     id="SliderRowNum"
                     className={styles.Slider}
-                    getValue={(v : number) => getRowNum(v)}/>
+                    getValue={(v : number) => handleRowNumChange(v)}/>
                 </Stack>
                 
                 <div className={styles.SubmitBtnWrapper}>
@@ -139,7 +140,7 @@ const ChangeClass: React.FC = () => {
                         variant="solid"
                         color="gray"
                         rounded="lg"
-                        onClick={() => genTable()}>
+                        onClick={handleGenerateTable}>
                         <HBlock 
                         num={2}
                         className={styles.Label2}>
@@ -150,9 +151,28 @@ const ChangeClass: React.FC = () => {
             </section>
 
             <section 
-                className={styles.TableSection}
+                className={styles.StudentsTableSection}
                 id={"TableSection"}>
-                {genTable()}
+                {/**StudentsTable */}
+               <Table
+                    className={styles.StudentsTable}
+                    id="StudentsTable"
+                    row={tableRowNum}
+                    column={tableColumnNum}
+                    TBodyProps={{
+                        className:styles.StudentsTableBody
+                    }}
+                    RowProps={{
+                        className: styles.StudentsTableRow,
+                    }}
+                    TdProps={{
+                        className: styles.StudentsTableTd,
+                        style: {width : (100/tableColumnNum),
+                            height : (100/tableColumnNum)
+                        }
+                    }}
+                    TdLists={studentsNames}
+                />
             </section>
         </main>
     )
