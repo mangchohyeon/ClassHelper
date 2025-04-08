@@ -1,22 +1,39 @@
 import { useState } from 'react';
 import styles from './Navigation.module.css'
-import { NavigationProps } from 'types/MenuType';
+import { ComponentsProps } from '@/types/ComponentsProps';
 
-function Navigation({Home, MenuLists} : NavigationProps) {
+interface Menu {
+  MainMenu : React.ReactNode;
+  SubMenu : React.ReactNode[];
+}
+
+interface NavigationProps extends ComponentsProps {
+  Home : React.ReactNode;
+  MenuLists : Menu[];
+}
+
+function Navigation(props : NavigationProps) {
+  //마우스 hover인지 아닌지 판단해줄 state
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const classname = props.className != undefined 
+  ? props.className
+  : styles.Navigation;
 
   return (
-    <nav className={styles.Navigation}>
+    <nav 
+    className={classname}
+    id={props.id}
+    style={props.style}>
       <div className={styles.HomeWrapper}>
-        {Home}
+        {props.Home}
       </div>
 
-      {MenuLists.map((menu, index) => (
+      {props.MenuLists.map((menu, index) => (
         <div 
           className={styles.MenuWrapper}
           key={index}
-          onMouseEnter={() => setHoveredIndex(index)}
-          onMouseLeave={() => setHoveredIndex(null)}
+          onMouseEnter={() => setHoveredIndex(index)} //마우스 올려져있으면 설정
+          onMouseLeave={() => setHoveredIndex(null)}  //마우스 안 올려져 있으면 null
         >
           <div className={styles.MainMenu} id={`MainMenu${index}`}>
             {menu.MainMenu}
@@ -24,7 +41,8 @@ function Navigation({Home, MenuLists} : NavigationProps) {
           <ul 
             className={styles.SubMenuLists} 
             id={`SubMenuLists${index}`}
-            style={{ display: hoveredIndex === index ? 'flex' : 'none',
+            //마우스 올려져 있으면 display는 flex
+            style={{ display: hoveredIndex === index ? 'flex' : 'none', 
               gap : '1rem',
               marginTop : "5%"
               
@@ -46,4 +64,4 @@ function Navigation({Home, MenuLists} : NavigationProps) {
   )
 }
 
-export default Navigation
+export { Menu, NavigationProps, Navigation};
