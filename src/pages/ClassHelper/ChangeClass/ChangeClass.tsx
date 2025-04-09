@@ -119,6 +119,7 @@ function ChangeClass() {
                 count ++;
             }
         }
+        setStudentsNames(TempStudentsNames);
     }
 
     
@@ -143,7 +144,10 @@ function ChangeClass() {
                       <li
                       className={TdClass}
                       id={`TableListsData${i}-${j}`}
-                      style={props.TdProps?.style}
+                      style={{
+                          ...props.TdProps?.style,
+                          backgroundColor: isAssignable[i][j] ? '#1ecf0e' : '#EB0000'
+                      }}
                       key={uuidv4()}
                       onClick={(e) => ChangeBackgoundColor(e, i, j)}>
                           {props.TdLists[count]}
@@ -315,7 +319,7 @@ function ChangeClass() {
                         style: {
                             width: `${35/(tableColumnNum +2)}vw`,
                             height: `${35/(tableColumnNum +2)}vw`, // 정사각형 셀을 만들기 위해 width와 동일하게 설정
-                            padding: '0.5rem',
+                            backgroundColor: '#1ecf0e', // 초기 배경색 추가
                         }
                     }}
                     TdLists={StudentsNames}
