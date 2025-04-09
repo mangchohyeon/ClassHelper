@@ -1,6 +1,6 @@
 .Main {
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 120);
     display: flex;
     flex-direction: column;
     padding: 2%;
@@ -37,13 +37,18 @@
 .InputWrapper {
     margin-top : 10%;
     width : 100%;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Stack {
     width : 100%;
     margin : 0;
     padding : 0;
-    transform: translateX(10%);
+    display : flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .Slider {
@@ -64,28 +69,41 @@
     width : 100%;
     height : auto;
     margin-top : 5%;
-    margin-left : 13%;   
+    display : flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .StudentsTableSection {
     margin-top: 5%;
     width: 100%;
+    margin-bottom: 20%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 5vh; /* 하단 여백 추가 */
 }
 
 .StudentsTable {
-    width: 90%;
-    margin: auto;
-    display: table; /* 테이블 디스플레이 모드 명시 */
-}
-
-.StudentsTableBody {
-    width : 100%;
+    width: 100%;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .StudentsTableRow {
-    width : 100%;
+    width: 100%;
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+    gap : 2%;
+    margin-top : 2%;
+    margin-bottom: 2%;
+}
+
+.StudentsTableData {
+    border: 2px solid black;
+    text-align: center;
+    vertical-align: middle;
+    border-collapse: collapse;
+    border-radius: 2%;
 }

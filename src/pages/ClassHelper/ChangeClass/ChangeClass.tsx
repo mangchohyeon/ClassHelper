@@ -6,11 +6,16 @@ import { MySlider } from '@components/MySlider';
 import { MyButton, MyButtonProps} from "@components/MyButton";
 import { Stack } from '@chakra-ui/react';
 import questioncircleicon from '@assets/QuestionCirclelcon.svg';
-import { Table } from '@components/Table';
+import { TableListsProps, TableLists } from '@components/TableLists'
 import { get2DArray } from '@utils/getArray';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Button2Props extends MyButtonProps {
     onClick? : () => void;
+}
+
+function TableLists2(props : TableListsProps) {
+
 }
 
 function Button2(props : Button2Props) {
@@ -30,7 +35,7 @@ function Button2(props : Button2Props) {
       )
 }
 
-const ChangeClass: React.FC = () => {
+function ChangeClass() {
     // 슬라이더 값을 위한 state
     const [tempRowNum, setTempRowNum] = useState(6);    // 분단당 학생수
     const [tempColumnNum, setTempColumnNum] = useState(5);  // 분단 수
@@ -42,6 +47,10 @@ const ChangeClass: React.FC = () => {
     //학생명단 리스트
     const [studentsNames, setStudentsNames] = useState(() => 
         get2DArray<string>(tableColumnNum, tableRowNum, ""));
+
+    //배치될지 말지 정하는 state
+    const [isAssignable, setisAssignable] = useState(() => 
+        get2DArray<boolean>(tableColumnNum, tableRowNum, true));
 
     //슬라이더 state변경하는 함수
     function handleRowNumChange(RN: number) {
@@ -143,19 +152,29 @@ const ChangeClass: React.FC = () => {
                 className={styles.StudentsTableSection}
                 id={"TableSection"}>
                 {/**StudentsTable */}
-               <Table
+               <TableLists
                     className={styles.StudentsTable}
                     id="StudentsTable"
+                    style={{
+                        padding : "1%",
+                    }}
                     row={tableRowNum}
                     column={tableColumnNum}
-                    TBodyProps={{
-                        className:styles.StudentsTableBody
-                    }}
                     RowProps={{
                         className: styles.StudentsTableRow,
+                        style : {
+                            flexDirection : 'row',
+                            height: `${100/(tableColumnNum +2)}vw`,
+
+                        }
                     }}
                     TdProps={{
-                        className: styles.StudentsTableTd
+                        className: styles.StudentsTableData,
+                        style: {
+                            width: `${100/(tableColumnNum +2)}vw`,
+                            height: `${100/(tableColumnNum +2)}vw`, // 정사각형 셀을 만들기 위해 width와 동일하게 설정
+                            padding: '0.5rem',
+                        }
                     }}
                     TdLists={studentsNames}
                 />
