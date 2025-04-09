@@ -6,16 +6,14 @@ import { MySlider } from '@components/MySlider';
 import { MyButton, MyButtonProps} from "@components/MyButton";
 import { Stack } from '@chakra-ui/react';
 import questioncircleicon from '@assets/QuestionCirclelcon.svg';
-import { TableListsProps, TableLists } from '@components/TableLists'
-import { get2DArray } from '@utils/getArray';
+import { TableListsProps } from '@/components/TableLists/TableLists'
+import { getArray, get2DArray } from '@utils/getArray';
 import { v4 as uuidv4 } from 'uuid';
+import { shuffle } from '@/utils/shuffle';
+
 
 interface Button2Props extends MyButtonProps {
     onClick? : () => void;
-}
-
-function TableLists2(props : TableListsProps) {
-
 }
 
 function Button2(props : Button2Props) {
@@ -45,8 +43,13 @@ function ChangeClass() {
     const [tableColumnNum, setTableColumnNum] = useState(5);
     
     //학생명단 리스트
-    const [studentsNames, setStudentsNames] = useState(() => 
-        get2DArray<string>(tableColumnNum, tableRowNum, ""));
+    const [StudentsNames, setStudentsNames] = useState(() => 
+        getArray<string>(tableColumnNum* tableRowNum, ""));
+
+    //파일 업로드 됐는지 체크하는 state
+    const [isStudentsNamesUploaded, setisStudentsNamesUploaded] = 
+    useState(false);
+
 
     //배치될지 말지 정하는 state
     const [isAssignable, setisAssignable] = useState(() => 
@@ -60,11 +63,116 @@ function ChangeClass() {
     function handleColumnNumChange(CN: number) {
         setTempColumnNum(CN);
     }
+
+    //isAssignable state업데이트 하는 함수
+    function ChangeisAssignable(row: number, column: number) {
+        const TempisAssignable = isAssignable.map(row => [...row]);
+        TempisAssignable[row][column] = !TempisAssignable[row][column];
+        setisAssignable(TempisAssignable);
+        return TempisAssignable[row][column];
+    }
+
+    //색깔 바꾸는 함수
+    function ChangeBackgoundColor(e : React.MouseEvent<HTMLLIElement>,
+        Row : number, Column : number) {
+        const Flag = ChangeisAssignable(Row, Column);
+        if(Flag) {
+            e.currentTarget.style.backgroundColor = "#1ecf0e";
+        }
+        else {
+            e.currentTarget.style.backgroundColor = "#EB0000";
+        }
+    }
+
+
+    //업로드한 파일 받아주는 함수
+    function getStudentsNames() {
+
+    }    
     
+    //자리 생성하는 함수
     function handleGenerateTable() {
         setTableRowNum(tempRowNum);
         setTableColumnNum(tempColumnNum);
-        setStudentsNames(get2DArray<string>(tempColumnNum, tempRowNum, ""));
+        setStudentsNames(getArray<string>(tempColumnNum* tempRowNum, ""));
+        setisAssignable(get2DArray<boolean>(tempColumnNum, tempRowNum, true)); // 이 줄 추가
+    }
+
+    //자리 배치해주는 함수
+    function ShuffleSeats() {
+        let TempStudentsNames = Array.from(StudentsNames)
+
+        if(!isStudentsNamesUploaded) {
+            TempStudentsNames = [];
+            for(let i = 1; i <= (tableColumnNum*tableRowNum); i++) {
+                TempStudentsNames.push(i.toString() + "번");
+            }
+        }
+
+        shuffle(TempStudentsNames);
+        let count = 0;
+        for(let i = 0; i < tableRowNum; i++) {
+            for(let j = 0; j < tableColumnNum; j++) {
+                if(!isAssignable[i][j]) {
+                    TempStudentsNames.splice(count, 0, "");
+                }
+                count ++;
+            }
+        }
+    }
+
+    
+
+    //TableLists2
+    function TableLists2(props : TableListsProps) {
+        const TableListsClass = `${props.className || styles.TableLists}`;
+        const RowClass = (props.RowProps?.className || '') + (props.RowProps?.style != undefined 
+        ? ''
+        : styles.TableListsRow);
+        const TdClass = (props.TdProps?.className || '') + (props.TdProps?.style != undefined
+        ? ''
+        : styles.TableListsData);
+      
+        function getRows() {
+          const rows = [];
+          let count = 0;
+          for(let i = 0; i < props.row; i++) {
+              const columns = [];
+              for(let j = 0; j < props.column; j++) {
+                  columns.push(
+                      <li
+                      className={TdClass}
+                      id={`TableListsData${i}-${j}`}
+                      style={props.TdProps?.style}
+                      key={uuidv4()}
+                      onClick={(e) => ChangeBackgoundColor(e, i, j)}>
+                          {props.TdLists[count]}
+                      </li>
+                  );
+                  count ++;
+              }
+              
+              rows.push(
+                  <ul
+                  className={RowClass}
+                  id={`TableListsRow${i}`}
+                  style={props.RowProps?.style}
+                  key={uuidv4()}>
+                      {columns}
+                  </ul>
+              );
+          }
+          return rows;
+        }
+      
+        return (
+          <div 
+          className={TableListsClass}
+          id={props.id}
+          style={props.style}>
+              {getRows()}
+          </div>
+        )
     }
 
     return (
@@ -133,16 +241,50 @@ function ChangeClass() {
                 </Stack>
                 
                 <div className={styles.SubmitBtnWrapper}>
+                    {/**파일 업로드하기 버튼 */}
                     <Button2
-                        size="md"
-                        variant="solid"
-                        color="gray"
-                        rounded="lg"
-                        onClick={handleGenerateTable}>
+                    className={styles.SubmitBtn}
+                    size="md"
+                    variant="solid"
+                    color="gray"
+                    rounded="lg"
+                    onClick={getStudentsNames}>
+                        <HBlock 
+                        num={2}
+                        className={styles.Label2}
+                        id="FileUploadBtn">
+                            학생명단 <br />
+                            파일 업로드하기
+                        </HBlock>
+                    </Button2>
+                    
+                    {/**자리 생성하기 버튼*/}
+                    <Button2
+                    className={styles.SubmitBtn}
+                    size="md"
+                    variant="solid"
+                    color="gray"
+                    rounded="lg"
+                    onClick={handleGenerateTable}>
                         <HBlock 
                         num={2}
                         className={styles.Label2}>
                             자리 생성하기
+                        </HBlock>
+                    </Button2>
+                    
+                    {/**자리 배치하기 버튼 */}
+                    <Button2
+                    className={styles.SubmitBtn}
+                    size="md"
+                    variant="solid"
+                    color="gray"
+                    rounded="lg"
+                    onClick={ShuffleSeats}>
+                        <HBlock 
+                        num={2}
+                        className={styles.Label2}>
+                            자리 배치하기
                         </HBlock>
                     </Button2>
                 </div>
@@ -152,7 +294,7 @@ function ChangeClass() {
                 className={styles.StudentsTableSection}
                 id={"TableSection"}>
                 {/**StudentsTable */}
-               <TableLists
+               <TableLists2
                     className={styles.StudentsTable}
                     id="StudentsTable"
                     style={{
@@ -164,19 +306,19 @@ function ChangeClass() {
                         className: styles.StudentsTableRow,
                         style : {
                             flexDirection : 'row',
-                            height: `${100/(tableColumnNum +2)}vw`,
+                            height: `${35/(tableColumnNum +2)}vw`,
 
                         }
                     }}
                     TdProps={{
                         className: styles.StudentsTableData,
                         style: {
-                            width: `${100/(tableColumnNum +2)}vw`,
-                            height: `${100/(tableColumnNum +2)}vw`, // 정사각형 셀을 만들기 위해 width와 동일하게 설정
+                            width: `${35/(tableColumnNum +2)}vw`,
+                            height: `${35/(tableColumnNum +2)}vw`, // 정사각형 셀을 만들기 위해 width와 동일하게 설정
                             padding: '0.5rem',
                         }
                     }}
-                    TdLists={studentsNames}
+                    TdLists={StudentsNames}
                 />
             </section>
         </main>
