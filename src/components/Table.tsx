@@ -41,17 +41,19 @@ function Table(props : TableProps) {
         className={TBodyClass}
         id={props.TBodyProps?.id}
         key={uuidv4()}
-        style={{ height: '100%' }}
+        style={props.TBodyProps?.style}
       >
         {Array.from({length : props.row}).map((_1, RowIndex:number) => (
           <tr
           className={RowClass}
           id={props.RowProps?.id}
-          key={uuidv4()}>
+          key={uuidv4()}
+          style={props.RowProps?.style}>
             {Array.from({length : props.column}).map((_2, ColumnIndex : number) => (
               <td 
               className={TdClass} 
               id={props.TdProps?.id}
+              style={props.TdProps?.style}
               key={uuidv4()}>
                 {props.TdLists[RowIndex][ColumnIndex]}
               </td>
