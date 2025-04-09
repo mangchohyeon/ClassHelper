@@ -71,30 +71,26 @@ const menulist: Menu[] = [
     ]
   },
   {
-    MainMenu: <DivLink to="/Math">
-      <HBlock num={2}
+    MainMenu: <HBlock num={2}
       style={{fontSize : "1.4em"}}
       onClick={AlertMessage}>
         수학
-      </HBlock>
-      </DivLink>,
+      </HBlock>,
+
     SubMenu: [
-      <DivLink to="/Math/Fibonacci"
-      onClick={AlertMessage}>
-        <HBlock num={3}
-        style={{fontSize : "1.3em"}}>
-          피보나치 수열
-        </HBlock>
-      </DivLink>,
+    <HBlock 
+    num={3}
+    style={{fontSize : "1.3em"}}
+    onClick={AlertMessage}>
+      피보나치 수열
+    </HBlock>,
       
-      <DivLink to="/Math/Pascal">
-        <HBlock 
-        num={3}
-        onClick={AlertMessage}
-        style={{fontSize : "1.3em"}}>
-          파스칼의 삼각형
-        </HBlock>
-      </DivLink>
+    <HBlock 
+    num={3}
+    onClick={AlertMessage}
+    style={{fontSize : "1.3em"}}>
+      파스칼의 삼각형
+    </HBlock>,
     ]
   },   
 ];
