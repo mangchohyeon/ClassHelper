@@ -43,13 +43,17 @@ function ChangeClass() {
     const [tableColumnNum, setTableColumnNum] = useState(5);
     
     //학생명단 리스트
-    const [StudentsNames, setStudentsNames] = useState(() => 
-        getArray<string>(tableColumnNum* tableRowNum, ""));
-
-    //파일 업로드 됐는지 체크하는 state
-    const [isStudentsNamesUploaded, setisStudentsNamesUploaded] = 
-    useState(false);
-
+    const [StudentsNames, setStudentsNames] = useState(["구도회", "권효섭", 
+        "김기용", "김범서", "김용환", "김재민", "김형민", "맹기현", "박건", "박건우", 
+        "변주용", "석진우", "성혁준", "윤시운", "윤정탁", "윤지민", "이세현", "이용재", 
+        "이찬현", "이채훈", "장현빈", "전재혁", "최정욱", "뇌종무", "편승우", "허태양", 
+        "홍석현", "장재형"]);
+    
+    const StudentsName2 = ["구도회", "권효섭", 
+        "김기용", "김범서", "김용환", "김재민", "김형민", "맹기현", "박건", "박건우", 
+        "변주용", "석진우", "성혁준", "윤시운", "윤정탁", "윤지민", "이세현", "이용재", 
+        "이찬현", "이채훈", "장현빈", "전재혁", "최정욱", "뇌종무", "편승우", "허태양", 
+        "홍석현", "장재형"];
 
     //배치될지 말지 정하는 state
     const [isAssignable, setisAssignable] = useState(() => 
@@ -82,33 +86,19 @@ function ChangeClass() {
         else {
             e.currentTarget.style.backgroundColor = "#EB0000";
         }
-    }
-
-
-    //업로드한 파일 받아주는 함수
-    function getStudentsNames() {
-
     }    
     
     //자리 생성하는 함수
     function handleGenerateTable() {
         setTableRowNum(tempRowNum);
         setTableColumnNum(tempColumnNum);
-        setStudentsNames(getArray<string>(tempColumnNum* tempRowNum, ""));
         setisAssignable(get2DArray<boolean>(tempColumnNum, tempRowNum, true)); // 이 줄 추가
     }
 
     //자리 배치해주는 함수
     function ShuffleSeats() {
-        let TempStudentsNames = Array.from(StudentsNames)
-
-        if(!isStudentsNamesUploaded) {
-            TempStudentsNames = [];
-            for(let i = 1; i <= (tableColumnNum*tableRowNum); i++) {
-                TempStudentsNames.push(i.toString() + "번");
-            }
-        }
-
+        let TempStudentsNames = Array.from(StudentsName2);
+        
         shuffle(TempStudentsNames);
         let count = 0;
         for(let i = 0; i < tableRowNum; i++) {
@@ -119,6 +109,7 @@ function ChangeClass() {
                 count ++;
             }
         }
+
         setStudentsNames(TempStudentsNames);
     }
 
@@ -244,24 +235,7 @@ function ChangeClass() {
                     getValue={(v : number) => handleRowNumChange(v)}/>
                 </Stack>
                 
-                <div className={styles.SubmitBtnWrapper}>
-                    {/**파일 업로드하기 버튼 */}
-                    <Button2
-                    className={styles.SubmitBtn}
-                    size="md"
-                    variant="solid"
-                    color="gray"
-                    rounded="lg"
-                    onClick={getStudentsNames}>
-                        <HBlock 
-                        num={2}
-                        className={styles.Label2}
-                        id="FileUploadBtn">
-                            학생명단 <br />
-                            파일 업로드하기
-                        </HBlock>
-                    </Button2>
-                    
+                <div className={styles.SubmitBtnWrapper}>                    
                     {/**자리 생성하기 버튼*/}
                     <Button2
                     className={styles.SubmitBtn}
