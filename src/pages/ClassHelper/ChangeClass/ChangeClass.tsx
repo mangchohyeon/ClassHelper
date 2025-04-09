@@ -56,17 +56,6 @@ const ChangeClass: React.FC = () => {
         setTableRowNum(tempRowNum);
         setTableColumnNum(tempColumnNum);
         setStudentsNames(get2DArray<string>(tempColumnNum, tempRowNum, ""));
-
-        // 렌더링 완료를 보장하기 위해 timeout 시간 증가
-        setTimeout(() => {
-            const tableSection = document.getElementById('TableSection');
-            if (tableSection) {
-                tableSection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center' // 중앙 정렬로 변경
-                });
-            }
-        }, 300);
     }
 
     return (
@@ -166,10 +155,7 @@ const ChangeClass: React.FC = () => {
                         className: styles.StudentsTableRow,
                     }}
                     TdProps={{
-                        className: styles.StudentsTableTd,
-                        style: {width : (100/tableColumnNum),
-                            height : (100/tableColumnNum)
-                        }
+                        className: styles.StudentsTableTd
                     }}
                     TdLists={studentsNames}
                 />
