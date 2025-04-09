@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { getArray } from 'utils/getArray';
 import { removeChar } from 'utils/removeChar'
-import { ComponentsProps, ComponentsSettings } from 'utils/ComponentsSettings';
+import { ComponentsProps } from '@/types/ComponentsProps';
 import LetterLine from '../LetterLine/LetterLine'
 import styles from './LetterLines.module.css';
 
@@ -60,10 +60,9 @@ function LetterLines(props : LetterLinesProps) {
   }
   
   return (
-    <ul {...ComponentsSettings({
-      className : props.className + styles.LetterLine,
-      id : props.id
-    })}>
+    <ul 
+    className={props.className + styles.LetterLine}
+    id={props.id}>
       {Array.from({length : props.LineNum}).map((_, LineIndex) => (
       <LetterLine id={`LetterLine${LineIndex}`} 
         LineNum = {props.LineNum} word = {props.word} />

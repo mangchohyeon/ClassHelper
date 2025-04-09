@@ -1,4 +1,4 @@
-import { ComponentsProps, ComponentsSettings } from 'utils/ComponentsSettings'
+import { ComponentsProps } from '@/types/ComponentsProps';
 import styles from './LetterLines.module.css';
 
 interface LetterLineProps extends ComponentsProps {
@@ -11,10 +11,8 @@ function LetterLine(props : LetterLineProps) {
   const cn = styles.LetterLine + props.className; 
   return (
     <ul
-      {...ComponentsSettings({
-        className : cn,
-        id: props.id,
-      })}
+    className={cn}
+    id={props.id}
     >
       {Array.from({ length: LetterNum }).map((_, Index) => (
         <li key={Index} className={styles.Letter} id={`Letter${props.LineNum}-${Index}`}></li>
