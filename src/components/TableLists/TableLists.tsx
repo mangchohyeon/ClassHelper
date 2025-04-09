@@ -8,46 +8,55 @@ interface TableListsProps extends ComponentsProps {
   width?: string;
   RowProps? : ComponentsProps;
   TdProps? : ComponentsProps;
-  TdLists : React.ReactNode[][];
+  TdLists : React.ReactNode[];
 }
 
 function TableLists(props : TableListsProps) {
   const TableListsClass = `${props.className || styles.TableLists}`;
-
-
   const RowClass = (props.RowProps?.className || '') + (props.RowProps?.style != undefined 
   ? ''
   : styles.TableListsRow);
-
   const TdClass = (props.TdProps?.className || '') + (props.TdProps?.style != undefined
   ? ''
   : styles.TableListsData);
+
+  function getRows() {
+    const rows = [];
+    let count = 0;
+    for(let i = 0; i < props.row; i++) {
+        const columns = [];
+        for(let j = 0; j < props.column; j++) {
+            columns.push(
+                <li
+                className={TdClass}
+                id={`TableListsData${i}-${j}`}
+                style={props.TdProps?.style}
+                key={uuidv4()}>
+                    {props.TdLists[count]}
+                </li>
+            );
+            count ++;
+        }
+        
+        rows.push(
+            <ul
+            className={RowClass}
+            id={`TableListsRow${i}`}
+            style={props.RowProps?.style}
+            key={uuidv4()}>
+                {columns}
+            </ul>
+        );
+    }
+    return rows;
+  }
 
   return (
     <div 
     className={TableListsClass}
     id={props.id}
     style={props.style}>
-        {Array.from({length : props.row}).map((_1, RowIndex) => (
-            <ul
-            className={RowClass}
-            id={`TableListsRow${RowIndex}`}
-            style={props.RowProps?.style}
-            key={uuidv4()}>
-                {Array.from({length : props.column}).map((_2, ColumnIndex) => (
-                    <li
-                    className={TdClass}
-                    id={`TableListsData${RowIndex}-${ColumnIndex}`}
-                    style={props.TdProps?.style}
-                    key={uuidv4()}>
-                        {props.TdLists[RowIndex][ColumnIndex]}
-                    </li>
-
-                ))}
-            </ul>
-            
-
-        ))}
+        {getRows()}
     </div>
   )
 }
