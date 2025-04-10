@@ -24,27 +24,24 @@ function AlertMessage() {
 
 const menulist: Menu[] = [
   {
-    MainMenu: <HBlock 
-    num={2} 
+    MainMenu: <div
     id="EngWords"
     onClick={AlertMessage}
     style={{fontSize : "1.4em"}}>
       영단어 학습
-      </HBlock>,
+      </div>,
     
 
     SubMenu: [
-      <HBlock 
-      num={3}
+      <div
       id="Engwords/study"
       style={{fontSize : "1.3em"}}
-      onClick={AlertMessage}>학습하기</HBlock>,
+      onClick={AlertMessage}>학습하기</div>,
 
-      <HBlock 
-      num={3}
+      <div
       id="Engwords/game"
       style={{fontSize : "1.3em"}}
-      onClick={AlertMessage}>영단어 게임</HBlock>
+      onClick={AlertMessage}>영단어 게임</div>
     ]
   },
   {
@@ -62,35 +59,32 @@ const menulist: Menu[] = [
         </HBlock>
       </DivLink>,
 
-      <HBlock 
-      num={3}
+      <div
       onClick={AlertMessage}
       style={{fontSize : "1.3em"}}>
         팀 나누기
-      </HBlock>
+      </div>
     ]
   },
   {
-    MainMenu: <HBlock num={2}
+    MainMenu: <div 
       style={{fontSize : "1.4em"}}
       onClick={AlertMessage}>
         수학
-      </HBlock>,
+      </div>,
 
     SubMenu: [
-    <HBlock 
-    num={3}
+    <div
     style={{fontSize : "1.3em"}}
     onClick={AlertMessage}>
       피보나치 수열
-    </HBlock>,
+    </div>,
       
-    <HBlock 
-    num={3}
+    <div 
     onClick={AlertMessage}
     style={{fontSize : "1.3em"}}>
       파스칼의 삼각형
-    </HBlock>,
+    </div>,
     ]
   },   
 ];
