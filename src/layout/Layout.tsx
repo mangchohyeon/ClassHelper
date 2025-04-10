@@ -25,6 +25,7 @@ function AlertMessage() {
 const menulist: Menu[] = [
   {
     MainMenu: <div
+    className={styles.MainMenu}
     id="EngWords"
     onClick={AlertMessage}
     style={{fontSize : "1.4em"}}>
@@ -46,17 +47,18 @@ const menulist: Menu[] = [
   },
   {
     MainMenu: <DivLink to="/ClassHelper">
-      <HBlock num={2}
+      <div     
+      className={styles.MainMenu}
       style={{fontSize : "1.4em"}}>
         학교 도우미
-      </HBlock>
+      </div>
       </DivLink>,
     SubMenu: [
       <DivLink to="/ClassHelper/ChangeClass">
-        <HBlock num={3}
+        <div 
         style={{fontSize : "1.3em"}}>
           자리 바꾸기
-        </HBlock>
+        </div>
       </DivLink>,
 
       <div
@@ -68,6 +70,7 @@ const menulist: Menu[] = [
   },
   {
     MainMenu: <div 
+    className={styles.MainMenu}
       style={{fontSize : "1.4em"}}
       onClick={AlertMessage}>
         수학
