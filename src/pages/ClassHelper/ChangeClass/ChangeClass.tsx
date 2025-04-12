@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import styles from './ChangeClass.module.css';
 import HBlock from '@components/HBlock';
-import QuestionCircleIcon from '@components/QuestionCircleIcon';
+import { QuestionCircleIcon } from '@components/QuestionCircleIcon';
 import { MySlider } from '@components/MySlider';
 import { MyButton, MyButtonProps} from "@components/MyButton";
 import { Stack } from '@chakra-ui/react';
-import questioncircleicon from '@assets/QuestionCirclelcon.svg';
 import { TableListsProps } from '@/components/TableLists/TableLists'
 import { getArray, get2DArray } from '@utils/getArray';
 import { v4 as uuidv4 } from 'uuid';
@@ -185,7 +184,6 @@ function ChangeClass() {
 
             <section className={styles.QuestionSection}>
                 <QuestionCircleIcon className={styles.QuestionIcon} 
-                src={questioncircleicon}
                 alt="자리 바꾸기 아이콘"
                 width="auto"
                 />
