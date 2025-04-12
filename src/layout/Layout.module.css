@@ -8,32 +8,24 @@
 .Navigation {
   width: 100%;
   max-width: 100%;
-  min-width: 100%;
+  min-width: 98%;
   height: 30vh;
   max-height: 32vh;
   min-height: 28vh;
-  display: flex;
-  flex-direction: row;
   align-items: center;
   margin-bottom: 5%;
-  color: #A0AFFF;
-  box-shadow: 0 10px 10px -5px #b0d8ee;
+  color: black;
   padding-top: 2%;
   font-family: "KakaoBigSans-ExtraBold";
+  font-weight: 800;
 }
 
-.Home {
-  font-size : 2.0rem;
-  font-family: inherit;
-  color : black;
+.Logo {
+  height : 100%;
+  object-fit: contain;
 }
 
-.MainMenu {
-  color : black;
-  display : flex;
-  flex-direction: column;
-  max-height: 95%;
-  align-items: center;
-  justify-content: center;
-  font-family: inherit;
+.Menus {
+  height : 100%;
 }
+

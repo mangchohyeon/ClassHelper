@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import { Menu, Navigation} from '@components/Navigation/Navigation';
-import HBlock from '@components/HBlock';
-import styles from './Layout.module.css'
-import DivLink  from '@components/DivLink';
+import { NavigationRow } from '@components/NavigationRow';
+import styles from './Layout.module.css';
+import { Logo } from '@components/Logo';
 import Swal from 'sweetalert2';
+import { Navigate } from '@hooks/Navigate';
+import { HStack } from '@components/HStack';
+import { QuestionCircleIcon } from '@components/QuestionCircleIcon';
 
 function AlertMessage() {
   Swal.fire({
@@ -22,88 +24,34 @@ function AlertMessage() {
   })
 }
 
-const menulist: Menu[] = [
-  {
-    MainMenu: <div
-    className={styles.MainMenu}
-    id="EngWords"
-    onClick={AlertMessage}
-    style={{fontSize : "1.4em"}}>
-      영단어 학습
-      </div>,
-    
-
-    SubMenu: [
-      <div
-      id="Engwords/study"
-      style={{fontSize : "1.3em"}}
-      onClick={AlertMessage}>학습하기</div>,
-
-      <div
-      id="Engwords/game"
-      style={{fontSize : "1.3em"}}
-      onClick={AlertMessage}>영단어 게임</div>
-    ]
-  },
-  {
-    MainMenu: <DivLink to="/ClassHelper">
-      <div     
-      className={styles.MainMenu}
-      style={{fontSize : "1.4em"}}>
-        학교 도우미
-      </div>
-      </DivLink>,
-    SubMenu: [
-      <DivLink to="/ClassHelper/ChangeClass">
-        <div 
-        style={{fontSize : "1.3em"}}>
-          자리 바꾸기
-        </div>
-      </DivLink>,
-
-      <div
-      onClick={AlertMessage}
-      style={{fontSize : "1.3em"}}>
-        팀 나누기
-      </div>
-    ]
-  },
-  {
-    MainMenu: <div 
-    className={styles.MainMenu}
-      style={{fontSize : "1.4em"}}
-      onClick={AlertMessage}>
-        수학
-      </div>,
-
-    SubMenu: [
-    <div
-    style={{fontSize : "1.3em"}}
-    onClick={AlertMessage}>
-      피보나치 수열
-    </div>,
-      
-    <div 
-    onClick={AlertMessage}
-    style={{fontSize : "1.3em"}}>
-      파스칼의 삼각형
-    </div>,
-    ]
-  },   
-];
 
 function Layout() {
+  const menu = <HStack
+  className={styles.Menus}>
+    <QuestionCircleIcon 
+    className={styles.QuestionIcon}
+    />
+    <div 
+    className={styles.LoginWrapper}
+    onClick={AlertMessage}>
+      로그인
+    </div>
+  </HStack>
+  
+
+  
   return (
     <>
       {/* Navigation 컴포넌트는 모든 페이지에서 공통적으로 사용됩니다. */}
-      <Navigation
+      <NavigationRow
       className={styles.Navigation}
-      Home={<DivLink to='/'>
-        <HBlock num={1} className={styles.Home}>
-          Class{'\n'}Helper
-          </HBlock></DivLink>}
-          MenuLists={menulist} 
-          />
+      Home={<Logo
+        className={styles.Logo}
+        onClick={() => Navigate("/")}
+        />
+      }
+      Menu={menu}
+      />
       {/* Outlet : 현재 라우트에 해당하는 자식 컴포넌트를 렌더링*/}
       <Outlet />
     </>
