@@ -21,7 +21,8 @@
       "@layout/*" : ["layout/*"], 
       "@pages/*": ["pages/*"],
       "@types/*": ["types/*"],
-      "@utils/*" : ["utils/*"]
+      "@utils/*" : ["utils/*"],
+      "@hooks/*" : ["hooks/*"]
     }
   },
   "include" : [
