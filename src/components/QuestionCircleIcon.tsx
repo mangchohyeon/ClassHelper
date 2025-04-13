@@ -1,6 +1,5 @@
 import { ImgProps } from "@/types/ImgTypes";
-import { QuestionIcon } from "@chakra-ui/icons";
-
+import QuestionIcon from '@assets/QuestionCirclelcon.svg';
 interface QuestionIconProps extends Omit<ImgProps, 'src'> {
 
 }
