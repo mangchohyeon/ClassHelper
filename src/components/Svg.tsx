@@ -7,7 +7,8 @@ export function Svg(props: ImgProps ) {
         id={props.id}
         style={props.style}
         src={props.src}
-        alt={props.alt} />
+        alt={props.alt}
+        onClick={() => props.onClick} />
     )
 }
 
