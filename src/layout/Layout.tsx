@@ -8,7 +8,8 @@ import { QuestionCircleIcon } from '@components/QuestionCircleIcon';
 import { Svg } from '@components/Svg';
 import MenuIcon from '@assets/MenuIcon.svg';
 import { Text } from '@components/Text';
-
+import { Tooltip } from '@components/Tooltip';
+import { IconButton } from '@mui/material';
 
 function AlertMessage() {
   Swal.fire({
@@ -34,19 +35,25 @@ function Layout() {
     <>
       <HStack
       className={styles.Navigation}>
-        {/**메뉴 아이콘 */}
-        <Svg
-        className={styles.MenuIcon}
-        src={MenuIcon}
-        alt="메뉴 아이콘" />
+        <Tooltip
+        title='메뉴 아이콘'>
+          {/**메뉴 아이콘 */}
+          <Svg
+          className={styles.MenuIcon}
+          src={MenuIcon}
+          alt="메뉴 아이콘" />
+        </Tooltip>
         
-        {/**Logo */}
-        <Svg
-        className={styles.Logo}
-        src={Logo}
-        alt="로고"
-        onClick={AlertMessage}
-        />
+        <Tooltip>
+          {/**Logo */}
+          <Svg
+          className={styles.Logo}
+          src={Logo}
+          alt="로고"
+          onClick={AlertMessage}
+          />
+        </Tooltip>
+        
 
         {/**QuestionIcon */}
         <QuestionCircleIcon 
@@ -56,7 +63,7 @@ function Layout() {
         
         {/**LoginWrapper */}
         <Text
-        onClick={() => Navigate("/Login")}
+        onClick={AlertMessage}
         className={styles.LoginText}>
           로그인
         </Text>

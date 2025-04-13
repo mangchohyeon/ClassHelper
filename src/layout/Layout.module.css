@@ -28,6 +28,7 @@
   min-height: 22%;
   object-fit: contain;
   margin-right : 2%;
+  cursor: pointer;
 }
 
 .Logo {
@@ -35,6 +36,7 @@
   max-height: 28%;
   min-height : 24%;
   object-fit: contain;
+  cursor: pointer;
 }
 
 .QuestionIcon {
