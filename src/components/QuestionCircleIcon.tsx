@@ -1,23 +1,18 @@
 import { ImgProps } from "@/types/ImgTypes";
-import QuestionIcon from '@assets/QuestionCirclelcon.svg';
+import QuestionIcon from '@assets/QuestionCircleIcon.svg';
 interface QuestionIconProps extends Omit<ImgProps, 'src'> {
-
 }
 
 export function QuestionCircleIcon(props: QuestionIconProps ) {
-    const Style = {
-        ...props.style,
-        ...(props.width && { width: props.width }),
-        ...(props.height && { height: props.height })
-    };
-
     return (
         <img 
         className={props.className}
         id={props.id}
-        style={Style}
+        style={props.style}
+        title={props.title}
         src={QuestionIcon}
-        alt={props.alt} />
+        alt={props.alt}
+        />
     )
 }
 
