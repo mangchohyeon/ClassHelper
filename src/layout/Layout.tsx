@@ -51,7 +51,8 @@ function Layout() {
         {/**QuestionIcon */}
         <QuestionCircleIcon 
         className={styles.QuestionIcon}
-        alt="소개 페이지로 이동 아이콘" />
+        alt="소개 페이지로 이동 아이콘"
+        title="소개 페이지로 이동" />
         
         {/**LoginWrapper */}
         <Text

@@ -43,6 +43,7 @@
   min-height : 22%;
   object-fit: contain;
   margin-left : auto;
+  cursor: pointer;
 }
 
 .LoginText {
@@ -52,4 +53,5 @@
   height : auto;
   margin-left : 3%;
   margin-right : 2%;
+  cursor: pointer;
 }
