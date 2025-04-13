@@ -1,11 +1,14 @@
 import { Outlet } from 'react-router-dom';
-import { NavigationRow } from '@components/NavigationRow';
 import styles from './Layout.module.css';
-import { Logo } from '@components/Logo';
+import Logo from '@assets/Logo.svg';
 import Swal from 'sweetalert2';
 import { Navigate } from '@hooks/Navigate';
 import { HStack } from '@components/HStack';
 import { QuestionCircleIcon } from '@components/QuestionCircleIcon';
+import { Svg } from '@components/Svg';
+import MenuIcon from '@assets/MenuIcon.svg';
+import { Text } from '@components/Text';
+
 
 function AlertMessage() {
   Swal.fire({
@@ -26,33 +29,38 @@ function AlertMessage() {
 
 
 function Layout() {
-  const menu = <HStack
-  className={styles.Menus}>
-    <QuestionCircleIcon 
-    className={styles.QuestionIcon}
-    />
-    <div 
-    className={styles.LoginWrapper}
-    onClick={AlertMessage}>
-      로그인
-    </div>
-  </HStack>
-  
-
   
   return (
     <>
-      {/* Navigation 컴포넌트는 모든 페이지에서 공통적으로 사용됩니다. */}
-      <NavigationRow
-      className={styles.Navigation}
-      Home={<Logo
+      <HStack
+      className={styles.Navigation}>
+        {/**메뉴 아이콘 */}
+        <Svg
+        className={styles.MenuIcon}
+        src={MenuIcon}
+        alt="메뉴 아이콘" />
+        
+        {/**Logo */}
+        <Svg
         className={styles.Logo}
-        onClick={() => Navigate("/")}
+        src={Logo}
+        alt="로고"
+        onClick={AlertMessage}
         />
-      }
-      Menu={menu}
-      />
-      {/* Outlet : 현재 라우트에 해당하는 자식 컴포넌트를 렌더링*/}
+
+        {/**QuestionIcon */}
+        <QuestionCircleIcon 
+        className={styles.QuestionIcon}
+        alt="소개 페이지로 이동 아이콘" />
+        
+        {/**LoginWrapper */}
+        <Text
+        onClick={() => Navigate("/Login")}
+        className={styles.LoginText}>
+          로그인
+        </Text>
+      </HStack>
+
       <Outlet />
     </>
   );

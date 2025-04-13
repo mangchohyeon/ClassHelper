@@ -12,20 +12,44 @@
   height: 30vh;
   max-height: 32vh;
   min-height: 28vh;
-  align-items: center;
   margin-bottom: 5%;
+  margin-top : 1%;
+  padding-left : 2%;
+  padding-right : 2%;
   color: black;
   padding-top: 2%;
   font-family: "KakaoBigSans-ExtraBold";
   font-weight: 800;
 }
 
+.MenuIcon {
+  height : 24%;
+  max-height: 26%;
+  min-height: 22%;
+  object-fit: contain;
+  margin-right : 2%;
+}
+
 .Logo {
-  height : 100%;
+  height : 26%;
+  max-height: 28%;
+  min-height : 24%;
   object-fit: contain;
 }
 
-.Menus {
-  height : 100%;
+.QuestionIcon {
+  height : 24%;
+  max-height: 26%;
+  min-height : 22%;
+  object-fit: contain;
+  margin-left : auto;
 }
 
+.LoginText {
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 1.3rem;
+  height : auto;
+  margin-left : 3%;
+  margin-right : 2%;
+}
