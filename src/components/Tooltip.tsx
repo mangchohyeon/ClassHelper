@@ -1,5 +1,6 @@
 import { default as TooltipTemp } from '@mui/material/Tooltip';
 import { ComponentsProps } from '@/types/ComponentsProps';
+import { Button } from '@mui/material';
 
 interface TooltipProps extends ComponentsProps {
     title? : string;
@@ -10,13 +11,14 @@ interface TooltipProps extends ComponentsProps {
     "left-start" | "left-end" | "left" ;
 }
 
-export default function TooltipOffset(props : TooltipProps) {
+export function Tooltip(props : TooltipProps) {
     return (
       <TooltipTemp
       className={props.className}
       id={props.id}
       style={props.style}
       title={props.title}
+      placement={props.position}
         slotProps={{
             popper: {
             modifiers: [
