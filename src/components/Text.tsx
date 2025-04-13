@@ -4,6 +4,7 @@ interface TextProps extends TextPropsTemp {
     className? : string;
     id? : string;
     style? : React.CSSProperties;
+    title? : string;
 }
 
 export function Text(props : TextProps) {
