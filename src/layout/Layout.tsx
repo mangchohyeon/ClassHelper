@@ -35,38 +35,45 @@ function Layout() {
     <>
       <HStack
       className={styles.Navigation}>
-        <Tooltip
-        title='메뉴 아이콘'>
-          {/**메뉴 아이콘 */}
-          <Svg
-          className={styles.MenuIcon}
-          src={MenuIcon}
-          alt="메뉴 아이콘" />
-        </Tooltip>
+        <div
+        className={styles.LogoWrapper}>
+          <Tooltip
+          content="홈페이지로 이동">
+            {/**Logo */}
+            <Svg
+            className={styles.Logo}
+            src={Logo}
+            alt="로고"
+            onClick={AlertMessage}
+            />
+            </Tooltip>
+        </div>        
         
-        <Tooltip>
-          {/**Logo */}
-          <Svg
-          className={styles.Logo}
-          src={Logo}
-          alt="로고"
-          onClick={AlertMessage}
-          />
-        </Tooltip>
         
-
-        {/**QuestionIcon */}
-        <QuestionCircleIcon 
-        className={styles.QuestionIcon}
-        alt="소개 페이지로 이동 아이콘"
-        title="소개 페이지로 이동" />
+        <div
+        className={styles.QuestionIconWrapper}>
+          {/**QuestionIcon */}
+          <Tooltip 
+          content="소개 페이지로 이동">
+            <QuestionCircleIcon 
+            className={styles.QuestionIcon}
+            alt="소개 페이지로 이동 아이콘"
+            />
+          </Tooltip>
+        </div>
         
-        {/**LoginWrapper */}
-        <Text
-        onClick={AlertMessage}
-        className={styles.LoginText}>
-          로그인
-        </Text>
+        <div 
+        className={styles.LoginWrppaer}>
+          {/**LoginText */}
+          <Tooltip
+          content="로그인 페이지로 이동">
+            <Text
+            onClick={AlertMessage}
+            className={styles.LoginText}>
+              로그인
+          </Text>
+          </Tooltip>
+        </div>
       </HStack>
 
       <Outlet />
