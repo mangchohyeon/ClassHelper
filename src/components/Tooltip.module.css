@@ -1,3 +1,6 @@
-.Trigger {
-    overflow: auto;
+[data-scope="tooltip"][data-part="content"] {
+    color: white;
+    background-color: black;
+    padding: 8px; 
+    border-radius: 4px; 
 }
