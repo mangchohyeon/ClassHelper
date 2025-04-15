@@ -5,6 +5,10 @@ interface TextProps extends TextPropsTemp {
     id? : string;
     style? : React.CSSProperties;
     title? : string;
+    fontFamily? : string;
+    fontSize? : string;
+    fontWeight? : string;
+    fontColor? : string;
 }
 
 export function Text(props : TextProps) {
@@ -12,7 +16,13 @@ export function Text(props : TextProps) {
         <text 
         className={props.className}
         id={props.id}
-        style={props.style}
+        style={{
+            ...props.style,
+            fontFamily : props.fontFamily,
+            fontSize : props.fontSize,
+            fontWeight : props.fontWeight,
+            color : props.fontColor,
+        }}
         >
             {props.children}
         </text>
