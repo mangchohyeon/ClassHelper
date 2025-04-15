@@ -37,16 +37,23 @@ function Layout() {
       className={styles.Navigation}
       align={'center'}>
         <Tooltip
-        content="홈화면으로 이동"
+        content={<Text
+        className={styles.TooltipText}>
+          홈 화면으로 이동
+        </Text>}
         openDelay={500}
         closeDelay={200}
-        className={styles.LogoWrapper}>
-          <Svg
-          className={styles.Logo}
-          src={Logo}
-          alt="로고"
-          onClick={AlertMessage}
-          /> 
+        >
+          <HStack
+          className={styles.LogoWrapper}>
+            <Svg
+            className={styles.Logo}
+            src={Logo}
+            alt="로고"
+            onClick={AlertMessage}
+            /> 
+            ClassHelper
+          </HStack>
         </Tooltip>
              
         
@@ -65,7 +72,8 @@ function Layout() {
         <Tooltip
         content="로그인 페이지로 이동"
         openDelay={500}
-        closeDelay={200}>
+        closeDelay={200}
+        className={styles.LoginWrapper}>
           {/**LoginText */}
           <Text
           onClick={AlertMessage}
