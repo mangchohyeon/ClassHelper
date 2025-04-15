@@ -34,46 +34,45 @@ function Layout() {
   return (
     <>
       <HStack
-      className={styles.Navigation}>
-        <div
+      className={styles.Navigation}
+      align={'center'}>
+        <Tooltip
+        content="홈화면으로 이동"
+        openDelay={500}
+        closeDelay={200}
         className={styles.LogoWrapper}>
-          <Tooltip
-          content="홈페이지로 이동">
-            {/**Logo */}
-            <Svg
-            className={styles.Logo}
-            src={Logo}
-            alt="로고"
-            onClick={AlertMessage}
-            />
-            </Tooltip>
-        </div>        
+          <Svg
+          className={styles.Logo}
+          src={Logo}
+          alt="로고"
+          onClick={AlertMessage}
+          /> 
+        </Tooltip>
+             
         
-        
-        <div
+        <Tooltip 
+        content="소개 페이지로 이동"
+        openDelay={500}
+        closeDelay={200}
         className={styles.QuestionIconWrapper}>
           {/**QuestionIcon */}
-          <Tooltip 
-          content="소개 페이지로 이동">
-            <QuestionCircleIcon 
-            className={styles.QuestionIcon}
-            alt="소개 페이지로 이동 아이콘"
-            />
-          </Tooltip>
-        </div>
+          <QuestionCircleIcon 
+          className={styles.QuestionIcon}
+          alt="소개 페이지로 이동 아이콘"
+          />
+        </Tooltip>
         
-        <div 
-        className={styles.LoginWrppaer}>
+        <Tooltip
+        content="로그인 페이지로 이동"
+        openDelay={500}
+        closeDelay={200}>
           {/**LoginText */}
-          <Tooltip
-          content="로그인 페이지로 이동">
-            <Text
-            onClick={AlertMessage}
-            className={styles.LoginText}>
-              로그인
+          <Text
+          onClick={AlertMessage}
+          className={styles.LoginText}>
+            로그인
           </Text>
-          </Tooltip>
-        </div>
+        </Tooltip>
       </HStack>
 
       <Outlet />
