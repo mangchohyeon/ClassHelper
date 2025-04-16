@@ -1,6 +1,12 @@
-.main {
+.Main {
     padding-left: 2%;
     padding-right: 2%;
     width: 100%;
     height: auto;
+}
+
+
+.Heading {
+    width : auto;
+    height : auto;
 }

@@ -1,21 +1,30 @@
 import styles from './Home.module.css'
 import { Text } from '@components/Text'
+import { Highlight } from '@components/Highlight'
 
 function Home() {
     return (
-        <main className={styles.main}>
-            <section
+        <div className={styles.Main}>
+            <header
             className={styles.Heading}>
-                ClassHelper란 선생님들 및 학생들의 
-                간편한 활동을 위해 만든 사이트입니다.
-                <Text 
-                style={{
-                    color : '52525B'
-                }}>
-                    ClassHelper를 통해 간편하고
-                </Text>
-            </section>
-        </main>
+                <Highlight
+                query={["편리하고 간편한 학습", "교육 혁신 플랫폼"]}
+                className={styles.Heading1}>
+                    ClassHelper 
+                    편리하고 간편한 학습 & 교육 혁신 플랫폼
+                </Highlight>
+                <br />
+                <Highlight
+                query={[""]}
+                className={styles.Heading2}>
+                    자리 바꾸기, 영단어 학습 등의 서비스를 사용하세요.
+                </Highlight>
+            </header>
+
+            <main className={styles.main}>
+                
+            </main>
+        </div>
     )
 }
 
