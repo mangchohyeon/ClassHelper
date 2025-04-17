@@ -5,8 +5,8 @@ import Layout from '@layout/Layout';  // 위에서 만든 Layout 컴포넌트
 import Home from '@pages/Home/Home';
 import EngWords from '@pages/EngWords/EngWords';
 import Kodle from '@pages/EngWords/Kodle/Kodle';
-import ClassHelper from '@pages/ClassHelper/ClassHelper'
-import ChangeClass from '@pages/ClassHelper/ChangeClass/ChangeClass';
+import ClassHelper from '@pages/Teacher/ClassHelper'
+import ChangeClass from '@pages/Teacher/ChangeClass/ChangeClass';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 
 
