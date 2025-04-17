@@ -1,7 +1,9 @@
 "use client"
 import { useState } from 'react';
-import { CloseButton, DrawerOpenChangeDetails, Drawer as DrawerTemp, Portal } from "@chakra-ui/react"
+import { CloseButton, Drawer as DrawerTemp, Portal } from "@chakra-ui/react"
 import { ComponentsProps } from '@/types/ComponentsProps';
+import { Svg } from '@components/Svg';
+import CloseIcon from '@assets/CloseIcon.svg';
 import { useEffect } from 'react';
 
 type DrawerOpenChangeEvent = {
@@ -14,6 +16,7 @@ interface DrawerProps extends ComponentsProps {
     Body?: React.ReactNode;
     Footer?: React.ReactNode;
     BtnChildren? : React.ReactNode;
+    Size? : "xs" | "sm" | "md"| "lg"| "xl" | "full";
 }
 
 export function Drawer(props: DrawerProps) {
@@ -27,7 +30,8 @@ export function Drawer(props: DrawerProps) {
     <DrawerTemp.Root
       open={isOpen}
       onOpenChange={(e : DrawerOpenChangeEvent) => setIsOpen(e.open)}
-      placement={props.placement != undefined ? props.placement : "end"}>
+      placement={props.placement != undefined ? props.placement : "end"}
+      size={props.Size}>
       <DrawerTemp.Trigger>
         <button
         className={props.className}
@@ -50,10 +54,14 @@ export function Drawer(props: DrawerProps) {
               {props.Footer}
             </DrawerTemp.Footer>
             <DrawerTemp.CloseTrigger>
-              <CloseButton 
-              size="md"
-              onClick={() => setIsOpen(false)}
-              className="DrawerCloseBtn"/>
+              <button
+              className="DrawerCloseBtn">
+                <Svg
+                className="DrawerCloseSvg"
+                src={CloseIcon}
+                alt="사이드바 닫기 버튼"
+                />
+              </button>
             </DrawerTemp.CloseTrigger>
           </DrawerTemp.Content>
         </DrawerTemp.Positioner>
