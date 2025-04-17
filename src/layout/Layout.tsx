@@ -9,7 +9,10 @@ import { Svg } from '@components/Svg';
 import MenuIcon from '@assets/MenuIcon.svg';
 import { Text } from '@components/Text';
 import { Tooltip } from '@components/Tooltip';
-import { IconButton } from '@mui/material';
+import { VStack } from '@components/VStack';
+import HomeIcon  from '@assets/HomeIcon.svg';
+import DictinaryIcon from '@assets/DictionaryIcon.svg';
+import ChangeClassIcon from '@assets/ChangeClassIcon.svg';
 
 function AlertMessage() {
   Swal.fire({
@@ -28,6 +31,60 @@ function AlertMessage() {
   })
 }
 
+function Sidebar() {
+  return(
+    <VStack
+    className={styles.Sidebar}>
+      <div
+      className={styles.SidebarLogoWrapper}>
+        <Svg
+        className={styles.Logo}
+        src={Logo}
+        alt="로고"
+        onClick={AlertMessage}
+        />
+      </div>
+
+      <HStack
+      className={styles.SidebarMenuWrapper}>
+        <Svg
+        className={styles.SidebarMenuIcon}
+        src={HomeIcon}
+        alt="홈 아이콘" />
+        <Text
+        className={styles.SidebarMenuText}>
+          홈 화면
+        </Text>
+      </HStack>
+
+      <HStack
+      className={styles.SidebarMenuWrapper}>
+        <Svg
+        className={styles.SidebarMenuIcon} 
+        src={DictinaryIcon}
+        alt="영단어 학습 아이콘" />
+        <Text
+        className={styles.SidebarMenuText}>
+          영단어 학습
+        </Text>
+      </HStack>
+
+      <HStack
+      className={styles.SidebarMenuWrapper}>
+        <Svg
+        className={styles.SidebarMenuIcon}
+        src={ChangeClassIcon}
+        alt="자리바꾸기 아이콘"
+        />
+        <Text
+        className={styles.SidebarMenuText}>
+          자리 바꾸기
+        </Text>
+      </HStack>
+    </VStack>
+  )
+}
+
 
 function Layout() {
   
@@ -36,6 +93,26 @@ function Layout() {
       <HStack
       className={styles.Navigation}
       align={'center'}>
+        <Tooltip
+        content={<Text
+        className={styles.TooltipText}
+        id={styles.MenuText}>
+          메뉴
+        </Text>
+        }
+        openDelay={500}
+        closeDelay={200}
+        placement="bottom">
+          <div
+          className={styles.MenuIconWrapper}
+          id={styles.MenuIconWrapper}>
+            <Svg
+            className={styles.MenuIcon}
+            src={MenuIcon}
+            alt="메뉴 아이콘" />
+          </div>
+        </Tooltip>
+
         <Tooltip
         content={<Text
         className={styles.TooltipText}>
@@ -50,15 +127,15 @@ function Layout() {
             className={styles.Logo}
             src={Logo}
             alt="로고"
-            onClick={AlertMessage}
+            onClick={() => Navigate("/")}
             /> 
             ClassHelper
           </HStack>
         </Tooltip>
-             
-        
+
+
         <Tooltip 
-        content="소개 페이지로 이동"
+        content="소개 페이지"
         openDelay={500}
         closeDelay={200}
         className={styles.QuestionIconWrapper}>
@@ -68,18 +145,46 @@ function Layout() {
           alt="소개 페이지로 이동 아이콘"
           />
         </Tooltip>
-        
+
         <Tooltip
-        content="로그인 페이지로 이동"
+        content="블로그 페이지"
         openDelay={500}
         closeDelay={200}
-        className={styles.LoginWrapper}>
-          {/**LoginText */}
-          <Text
-          onClick={AlertMessage}
-          className={styles.LoginText}>
-            로그인
-          </Text>
+        className={styles.MenuWrapper}
+        placement="bottom"
+        id={styles.BlogWrapper}>
+          {/**블로그 */}
+          <div
+          className={styles.MenuWrapper}
+          style={{
+            width : "auto",
+            height : "auto",
+          }}>
+              <Text 
+            className={styles.MenuText}>
+              블로그
+            </Text>
+          </div>
+        
+        </Tooltip>
+        
+        <Tooltip
+        content="로그인하기"
+        openDelay={500}
+        closeDelay={200}
+        className={styles.MenuWrapper}>
+          <div 
+          style={{
+            width : 'auto',
+            height : 'auto'
+          }}
+          onClick={AlertMessage}>
+            {/**LoginText */}
+            <Text
+            className={styles.MenuText}>
+              로그인
+            </Text>
+          </div>
         </Tooltip>
       </HStack>
 
