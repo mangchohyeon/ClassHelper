@@ -14,6 +14,8 @@ import HomeIcon  from '@assets/HomeIcon.svg';
 import DictinaryIcon from '@assets/DictionaryIcon.svg';
 import SchoolIcon from '@assets/SchoolIcon.svg';
 import SettingIcon from '@assets/SettingIcon.svg';
+import { Drawer } from '@components/Drawer';
+import { useState } from 'react';
 
 function AlertMessage() {
   Swal.fire({
@@ -32,101 +34,91 @@ function AlertMessage() {
   })
 }
 
-function Sidebar() {
-  return(
-    <VStack
-    className={styles.Sidebar}>
-      <div
-      className={styles.SidebarLogoWrapper}>
-        <Svg
-        className={styles.Logo}
-        src={Logo}
-        alt="로고"
-        onClick={AlertMessage}
-        />
-
-        
-      </div>
-
-      <HStack
-      className={styles.SidebarMenuWrapper}>
-        <Svg
-        className={styles.SidebarMenuIcon}
-        src={HomeIcon}
-        alt="홈 아이콘" />
-        <Text
-        className={styles.SidebarMenuText}>
-          홈 화면
-        </Text>
-      </HStack>
-
-      <HStack
-      className={styles.SidebarMenuWrapper}>
-        <Svg
-        className={styles.SidebarMenuIcon} 
-        src={DictinaryIcon}
-        alt="영단어 학습 아이콘" />
-        <Text
-        className={styles.SidebarMenuText}>
-          영단어 학습
-        </Text>
-      </HStack>
-
-      <HStack
-      className={styles.SidebarMenuWrapper}>
-        <Svg
-        className={styles.SidebarMenuIcon}
-        src={SchoolIcon}
-        alt="학교 아이콘"
-        />
-        <Text
-        className={styles.SidebarMenuText}>
-          선생님 메뉴
-        </Text>
-      </HStack>
-
-      <HStack
-      className={styles.SidebarMenuWrapper}>
-        <Svg
-        className={styles.SidebarMenuIcon}
-        src={SettingIcon}
-        alt="설정 아이콘" />
-        <Text
-        className={styles.SidebarMenuText}>
-          설정
-        </Text>
-      </HStack>
-    </VStack>
-  )
-}
-
 
 function Layout() {
-  
+  // Sidebar(DrawerBody)
+  const Sidebar = <VStack
+  className={styles.Sidebar}>
+    <HStack
+    className={styles.SidebarMenuWrapper}>
+      <Svg
+      className={styles.SidebarMenuIcon}
+      src={HomeIcon}
+      alt="홈 아이콘" />
+      <Text
+      className={styles.SidebarMenuText}>
+        홈 화면
+      </Text>
+    </HStack>
+
+    <HStack
+    className={styles.SidebarMenuWrapper}>
+      <Svg
+      className={styles.SidebarMenuIcon} 
+      src={DictinaryIcon}
+      alt="영단어 학습 아이콘" />
+      <Text
+      className={styles.SidebarMenuText}>
+        영단어 학습
+      </Text>
+    </HStack>
+
+    <HStack
+    className={styles.SidebarMenuWrapper}>
+      <Svg
+      className={styles.SidebarMenuIcon}
+      src={SchoolIcon}
+      alt="학교 아이콘"
+      />
+      <Text
+      className={styles.SidebarMenuText}>
+        선생님 메뉴
+      </Text>
+    </HStack>
+  </VStack>
+
   return (
     <>
       <HStack
       className={styles.Navigation}
       align={'center'}>
-        <Tooltip
-        content={<Text
-        className={styles.TooltipText}
-        id={styles.MenuText}>
-          메뉴
-        </Text>
-        }
-        openDelay={500}
-        closeDelay={200}
-        placement="bottom">
-          <div
-          className={styles.MenuIconWrapper}
-          id={styles.MenuIconWrapper}>
+        {/**Sidebar */}
+        <Drawer
+        placement="start"
+        Title={
+        <div
+        className={styles.SidebarLogoWrapper}>
+          <Svg
+          className={styles.SidebarLogo}
+          id={styles.SidebarLogo}
+          src={Logo}
+          alt="로고"
+          onClick={AlertMessage}
+          />
+        </div>}
+        
+        Body={Sidebar}
+        Footer={
+          <HStack
+          className={styles.SidebarMenuWrapper}>
             <Svg
-            className={styles.MenuIcon}
-            src={MenuIcon}
-            alt="메뉴 아이콘" />
-          </div>
-        </Tooltip>
+            className={styles.SidebarMenuIcon}
+            src={SettingIcon}
+            alt="설정 아이콘" />
+            <Text
+            className={styles.SidebarMenuText}>
+              설정
+            </Text>
+          </HStack>
+        } 
+        BtnChildren={
+          <Svg
+          className={styles.MenuIcon}
+          src={MenuIcon}
+          alt="메뉴 아이콘" />
+        }
+        className={styles.MenuBtn}
+        />
 
         <Tooltip
         content={<Text

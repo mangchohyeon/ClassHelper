@@ -35,7 +35,7 @@
   white-space: nowrap;
 }
 
-.MenuIconWrapper {
+.MenuBtn {
   display : flex;
   flex-direction: row;
   align-items: center;
@@ -58,17 +58,47 @@
   min-height: 75%;
   max-height: 75%;
   object-fit: contain;
-}
+} 
 
 .Sidebar {
-  height : 100%;
-  align-items:flex-start;
-  justify-content: flex-start;
-  width : 35%;
-  transform : translateX(-35%);
+  z-index: 1;
+  justify-content: space-around;
+  font-family: "KakaoBigSans-ExtraBold";
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
+.SidebarLogoWrapper {
+  display : block;
+  height : 7vh;
+  max-height: 7vh;
+  min-height : 5vh;
+  margin-right : auto;
+}
 
+.SidebarLogo {
+height : 75%;
+min-height: 75%;
+max-height: 75%;
+object-fit: contain;
+}
+
+.SidebarMenuWrapper {
+  height : 16vh;
+  width : 99%;
+  max-width: 99%;
+  min-width: 99%;
+  justify-content: flex-start;
+  align-items: center;
+  border-top: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.SidebarMenuIcon {
+  object-fit: contain;
+  height : 70%;
+  margin-right : 10%;
+}
 
 .LogoWrapper {
   display : block;
