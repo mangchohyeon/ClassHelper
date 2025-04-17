@@ -33,8 +33,8 @@ function App() {
               <Route index element={<Home />} />
               <Route path="/EngWords" element={<EngWords />} />
               <Route path="/EngWords/kodle" element={<Kodle />} />
-              <Route path="/ClassHelper" element={<ClassHelper />} />
-              <Route path="/ClassHelper/ChangeClass" element = {<ChangeClass />} />
+              <Route path="/Teacher" element={<ClassHelper />} />
+              <Route path="/Teacher/ChangeClass" element = {<ChangeClass />} />
             </Route>
           </Routes>
         </Router>
