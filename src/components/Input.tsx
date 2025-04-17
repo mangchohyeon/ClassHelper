@@ -1,27 +1,36 @@
-import styled from 'styled-components';
+import { Input as ChakraInput, Field } from '@chakra-ui/react';
 import { ComponentsProps } from '@/types/ComponentsProps';
 
 interface InputProps extends ComponentsProps {
     type? : string;
     placeholder? : string;
+    variant? : "subtle" | "outline" | "flushed";
+    size? : "xs" | "sm" | "md" | "lg";
+    Label? : React.ReactNode;
+    HelperText? : React.ReactNode;
 }
 
-function Input(props : InputProps) {
-    const Type = props.type !== undefined ? props.type : "text";
-    const StyledInput = styled.input`
-    border : 1px solid black;
-    border-radius : 10%;
-    placeholder : ${props.placeholder}
-    `;
+export function Input(props : InputProps) {
+    const Type = props.type != undefined ? props.type : "text";
 
     return (
-        <StyledInput 
-        className={props.className}
-        id={props.id}
-        style={props.style} 
-        type={Type}
-        />
+        <Field.Root required>
+            {props.Label != undefined 
+            ? <Field.Label>
+                {props.Label} <Field.RequiredIndicator />
+            </Field.Label>
+            : null }
+            <ChakraInput
+            className={props.className}
+            id={props.id}
+            style={props.style}
+            variant={props.variant}
+            size={props.size} />
+            {props.HelperText != undefined
+            ? <Field.HelperText>
+                {props.HelperText}
+            </Field.HelperText>
+            : null}
+        </Field.Root>
     )
 }
-
-export default Input
