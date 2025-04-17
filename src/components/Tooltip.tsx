@@ -16,14 +16,14 @@ interface TooltipProps extends ComponentsProps {
 
 export function Tooltip(props : TooltipProps) {
     const OpenDelay : number = props.openDelay || 0;
-    const ClodeDelay : number = props.closeDelay || 0;
+    const CloseDelay : number = props.closeDelay || 0;
     const Arrow = props.arrow || false;
     const Placement = props.placement || 'bottom';
     
     return (
     <ArkTooltip.Root
     openDelay={OpenDelay}
-    closeDelay={ClodeDelay}
+    closeDelay={CloseDelay}
     positioning={{
     placement: Placement,
     }}
