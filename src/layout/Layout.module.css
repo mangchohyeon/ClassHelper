@@ -70,16 +70,16 @@
 
 .SidebarLogoWrapper {
   display : block;
-  height : 7vh;
-  max-height: 7vh;
-  min-height : 5vh;
+  height : 9vh;
+  max-height: 9vh;
+  min-height : 7vh;
   margin-right : auto;
 }
 
 .SidebarLogo {
-height : 75%;
-min-height: 75%;
-max-height: 75%;
+height : 100%;
+min-height: 98%;
+max-height: 100%;
 object-fit: contain;
 }
 
@@ -96,8 +96,19 @@ object-fit: contain;
 
 .SidebarMenuIcon {
   object-fit: contain;
-  height : 70%;
+  height : 50%;
   margin-right : 10%;
+}
+
+.SidebarMenuText {
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+#SettingText {
+  font-family : 'KakaoBigSans-ExtraBold';
+  font-size : 1.5rem;
+  font-weight : 500;
 }
 
 .LogoWrapper {

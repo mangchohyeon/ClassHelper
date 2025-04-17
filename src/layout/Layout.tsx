@@ -85,6 +85,7 @@ function Layout() {
         {/**Sidebar */}
         <Drawer
         placement="start"
+        Size="sm"
         Title={
         <div
         className={styles.SidebarLogoWrapper}>
@@ -106,7 +107,8 @@ function Layout() {
             src={SettingIcon}
             alt="설정 아이콘" />
             <Text
-            className={styles.SidebarMenuText}>
+            className={styles.SidebarMenuText}
+            id={styles.SettingText}>
               설정
             </Text>
           </HStack>
