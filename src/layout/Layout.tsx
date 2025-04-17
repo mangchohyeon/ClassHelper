@@ -1,3 +1,4 @@
+"use client"
 import { Outlet } from 'react-router-dom';
 import styles from './Layout.module.css';
 import Logo from '@assets/Logo.svg';
@@ -14,9 +15,15 @@ import HomeIcon  from '@assets/HomeIcon.svg';
 import DictinaryIcon from '@assets/DictionaryIcon.svg';
 import SchoolIcon from '@assets/SchoolIcon.svg';
 import SettingIcon from '@assets/SettingIcon.svg';
-import { Drawer } from '@components/Drawer';
+import { Link } from '@components/Link';
+import { useRef } from 'react';
 import { useState } from 'react';
+import { Drawer as DrawerTemp, Portal } from "@chakra-ui/react";
+import { ComponentsProps } from '@/types/ComponentsProps';
+import CloseIcon from '@assets/CloseIcon.svg';
+import { useEffect } from 'react';
 
+//아직 개발중인 페이지 클릭했을 때 나타나는 모션
 function AlertMessage() {
   Swal.fire({
       position: 'top',
@@ -34,6 +41,71 @@ function AlertMessage() {
   })
 }
 
+//Drawer(Sidebar)
+type DrawerOpenChangeEvent = {
+  open: boolean;
+}
+
+interface DrawerProps extends ComponentsProps {
+    placement?: "start" | "end" | "top" | "bottom";
+    Title?: React.ReactNode;
+    Body?: React.ReactNode;
+    Footer?: React.ReactNode;
+    BtnChildren? : React.ReactNode;
+    Size? : "xs" | "sm" | "md"| "lg"| "xl" | "full";
+}
+
+function Drawer(props: DrawerProps) {
+  const [isOpen, setIsOpen] = useState<undefined | null | boolean>();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, []);
+
+  return (
+    <DrawerTemp.Root
+      open={isOpen}
+      onOpenChange={(e : DrawerOpenChangeEvent) => setIsOpen(e.open)}
+      placement={props.placement != undefined ? props.placement : "end"}
+      size={props.Size}>
+      <DrawerTemp.Trigger>
+        <button
+        className={props.className}
+        id={props.id}
+        onClick={() => setIsOpen(true)}>
+            {props.BtnChildren}
+        </button>
+      </DrawerTemp.Trigger>
+      <Portal>
+        <DrawerTemp.Backdrop />
+        <DrawerTemp.Positioner>
+          <DrawerTemp.Content>
+            <DrawerTemp.Header>
+              <DrawerTemp.Title>{props.Title}</DrawerTemp.Title>
+            </DrawerTemp.Header>
+            <DrawerTemp.Body>
+              {props.Body}
+            </DrawerTemp.Body>
+            <DrawerTemp.Footer>
+              {props.Footer}
+            </DrawerTemp.Footer>
+            <DrawerTemp.CloseTrigger>
+              <button
+              className="DrawerCloseBtn">
+                <Svg
+                className="DrawerCloseSvg"
+                src={CloseIcon}
+                alt="사이드바 닫기 버튼"
+                />
+              </button>
+            </DrawerTemp.CloseTrigger>
+          </DrawerTemp.Content>
+        </DrawerTemp.Positioner>
+      </Portal>
+    </DrawerTemp.Root>
+  )
+}
+
 
 function Layout() {
   // Sidebar(DrawerBody)
@@ -45,10 +117,16 @@ function Layout() {
       className={styles.SidebarMenuIcon}
       src={HomeIcon}
       alt="홈 아이콘" />
-      <Text
-      className={styles.SidebarMenuText}>
-        홈 화면
-      </Text>
+
+      <Link 
+      to="/"
+      className={styles.SiderbarMenuLink}>
+        <Text
+        className={styles.SidebarMenuText}>
+          홈 화면
+        </Text>
+      </Link>
+      
     </HStack>
 
     <HStack
@@ -57,10 +135,14 @@ function Layout() {
       className={styles.SidebarMenuIcon} 
       src={DictinaryIcon}
       alt="영단어 학습 아이콘" />
-      <Text
-      className={styles.SidebarMenuText}>
-        영단어 학습
-      </Text>
+      <Link
+      className={styles.SidebarMenuLink}
+      to="/EngWords">
+        <Text
+        className={styles.SidebarMenuText}>
+          영단어 학습
+        </Text>
+      </Link>
     </HStack>
 
     <HStack
@@ -70,10 +152,14 @@ function Layout() {
       src={SchoolIcon}
       alt="학교 아이콘"
       />
-      <Text
-      className={styles.SidebarMenuText}>
-        선생님 메뉴
-      </Text>
+      <Link
+      className={styles.SidebarMenuLink}
+      to="/Teacher">
+        <Text
+        className={styles.SidebarMenuText}>
+          선생님 메뉴
+        </Text>
+      </Link>
     </HStack>
   </VStack>
 
@@ -106,11 +192,15 @@ function Layout() {
             className={styles.SidebarMenuIcon}
             src={SettingIcon}
             alt="설정 아이콘" />
-            <Text
-            className={styles.SidebarMenuText}
-            id={styles.SettingText}>
-              설정
-            </Text>
+            <Link
+            className={styles.SidebarMenuLink}
+            to="UserSettings">
+              <Text
+              className={styles.SidebarMenuText}
+              id={styles.SettingText}>
+                설정
+              </Text>
+            </Link>
           </HStack>
         } 
         BtnChildren={
@@ -152,6 +242,7 @@ function Layout() {
           <QuestionCircleIcon 
           className={styles.QuestionIcon}
           alt="소개 페이지로 이동 아이콘"
+          onClick={() => Navigate("/About")}
           />
         </Tooltip>
 
@@ -169,10 +260,15 @@ function Layout() {
             width : "auto",
             height : "auto",
           }}>
+            <Link
+            className={styles.MenuLink}
+            to="/Blog">
               <Text 
-            className={styles.MenuText}>
-              블로그
-            </Text>
+              className={styles.MenuText}>
+                블로그
+              </Text>
+            </Link>
+              
           </div>
         
         </Tooltip>
