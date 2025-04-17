@@ -12,7 +12,8 @@ import { Tooltip } from '@components/Tooltip';
 import { VStack } from '@components/VStack';
 import HomeIcon  from '@assets/HomeIcon.svg';
 import DictinaryIcon from '@assets/DictionaryIcon.svg';
-import ChangeClassIcon from '@assets/ChangeClassIcon.svg';
+import SchoolIcon from '@assets/SchoolIcon.svg';
+import SettingIcon from '@assets/SettingIcon.svg';
 
 function AlertMessage() {
   Swal.fire({
@@ -43,6 +44,8 @@ function Sidebar() {
         alt="로고"
         onClick={AlertMessage}
         />
+
+        
       </div>
 
       <HStack
@@ -73,12 +76,24 @@ function Sidebar() {
       className={styles.SidebarMenuWrapper}>
         <Svg
         className={styles.SidebarMenuIcon}
-        src={ChangeClassIcon}
-        alt="자리바꾸기 아이콘"
+        src={SchoolIcon}
+        alt="학교 아이콘"
         />
         <Text
         className={styles.SidebarMenuText}>
-          자리 바꾸기
+          선생님 메뉴
+        </Text>
+      </HStack>
+
+      <HStack
+      className={styles.SidebarMenuWrapper}>
+        <Svg
+        className={styles.SidebarMenuIcon}
+        src={SettingIcon}
+        alt="설정 아이콘" />
+        <Text
+        className={styles.SidebarMenuText}>
+          설정
         </Text>
       </HStack>
     </VStack>

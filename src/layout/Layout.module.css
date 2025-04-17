@@ -60,6 +60,16 @@
   object-fit: contain;
 }
 
+.Sidebar {
+  height : 100%;
+  align-items:flex-start;
+  justify-content: flex-start;
+  width : 35%;
+  transform : translateX(-35%);
+}
+
+
+
 .LogoWrapper {
   display : block;
   height : 7vh;
