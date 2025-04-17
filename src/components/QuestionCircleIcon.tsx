@@ -9,7 +9,6 @@ export function QuestionCircleIcon(props: QuestionIconProps ) {
         className={props.className}
         id={props.id}
         style={props.style}
-        title={props.title}
         src={QuestionIcon}
         alt={props.alt}
         />
