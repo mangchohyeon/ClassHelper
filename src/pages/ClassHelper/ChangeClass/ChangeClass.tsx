@@ -3,7 +3,7 @@ import styles from './ChangeClass.module.css';
 import HBlock from '@components/HBlock';
 import { QuestionCircleIcon } from '@components/QuestionCircleIcon';
 import { MySlider } from '@components/MySlider';
-import { MyButton, MyButtonProps} from "@components/MyButton";
+import { Button, ButtonProps} from "@/components/Button";
 import { Stack } from '@chakra-ui/react';
 import { TableListsProps } from '@/components/TableLists/TableLists'
 import { getArray, get2DArray } from '@utils/getArray';
@@ -11,13 +11,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { shuffle } from '@/utils/shuffle';
 
 
-interface Button2Props extends MyButtonProps {
+interface Button2Props extends ButtonProps {
     onClick? : () => void;
 }
 
 function Button2(props : Button2Props) {
     return (
-        <MyButton
+        <Button
             size={props.size}
             variant={props.variant}
             color={props.color}
@@ -28,7 +28,7 @@ function Button2(props : Button2Props) {
             ? props.onClick() 
             : undefined}>
           {props.children}
-        </MyButton>
+        </Button>
       )
 }
 
