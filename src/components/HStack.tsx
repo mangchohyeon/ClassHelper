@@ -1,6 +1,4 @@
-import { HStack as Hstack, StackProps } from "@chakra-ui/react"
-import { ComponentsProps } from "@/types/ComponentsProps"
-
+import { HStack as Hstack, StackProps } from "@chakra-ui/react";
 
 export function HStack(props : StackProps) {
   return (
