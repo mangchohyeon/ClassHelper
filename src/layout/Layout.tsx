@@ -16,7 +16,11 @@ import DictinaryIcon from '@assets/DictionaryIcon.svg';
 import SchoolIcon from '@assets/SchoolIcon.svg';
 import SettingIcon from '@assets/SettingIcon.svg';
 import { Link } from '@components/Link';
-import Drawer from './Drawer';
+import { Drawer as ChakraDrawer, Portal } from "@chakra-ui/react";
+import { ComponentsProps } from "@/types/ComponentsProps";
+import { useState, useEffect } from 'react';
+import CloseIcon from '@assets/CloseIcon.svg';
+
 
 //아직 개발중인 페이지 클릭했을 때 나타나는 모션
 function AlertMessage() {
@@ -37,110 +41,161 @@ function AlertMessage() {
 }
 
 
+//Drawer(Sidebar)
+type DrawerOpenChangeEvent = {
+  open: boolean;
+}
+
+interface DrawerProps extends ComponentsProps {
+    Trigger? : React.ReactNode;
+    TriggerProps? : ComponentsProps;
+}
+
+function Drawer(props : DrawerProps) {
+  const [isOpen, setIsOpen] = useState<undefined | null | boolean>();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, []);
+
+  return (
+    <ChakraDrawer.Root
+      open={isOpen}
+      onOpenChange={(e : DrawerOpenChangeEvent) => setIsOpen(e.open)}
+      placement="start"
+      size="md">
+      {/**Trigger */}
+      <ChakraDrawer.Trigger>
+        <button
+        className={styles.MenuBtn}
+        onClick={() => setIsOpen(true)}>
+            {<Svg
+              className={styles.MenuIcon}
+              src={MenuIcon}
+              alt="메뉴 아이콘" />}
+        </button>
+      </ChakraDrawer.Trigger>
+      {/**Portal */}
+      <Portal>
+        <ChakraDrawer.Backdrop />
+        <ChakraDrawer.Positioner>
+          <ChakraDrawer.Content>
+            {/**Header */}
+            <ChakraDrawer.Header>
+              {/**Title*/}
+              <ChakraDrawer.Title>
+                {<div
+                className={styles.SidebarLogoWrapper}>
+                  <Svg
+                  className={styles.SidebarLogo}
+                  id={styles.SidebarLogo}
+                  src={Logo}
+                  alt="로고"
+                  onClick={AlertMessage}
+                  />
+                </div>}
+                </ChakraDrawer.Title>
+            </ChakraDrawer.Header>
+            {/**Body */}
+            <ChakraDrawer.Body>
+              {<VStack
+              className={styles.Sidebar}>
+                <HStack
+                className={styles.SidebarMenuWrapper}>
+                  <Svg
+                  className={styles.SidebarMenuIcon}
+                  src={HomeIcon}
+                  alt="홈 아이콘" />
+
+                  <Link 
+                  to="/"
+                  className={styles.SiderbarMenuLink}>
+                    <Text
+                    className={styles.SidebarMenuText}>
+                      홈 화면
+                    </Text>
+                  </Link>
+                </HStack>
+
+                <HStack
+                className={styles.SidebarMenuWrapper}>
+                  <Svg
+                  className={styles.SidebarMenuIcon} 
+                  src={DictinaryIcon}
+                  alt="영단어 학습 아이콘" />
+                  <Link
+                  className={styles.SidebarMenuLink}
+                  to="/EngWords">
+                    <Text
+                    className={styles.SidebarMenuText}>
+                      영단어 학습
+                    </Text>
+                  </Link>
+                </HStack>
+
+                <HStack
+                className={styles.SidebarMenuWrapper}>
+                  <Svg
+                  className={styles.SidebarMenuIcon}
+                  src={SchoolIcon}
+                  alt="학교 아이콘"
+                  />
+                  <Link
+                  className={styles.SidebarMenuLink}
+                  to="/Teacher">
+                    <Text
+                    className={styles.SidebarMenuText}>
+                      선생님 메뉴
+                    </Text>
+                  </Link>
+                </HStack>
+              </VStack>}
+            </ChakraDrawer.Body>
+            {/**Footer */}
+            <ChakraDrawer.Footer>
+            {<HStack
+            className={styles.SidebarMenuWrapper}>
+              <Svg
+              className={styles.SidebarMenuIcon}
+              src={SettingIcon}
+              alt="설정 아이콘" />
+              <Link
+              className={styles.SidebarMenuLink}
+              to="UserSettings">
+                <Text
+                className={styles.SidebarMenuText}
+                id={styles.SettingText}>
+                  설정
+                </Text>
+              </Link>
+            </HStack>} 
+          
+            </ChakraDrawer.Footer>
+            <ChakraDrawer.CloseTrigger>
+              <button
+              className="DrawerCloseBtn">
+                <Svg
+                className="DrawerCloseSvg"
+                src={CloseIcon}
+                alt="사이드바 닫기 버튼"
+                />
+              </button>
+            </ChakraDrawer.CloseTrigger>
+          </ChakraDrawer.Content>
+        </ChakraDrawer.Positioner>
+      </Portal>
+    </ChakraDrawer.Root>
+  )
+}
+
 function Layout() {
-  // Sidebar(DrawerBody)
-  const Sidebar = <VStack
-  className={styles.Sidebar}>
-    <HStack
-    className={styles.SidebarMenuWrapper}>
-      <Svg
-      className={styles.SidebarMenuIcon}
-      src={HomeIcon}
-      alt="홈 아이콘" />
-
-      <Link 
-      to="/"
-      className={styles.SiderbarMenuLink}>
-        <Text
-        className={styles.SidebarMenuText}>
-          홈 화면
-        </Text>
-      </Link>
-      
-    </HStack>
-
-    <HStack
-    className={styles.SidebarMenuWrapper}>
-      <Svg
-      className={styles.SidebarMenuIcon} 
-      src={DictinaryIcon}
-      alt="영단어 학습 아이콘" />
-      <Link
-      className={styles.SidebarMenuLink}
-      to="/EngWords">
-        <Text
-        className={styles.SidebarMenuText}>
-          영단어 학습
-        </Text>
-      </Link>
-    </HStack>
-
-    <HStack
-    className={styles.SidebarMenuWrapper}>
-      <Svg
-      className={styles.SidebarMenuIcon}
-      src={SchoolIcon}
-      alt="학교 아이콘"
-      />
-      <Link
-      className={styles.SidebarMenuLink}
-      to="/Teacher">
-        <Text
-        className={styles.SidebarMenuText}>
-          선생님 메뉴
-        </Text>
-      </Link>
-    </HStack>
-  </VStack>
-
   return (
     <>
       <HStack
       className={styles.Navigation}
       align={'center'}>
         {/**Sidebar */}
-        <Drawer
-        placement="start"
-        Size="sm"
-        Title={
-        <div
-        className={styles.SidebarLogoWrapper}>
-          <Svg
-          className={styles.SidebarLogo}
-          id={styles.SidebarLogo}
-          src={Logo}
-          alt="로고"
-          onClick={AlertMessage}
-          />
-        </div>}
-        
-        Body={Sidebar}
-        Footer={
-          <HStack
-          className={styles.SidebarMenuWrapper}>
-            <Svg
-            className={styles.SidebarMenuIcon}
-            src={SettingIcon}
-            alt="설정 아이콘" />
-            <Link
-            className={styles.SidebarMenuLink}
-            to="UserSettings">
-              <Text
-              className={styles.SidebarMenuText}
-              id={styles.SettingText}>
-                설정
-              </Text>
-            </Link>
-          </HStack>
-        } 
-        BtnChildren={
-          <Svg
-          className={styles.MenuIcon}
-          src={MenuIcon}
-          alt="메뉴 아이콘" />
-        }
-        className={styles.MenuBtn}
-        />
+        <Drawer />
 
         <Tooltip
         content={<Text
