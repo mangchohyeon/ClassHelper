@@ -28,8 +28,8 @@
 
 .TooltipText {
   font-family: 'KakaoBigSans-ExtraBold';
-  font-weight: 800;
-  font-size: 1.2rem;
+  font-weight: 300;
+  font-size: 1rem;
   display : flex;
   flex-direction: row;
   white-space: nowrap;
