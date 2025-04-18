@@ -1,5 +1,5 @@
 import { Highlight as HighLight} from "@ark-ui/react";
-import { ComponentsProps } from "@/types/ComponentsProps";
+import ComponentsProps from "@/types/ComponentsProps";
 
 interface HighlightProps extends Omit<ComponentsProps, "width" | "height" | "onClick" | "children"> {
     query : string | string[];
@@ -7,7 +7,7 @@ interface HighlightProps extends Omit<ComponentsProps, "width" | "height" | "onC
     children : string;
 }
 
-export function Highlight(props : HighlightProps) {
+export default function Highlight(props : HighlightProps) {
     return (
         <HighLight
         className={props.className}

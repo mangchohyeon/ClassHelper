@@ -1,5 +1,5 @@
 import { Link as ChakraLink } from '@chakra-ui/react';
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 import { LuExternalLink } from "react-icons/lu"
 
 interface LinkProps extends ComponentsProps {
@@ -24,7 +24,7 @@ export function Link(props : LinkProps) {
     )
 }
 
-export function ExternalLink(props : LinkProps) {
+export default function ExternalLink(props : LinkProps) {
     return(
         <ChakraLink
         className={props.className}

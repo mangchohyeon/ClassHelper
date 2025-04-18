@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 import React from 'react';
 
 const StyledLink = styled(Link)`
@@ -42,4 +42,3 @@ function DivLink(props : DivLinkProps) {
 }
 
 export default DivLink
-

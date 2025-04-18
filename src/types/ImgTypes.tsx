@@ -1,4 +1,4 @@
-import { ComponentsProps } from "./ComponentsProps"
+import ComponentsProps from "./ComponentsProps"
 
 export interface ImgProps extends ComponentsProps{
     src : string;

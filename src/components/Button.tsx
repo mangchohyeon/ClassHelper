@@ -1,5 +1,5 @@
 import { Button as ButtonTemp } from "@chakra-ui/react";
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 
 interface ButtonProps extends ComponentsProps {
   children? : React.ReactNode;

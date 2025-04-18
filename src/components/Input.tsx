@@ -1,5 +1,5 @@
 import { Input as ChakraInput, Field } from '@chakra-ui/react';
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 
 interface InputProps extends ComponentsProps {
     type? : string;
@@ -10,7 +10,7 @@ interface InputProps extends ComponentsProps {
     HelperText? : React.ReactNode;
 }
 
-export function Input(props : InputProps) {
+export default function Input(props : InputProps) {
     const Type = props.type != undefined ? props.type : "text";
 
     return (

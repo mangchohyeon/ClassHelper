@@ -1,5 +1,5 @@
 import styles from './Login.module.css';
-import { Text } from '@components/Text';
+import Text from '@components/Text';
 
 function Login() {
     return(

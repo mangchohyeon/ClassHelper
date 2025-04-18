@@ -1,5 +1,5 @@
 import { Card as CardTemp } from '@chakra-ui/react';
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 
 interface CardProps extends ComponentsProps {
     gap? : number;
@@ -11,7 +11,7 @@ interface CardProps extends ComponentsProps {
     size? : "sm" | "md" | "lg";
 }
 
-export function Card(props : CardProps) {
+export default function Card(props : CardProps) {
     return (
         <CardTemp.Root
         className={props.className}

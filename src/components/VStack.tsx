@@ -1,6 +1,6 @@
 import { VStack as Vstack, StackProps } from "@chakra-ui/react";
 
-export function VStack(props : StackProps) {
+export default function VStack(props : StackProps) {
   return (
     <Vstack
     className={props.className}

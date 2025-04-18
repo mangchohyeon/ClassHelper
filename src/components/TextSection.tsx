@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 
 interface TextSectionProps extends ComponentsProps {
     children: React.ReactNode;

@@ -1,7 +1,7 @@
 import styles from './Codon.module.css';
-import { Textarea } from '@components/Textarea';
+import Textarea from '@components/Textarea';
 import { Button } from '@/components/Button';
-import { Text } from '@components/Text';
+import Text from '@components/Text';
 import { useState, useRef } from 'react';
 
 function Codon() {

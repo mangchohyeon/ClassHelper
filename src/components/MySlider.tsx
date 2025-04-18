@@ -1,5 +1,5 @@
 import { Slider, HStack } from "@chakra-ui/react";
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 import { useState } from 'react'
 
 interface MySliderProps extends ComponentsProps {
@@ -18,7 +18,7 @@ interface MySliderProps extends ComponentsProps {
 }
 
 
-function MySlider(props : MySliderProps) {
+export default function MySlider(props : MySliderProps) {
     const [value, setValue] = useState(props.defaultValue);
 
     function onVChange(val : number) {
@@ -60,5 +60,3 @@ function MySlider(props : MySliderProps) {
     );
     
 }
-
-export {MySlider};

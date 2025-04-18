@@ -1,4 +1,4 @@
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 
 interface HBlockProps extends ComponentsProps{
   num: number;

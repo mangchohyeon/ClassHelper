@@ -1,4 +1,4 @@
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 import styles from './LetterLines.module.css';
 
 interface LetterLineProps extends ComponentsProps {

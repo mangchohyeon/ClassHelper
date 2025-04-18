@@ -11,7 +11,7 @@ interface TextProps extends TextPropsTemp {
     fontColor? : string;
 }
 
-export function Text(props : TextProps) {
+export default function Text(props : TextProps) {
     return (
         <text 
         className={props.className}

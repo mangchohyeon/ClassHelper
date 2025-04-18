@@ -5,7 +5,7 @@ interface LogoProps extends Omit<ImgProps, 'src'> {
 
 }
 
-function Logo(props: LogoProps ) {
+export default function Logo(props: LogoProps ) {
     const Style = {
         ...props.style,
         ...(props.width && { width: props.width }),
@@ -21,5 +21,3 @@ function Logo(props: LogoProps ) {
         alt={props.alt} />
     )
 }
-
-export { Logo };

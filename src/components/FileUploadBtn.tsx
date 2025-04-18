@@ -1,6 +1,6 @@
 import { Button, FileUpload } from "@chakra-ui/react"
 import { HiUpload } from "react-icons/hi"
-import { ComponentsProps } from "@/types/ComponentsProps"
+import ComponentsProps from "@/types/ComponentsProps"
 import { FileAcceptDetails } from "@chakra-ui/react/dist/types/components/file-upload/namespace";
 
 interface FileUploadBtnProps extends ComponentsProps {
@@ -17,7 +17,7 @@ interface FileUploadBtnProps extends ComponentsProps {
     label? : string;
 }
 
-function FileUploadBtn(props : FileUploadBtnProps) {
+export default function FileUploadBtn(props : FileUploadBtnProps) {
     const Variant = props.variant != undefined
     ? props.variant
     : "outline";

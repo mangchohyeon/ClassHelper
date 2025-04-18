@@ -1,5 +1,5 @@
 import { Field, Textarea as TextArea } from "@chakra-ui/react";
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 
 interface TextareaProps extends ComponentsProps {
     Label? : React.ReactNode;
@@ -10,7 +10,7 @@ interface TextareaProps extends ComponentsProps {
     ref? : React.RefObject<any>;
 }
 
-export function Textarea(props : TextareaProps) {
+export default function Textarea(props : TextareaProps) {
     return (
     <Field.Root required>
         {props.Label != undefined 

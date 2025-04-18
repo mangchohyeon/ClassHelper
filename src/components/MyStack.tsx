@@ -1,5 +1,5 @@
 import { Stack } from "@chakra-ui/react";
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 import React from "react";
 
 interface StackProps extends ComponentsProps {
@@ -10,7 +10,7 @@ interface StackProps extends ComponentsProps {
     children? : React.ReactNode;
 }
 
-function MyStack(props : StackProps) {
+export default function MyStack(props : StackProps) {
     return (
         <Stack
         width={props.width}
@@ -24,5 +24,3 @@ function MyStack(props : StackProps) {
         </Stack>
     );
 }
-
-export { MyStack }

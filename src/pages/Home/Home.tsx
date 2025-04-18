@@ -1,8 +1,8 @@
 import styles from './Home.module.css';
-import { Text } from '@components/Text';
-import { Highlight } from '@components/Highlight';
-import { Svg } from '@components/Svg';
-import { Card } from '@components/Card';
+import Text from '@components/Text';
+import Highlight from '@components/Highlight';
+import Svg from '@components/Svg';
+import Card from '@components/Card';
 
 function Home() {
     return (

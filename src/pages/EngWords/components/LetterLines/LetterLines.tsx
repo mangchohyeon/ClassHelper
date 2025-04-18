@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { getArray } from 'utils/getArray';
 import { removeChar } from 'utils/removeChar'
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 import LetterLine from '../LetterLine/LetterLine'
 import styles from './LetterLines.module.css';
 

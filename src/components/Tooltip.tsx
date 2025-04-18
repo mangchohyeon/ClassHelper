@@ -1,5 +1,5 @@
 import { Tooltip as ArkTooltip } from '@ark-ui/react';
-import { ComponentsProps } from '@/types/ComponentsProps';
+import ComponentsProps from '@/types/ComponentsProps';
 import './Tooltip.module.css';
 
 interface TooltipProps extends ComponentsProps {

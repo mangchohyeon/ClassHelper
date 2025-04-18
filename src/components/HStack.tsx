@@ -1,6 +1,6 @@
 import { HStack as Hstack, StackProps } from "@chakra-ui/react";
 
-export function HStack(props : StackProps) {
+export default function HStack(props : StackProps) {
   return (
     <Hstack
     className={props.className}

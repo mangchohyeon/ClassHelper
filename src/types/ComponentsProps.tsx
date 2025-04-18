@@ -1,4 +1,4 @@
-export interface ComponentsProps {
+export default interface ComponentsProps {
     className?: string;
     id?: string;
     onClick? : any;
