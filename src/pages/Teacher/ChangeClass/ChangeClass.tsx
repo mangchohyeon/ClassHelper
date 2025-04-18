@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styles from './ChangeClass.module.css';
 import HBlock from '@components/HBlock';
-import { QuestionCircleIcon } from '@components/QuestionCircleIcon';
-import { MySlider } from '@components/MySlider';
+import QuestionCircleIcon from '@components/QuestionCircleIcon';
+import MySlider from '@components/MySlider';
 import { Button, ButtonProps} from "@/components/Button";
 import { Stack } from '@chakra-ui/react';
 import { TableListsProps } from '@/components/TableLists/TableLists'
