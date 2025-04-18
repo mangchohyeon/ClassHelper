@@ -16,12 +16,7 @@ import DictinaryIcon from '@assets/DictionaryIcon.svg';
 import SchoolIcon from '@assets/SchoolIcon.svg';
 import SettingIcon from '@assets/SettingIcon.svg';
 import { Link } from '@components/Link';
-import { useRef } from 'react';
-import { useState } from 'react';
-import { Drawer as DrawerTemp, Portal } from "@chakra-ui/react";
-import { ComponentsProps } from '@/types/ComponentsProps';
-import CloseIcon from '@assets/CloseIcon.svg';
-import { useEffect } from 'react';
+import Drawer from './Drawer';
 
 //아직 개발중인 페이지 클릭했을 때 나타나는 모션
 function AlertMessage() {
@@ -39,71 +34,6 @@ function AlertMessage() {
           container: 'swal2-container-custom' // 커스텀 클래스 추가
       }
   })
-}
-
-//Drawer(Sidebar)
-type DrawerOpenChangeEvent = {
-  open: boolean;
-}
-
-interface DrawerProps extends ComponentsProps {
-    placement?: "start" | "end" | "top" | "bottom";
-    Title?: React.ReactNode;
-    Body?: React.ReactNode;
-    Footer?: React.ReactNode;
-    BtnChildren? : React.ReactNode;
-    Size? : "xs" | "sm" | "md"| "lg"| "xl" | "full";
-}
-
-function Drawer(props: DrawerProps) {
-  const [isOpen, setIsOpen] = useState<undefined | null | boolean>();
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, []);
-
-  return (
-    <DrawerTemp.Root
-      open={isOpen}
-      onOpenChange={(e : DrawerOpenChangeEvent) => setIsOpen(e.open)}
-      placement={props.placement != undefined ? props.placement : "end"}
-      size={props.Size}>
-      <DrawerTemp.Trigger>
-        <button
-        className={props.className}
-        id={props.id}
-        onClick={() => setIsOpen(true)}>
-            {props.BtnChildren}
-        </button>
-      </DrawerTemp.Trigger>
-      <Portal>
-        <DrawerTemp.Backdrop />
-        <DrawerTemp.Positioner>
-          <DrawerTemp.Content>
-            <DrawerTemp.Header>
-              <DrawerTemp.Title>{props.Title}</DrawerTemp.Title>
-            </DrawerTemp.Header>
-            <DrawerTemp.Body>
-              {props.Body}
-            </DrawerTemp.Body>
-            <DrawerTemp.Footer>
-              {props.Footer}
-            </DrawerTemp.Footer>
-            <DrawerTemp.CloseTrigger>
-              <button
-              className="DrawerCloseBtn">
-                <Svg
-                className="DrawerCloseSvg"
-                src={CloseIcon}
-                alt="사이드바 닫기 버튼"
-                />
-              </button>
-            </DrawerTemp.CloseTrigger>
-          </DrawerTemp.Content>
-        </DrawerTemp.Positioner>
-      </Portal>
-    </DrawerTemp.Root>
-  )
 }
 
 
