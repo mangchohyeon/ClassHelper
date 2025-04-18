@@ -24,7 +24,7 @@ export function Link(props : LinkProps) {
     )
 }
 
-export default function ExternalLink(props : LinkProps) {
+export function ExternalLink(props : LinkProps) {
     return(
         <ChakraLink
         className={props.className}
