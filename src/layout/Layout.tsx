@@ -15,7 +15,7 @@ import HomeIcon  from '@assets/HomeIcon.svg';
 import DictinaryIcon from '@assets/DictionaryIcon.svg';
 import SchoolIcon from '@assets/SchoolIcon.svg';
 import SettingIcon from '@assets/SettingIcon.svg';
-import Link from '@components/Link';
+import { Link } from '@components/Link';
 import { Drawer as ChakraDrawer, Portal } from "@chakra-ui/react";
 import ComponentsProps from "@/types/ComponentsProps";
 import { useState, useEffect } from 'react';
@@ -253,7 +253,6 @@ function Layout() {
                 블로그
               </Text>
             </Link>
-              
           </div>
         
         </Tooltip>
