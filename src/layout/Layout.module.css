@@ -98,7 +98,7 @@
 }
 
 #LoginWrapper {
-  margin-right : 6%;
+  margin-right : 3%;
 }
 
 .Navigation2 {
@@ -127,4 +127,8 @@
   font-weight: inherit;
   font-size: 1.3rem;
   color : rgb(82, 82, 91);
+}
+
+#BlogWrapper {
+  margin-right : 1%;
 }

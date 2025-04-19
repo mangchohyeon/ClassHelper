@@ -60,21 +60,42 @@ function Layout() {
           <HStack
           className={styles.Navigation1_2}>
             <div
+            className={styles.MenuTextWrapper}
+            id={styles.BlogWrapper}>
+              <Link
+              className={styles.MenuLink}
+              to="/blog">
+                <Text
+                className={styles.MenuText}>
+                  블로그
+                </Text>
+              </Link>
+            </div>
+
+            <div
             className={styles.MenuTextWrapper}>
-              <Text
-              className={styles.MenuText}>
-                가이드
-              </Text>
+              <Link
+              className={styles.MenuLink}
+              to="/about">
+                <Text
+                className={styles.MenuText}>
+                  가이드
+                </Text>
+              </Link>
             </div>          
             
             <div
             className={styles.MenuTextWrppaer}
             id={styles.LoginWrapper}>
-              <Text
-              onClick={AlertMessage}
-              className={styles.MenuText}>
-                로그인
-              </Text>
+              <Link
+              className={styles.MenuLink}
+              to="/login">
+                <Text
+                onClick={AlertMessage}
+                className={styles.MenuText}>
+                  로그인
+                </Text>
+              </Link>
             </div>
           </HStack>
         </HStack>
@@ -85,7 +106,7 @@ function Layout() {
           className={styles.Navigation2Menu}>
             <Link
             className={styles.Navigation2Link}
-            to="EngWords">
+            to="/EngWords">
               <Text
               className={styles.Navigation2LinkText}>
                 영단어 학습하기
@@ -97,7 +118,7 @@ function Layout() {
           className={styles.Navigation2Menu}>
             <Link
             className={styles.Navigation2Link}
-            to="EngWords">
+            to="/teacher">
               <Text
               className={styles.Navigation2LinkText}>
                 선생님 페이지
