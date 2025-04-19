@@ -33,14 +33,25 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-y: auto;
+  font-family: var(--Kakaofont);
 }
 
-body {
-  font-family: "Chosun Sg";
+@media (prefer-color-scheme : light) {
+  html, body {
+    background-color: white;
+    color : black;
+  }
+}
+
+@media (prefer-color-scheme : dark) {
+  html, body {
+    background-color: white;
+    color : black;
+  }
 }
 
 code {
-  font-family: "Chosun Sg"
+  font-family: var(--Kakaofont);
 }
 
 #root {
@@ -51,8 +62,8 @@ code {
   padding:0;
   margin:0;
   overflow-y: auto;
-  --vh : 100%;
-  --vw : 100%;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .swal2-container-custom {
