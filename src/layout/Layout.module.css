@@ -9,15 +9,22 @@
   width: 100%;
   max-width: 100%;
   min-width: 98%;
-  height : 16vh;
-  max-height: 16vh;
-  min-height: 10vh;
+  height : 25vh;
+  max-height: 25vh;
+  min-height: 20vh;
   color: inherit;
   font-family: "KakaoBigSans-ExtraBold";
   font-weight: 800;
 }
 
 .Navigation1 {
+  width : 100%;
+  height : 14vh;
+  max-height: 14vh;
+  min-height: 12vh;
+}
+
+.Navigation1_1 {
   width : 27%;
   max-width: 27%;
   min-width: 20%;
@@ -56,7 +63,7 @@
   object-fit: contain;
 }
 
-.Navigation2 {
+.Navigation1_2 {
   width : 73%;
   max-width: 73%;
   min-width: 70%;
@@ -72,38 +79,14 @@
   justify-content: flex-end;
 }
 
-
-.MenuIconWrapper {
-  height : 70%;
-  max-height: 70%;
-  min-height: 65%;
-  cursor : pointer;
-  display : block;
-  margin-left : 1%;
-  margin-right : 1%;
-}
-
-.MenuIcon {
-  height : 100%;
-  max-height: 100%;
-  min-height : 98%;
-  width : auto;
-  object-fit: contain;
-}
-
-#QuestionIconWrapper {
-  padding-right: 1%;
-  margin-right : 5%;
-}
-
 .MenuTextWrapper {
   font-family: inherit;
   font-weight: inherit;
   height : auto;
   margin-left : 3%;
-  margin-right : 5%;
+  margin-right : 3%;
   white-space: nowrap;
-  cursor: pointer;
+  cursor: pointer;  
 }
 
 .MenuText {
@@ -112,4 +95,36 @@
   font-size: 1.3rem;
   height : auto;
   white-space: nowrap;
+}
+
+#LoginWrapper {
+  margin-right : 6%;
+}
+
+.Navigation2 {
+  width : 100%;
+  height : 10vh;
+  max-height: 11vh;
+  min-height: 10vh;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 3%;
+  margin-top: 1%;
+}
+
+.Navigation2Menu {
+  width : 12%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.Navigation2LinkText {
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 1.3rem;
+  color : rgb(82, 82, 91);
 }

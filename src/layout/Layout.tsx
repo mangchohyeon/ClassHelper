@@ -4,12 +4,10 @@ import Logo from '@assets/Logo.svg';
 import Swal from 'sweetalert2';
 import { Navigate } from '@hooks/Navigate';
 import  HStack from '@components/HStack';
-import QuestionCircleIcon from '@components/QuestionCircleIcon';
 import Svg from '@components/Svg';
 import Text from '@components/Text';
-import Tooltip from '@components/Tooltip';
-import DictionaryIcon from '@assets/DictionaryIcon.svg';
-import SchoolIcon from '@assets/SchoolIcon.svg';
+import VStack from '@components/VStack';
+import { Link } from '@components/Link';
 
 function AlertMessage() {
   Swal.fire({
@@ -33,91 +31,81 @@ function Layout() {
   
   return (
     <>
-      <HStack
-      className={styles.NavigationMain}
-      align={'center'}>
-        {/**Navigation1 */}
+      <VStack
+      className={styles.NavigationMain}>
         <HStack
-        className={styles.Navigation1}>
+        className={styles.Navigation1}
+        align={'center'}>
+          {/**Navigation1_1 */}
           <HStack
-          className={styles.LogoWrapper}>
-            <Svg
-            className={styles.Logo}
-            src={Logo}
-            alt="로고"
-            onClick={AlertMessage}
-            /> 
-            ClassHelper
+          className={styles.Navigation1_1}>
+            <HStack
+            className={styles.LogoWrapper}>
+              <Svg
+              className={styles.Logo}
+              src={Logo}
+              alt="로고"
+              onClick={AlertMessage}
+              /> 
+              ClassHelper
+            </HStack>
+
+            <HStack
+            className={styles.MainMenuWrapper}>
+              
+            </HStack>
           </HStack>
 
+          {/**Navigation1_2 */}
           <HStack
-          className={styles.MainMenuWrapper}>
+          className={styles.Navigation1_2}>
+            <div
+            className={styles.MenuTextWrapper}>
+              <Text
+              className={styles.MenuText}>
+                가이드
+              </Text>
+            </div>          
             
+            <div
+            className={styles.MenuTextWrppaer}
+            id={styles.LoginWrapper}>
+              <Text
+              onClick={AlertMessage}
+              className={styles.MenuText}>
+                로그인
+              </Text>
+            </div>
           </HStack>
         </HStack>
 
-        {/**Navigation2 */}
         <HStack
         className={styles.Navigation2}>
-          {/**DictionaryIcon */}
-          <Tooltip
-            content={<Text
-              className={styles.TooltipText}>
-                영단어 학습
-              </Text>
-            }
-            className={styles.MenuIconWrapper}
-            id={styles.DictionaryIconWrapper}
-            openDelay={500}
-            closeDelay={200}> 
-              <Svg
-              className={styles.MenuIcon}
-              src={DictionaryIcon}
-              alt="사전 아이콘" />
-          </Tooltip>
-            
-          {/**SchoolIcon */}
-          <Tooltip
-          content={<Text
-            className={styles.TooltipText}>
-              선생님 메뉴
-            </Text>
-          }
-          className={styles.MenuIconWrapper}
-          openDelay={500}
-          closeDelay={200}> 
-          <Svg
-          className={styles.MenuIcon}
-          src={SchoolIcon}
-          alt="학교 아이콘" />
-          </Tooltip>
-
-          <Tooltip 
-          content={<Text
-            className={styles.TooltipText}>
-              가이드
-            </Text>}
-          openDelay={500}
-          closeDelay={200}
-          className={styles.MenuIconWrapper}
-          id={styles.QuestionIconWrapper}>
-            {/*QuestionIcon */}
-            <QuestionCircleIcon 
-            className={styles.MenuIcon}
-            alt="가이드 아이콘"
-            />
-          </Tooltip>
-          
           <div
-          className={styles.MenuTextWrppaer}>
-            <Text
-            onClick={AlertMessage}
-            className={styles.MenuText}>
-              로그인
-            </Text>
+          className={styles.Navigation2Menu}>
+            <Link
+            className={styles.Navigation2Link}
+            to="EngWords">
+              <Text
+              className={styles.Navigation2LinkText}>
+                영단어 학습하기
+              </Text>
+            </Link>
+          </div>
+
+          <div
+          className={styles.Navigation2Menu}>
+            <Link
+            className={styles.Navigation2Link}
+            to="EngWords">
+              <Text
+              className={styles.Navigation2LinkText}>
+                선생님 페이지
+              </Text>
+            </Link>
           </div>
         </HStack>
-      </HStack>
+      </VStack>
 
       <Outlet />
     </>
