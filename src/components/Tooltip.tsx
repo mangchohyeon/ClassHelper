@@ -1,6 +1,6 @@
 import { Tooltip as ArkTooltip } from '@ark-ui/react';
 import ComponentsProps from '@/types/ComponentsProps';
-import './Tooltip.module.css';
+import './Tooltip.css';
 
 interface TooltipProps extends ComponentsProps {
   children?: React.ReactNode; // 자식 요소
@@ -31,15 +31,11 @@ export function Tooltip(props : TooltipProps) {
         {/* 자식 요소를 트리거로 사용 */}
         <ArkTooltip.Trigger
         className={props.className}
-        id={props.id}
-        style={props.className === undefined 
-        ? { height: 'auto' } 
-        : undefined}>
+        id={props.id}>
             {props.children}
         </ArkTooltip.Trigger>
         {/* 툴팁의 위치와 내용을 정의 */}
-        <ArkTooltip.Positioner
-        >
+        <ArkTooltip.Positioner>
             <ArkTooltip.Content>
                 {/* arrow가 true일 때만 화살표 렌더링 */}
                 {Arrow && <ArkTooltip.Arrow />}

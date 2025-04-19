@@ -1,0 +1,9 @@
+[data-scope="tooltip"][data-part="content"] {
+    padding : 1px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    background-color: black;
+    color : white;
+}
