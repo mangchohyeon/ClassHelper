@@ -1,28 +1,16 @@
-"use client"
 import { Outlet } from 'react-router-dom';
 import styles from './Layout.module.css';
 import Logo from '@assets/Logo.svg';
 import Swal from 'sweetalert2';
 import { Navigate } from '@hooks/Navigate';
-import HStack  from '@components/HStack';
+import  HStack from '@components/HStack';
 import QuestionCircleIcon from '@components/QuestionCircleIcon';
 import Svg from '@components/Svg';
-import MenuIcon from '@assets/MenuIcon.svg';
 import Text from '@components/Text';
 import Tooltip from '@components/Tooltip';
-import VStack  from '@components/VStack';
-import HomeIcon  from '@assets/HomeIcon.svg';
-import DictinaryIcon from '@assets/DictionaryIcon.svg';
+import DictionaryIcon from '@assets/DictionaryIcon.svg';
 import SchoolIcon from '@assets/SchoolIcon.svg';
-import SettingIcon from '@assets/SettingIcon.svg';
-import { Link } from '@components/Link';
-import { Drawer as ChakraDrawer, Portal } from "@chakra-ui/react";
-import ComponentsProps from "@/types/ComponentsProps";
-import { useState, useEffect } from 'react';
-import CloseIcon from '@assets/CloseIcon.svg';
 
-
-//아직 개발중인 페이지 클릭했을 때 나타나는 모션
 function AlertMessage() {
   Swal.fire({
       position: 'top',
@@ -41,240 +29,94 @@ function AlertMessage() {
 }
 
 
-//Drawer(Sidebar)
-type DrawerOpenChangeEvent = {
-  open: boolean;
-}
-
-interface DrawerProps extends ComponentsProps {
-    Trigger? : React.ReactNode;
-    TriggerProps? : ComponentsProps;
-}
-
-function Drawer(props : DrawerProps) {
-  const [isOpen, setIsOpen] = useState<undefined | null | boolean>();
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, []);
-
-  return (
-    <ChakraDrawer.Root
-      open={isOpen}
-      onOpenChange={(e : DrawerOpenChangeEvent) => setIsOpen(e.open)}
-      placement="start"
-      size="md">
-      {/**Trigger */}
-      <ChakraDrawer.Trigger>
-        <button
-        className={styles.MenuBtn}
-        onClick={() => setIsOpen(true)}>
-            {<Svg
-              className={styles.MenuIcon}
-              src={MenuIcon}
-              alt="메뉴 아이콘" />}
-        </button>
-      </ChakraDrawer.Trigger>
-      {/**Portal */}
-      <Portal>
-        <ChakraDrawer.Backdrop />
-        <ChakraDrawer.Positioner>
-          <ChakraDrawer.Content>
-            {/**Header */}
-            <ChakraDrawer.Header>
-              {/**Title*/}
-              <ChakraDrawer.Title>
-                {<div
-                className={styles.SidebarLogoWrapper}>
-                  <Svg
-                  className={styles.SidebarLogo}
-                  id={styles.SidebarLogo}
-                  src={Logo}
-                  alt="로고"
-                  onClick={AlertMessage}
-                  />
-                </div>}
-                </ChakraDrawer.Title>
-            </ChakraDrawer.Header>
-            {/**Body */}
-            <ChakraDrawer.Body>
-              {<VStack
-              className={styles.Sidebar}>
-                <HStack
-                className={styles.SidebarMenuWrapper}>
-                  <Svg
-                  className={styles.SidebarMenuIcon}
-                  src={HomeIcon}
-                  alt="홈 아이콘" />
-
-                  <Link 
-                  to="/"
-                  className={styles.SiderbarMenuLink}>
-                    <Text
-                    className={styles.SidebarMenuText}>
-                      홈 화면
-                    </Text>
-                  </Link>
-                </HStack>
-
-                <HStack
-                className={styles.SidebarMenuWrapper}>
-                  <Svg
-                  className={styles.SidebarMenuIcon} 
-                  src={DictinaryIcon}
-                  alt="영단어 학습 아이콘" />
-                  <Link
-                  className={styles.SidebarMenuLink}
-                  to="/EngWords">
-                    <Text
-                    className={styles.SidebarMenuText}>
-                      영단어 학습
-                    </Text>
-                  </Link>
-                </HStack>
-
-                <HStack
-                className={styles.SidebarMenuWrapper}>
-                  <Svg
-                  className={styles.SidebarMenuIcon}
-                  src={SchoolIcon}
-                  alt="학교 아이콘"
-                  />
-                  <Link
-                  className={styles.SidebarMenuLink}
-                  to="/Teacher">
-                    <Text
-                    className={styles.SidebarMenuText}>
-                      선생님 메뉴
-                    </Text>
-                  </Link>
-                </HStack>
-              </VStack>}
-            </ChakraDrawer.Body>
-            {/**Footer */}
-            <ChakraDrawer.Footer>
-            {<HStack
-            className={styles.SidebarMenuWrapper}>
-              <Svg
-              className={styles.SidebarMenuIcon}
-              src={SettingIcon}
-              alt="설정 아이콘" />
-              <Link
-              className={styles.SidebarMenuLink}
-              to="UserSettings">
-                <Text
-                className={styles.SidebarMenuText}
-                id={styles.SettingText}>
-                  설정
-                </Text>
-              </Link>
-            </HStack>} 
-          
-            </ChakraDrawer.Footer>
-            <ChakraDrawer.CloseTrigger>
-              <button
-              className="DrawerCloseBtn">
-                <Svg
-                className="DrawerCloseSvg"
-                src={CloseIcon}
-                alt="사이드바 닫기 버튼"
-                />
-              </button>
-            </ChakraDrawer.CloseTrigger>
-          </ChakraDrawer.Content>
-        </ChakraDrawer.Positioner>
-      </Portal>
-    </ChakraDrawer.Root>
-  )
-}
-
 function Layout() {
+  
   return (
     <>
       <HStack
-      className={styles.Navigation}
+      className={styles.NavigationMain}
       align={'center'}>
-        {/**Sidebar */}
-        <Drawer />
-
-        <Tooltip
-        content={<Text
-        className={styles.TooltipText}>
-          홈 화면으로 이동
-        </Text>}
-        openDelay={500}
-        closeDelay={200}
-        >
+        {/**Navigation1 */}
+        <HStack
+        className={styles.Navigation1}>
           <HStack
           className={styles.LogoWrapper}>
             <Svg
             className={styles.Logo}
             src={Logo}
             alt="로고"
-            onClick={() => Navigate("/")}
+            onClick={AlertMessage}
             /> 
             ClassHelper
           </HStack>
-        </Tooltip>
 
+          <HStack
+          className={styles.MainMenuWrapper}>
+            
+          </HStack>
+        </HStack>
 
-        <Tooltip 
-        content="소개 페이지"
-        openDelay={500}
-        closeDelay={200}
-        className={styles.QuestionIconWrapper}>
-          {/**QuestionIcon */}
-          <QuestionCircleIcon 
-          className={styles.QuestionIcon}
-          alt="소개 페이지로 이동 아이콘"
-          onClick={() => Navigate("/About")}
-          />
-        </Tooltip>
-
-        <Tooltip
-        content="블로그 페이지"
-        openDelay={500}
-        closeDelay={200}
-        className={styles.MenuWrapper}
-        placement="bottom"
-        id={styles.BlogWrapper}>
-          {/**블로그 */}
-          <div
-          className={styles.MenuWrapper}
-          style={{
-            width : "auto",
-            height : "auto",
-          }}>
-            <Link
-            className={styles.MenuLink}
-            to="/Blog">
-              <Text 
-              className={styles.MenuText}>
-                블로그
+        {/**Navigation2 */}
+        <HStack
+        className={styles.Navigation2}>
+          {/**DictionaryIcon */}
+          <Tooltip
+            content={<Text
+              className={styles.TooltipText}>
+                영단어 학습
               </Text>
-            </Link>
-          </div>
-        
-        </Tooltip>
-        
-        <Tooltip
-        content="로그인하기"
-        openDelay={500}
-        closeDelay={200}
-        className={styles.MenuWrapper}>
-          <div 
-          style={{
-            width : 'auto',
-            height : 'auto'
-          }}
-          onClick={AlertMessage}>
-            {/**LoginText */}
+            }
+            className={styles.MenuIconWrapper}
+            id={styles.DictionaryIconWrapper}
+            openDelay={500}
+            closeDelay={200}> 
+              <Svg
+              className={styles.MenuIcon}
+              src={DictionaryIcon}
+              alt="사전 아이콘" />
+          </Tooltip>
+            
+          {/**SchoolIcon */}
+          <Tooltip
+          content={<Text
+            className={styles.TooltipText}>
+              선생님 메뉴
+            </Text>
+          }
+          className={styles.MenuIconWrapper}
+          openDelay={500}
+          closeDelay={200}> 
+          <Svg
+          className={styles.MenuIcon}
+          src={SchoolIcon}
+          alt="학교 아이콘" />
+          </Tooltip>
+
+          <Tooltip 
+          content={<Text
+            className={styles.TooltipText}>
+              가이드
+            </Text>}
+          openDelay={500}
+          closeDelay={200}
+          className={styles.MenuIconWrapper}
+          id={styles.QuestionIconWrapper}>
+            {/*QuestionIcon */}
+            <QuestionCircleIcon 
+            className={styles.MenuIcon}
+            alt="가이드 아이콘"
+            />
+          </Tooltip>
+          
+          <div
+          className={styles.MenuTextWrppaer}>
             <Text
+            onClick={AlertMessage}
             className={styles.MenuText}>
               로그인
             </Text>
           </div>
-        </Tooltip>
+        </HStack>
       </HStack>
 
       <Outlet />
