@@ -1,7 +1,7 @@
-import styles from './ClassHelper.module.css'
+import styles from './Teacher.module.css'
 import HBlock from '@components/HBlock'
 
-function ClassHelper() {
+export default function Teacher() {
     return (
         <main className={styles.main}>
             <section className={styles.Intro}>
@@ -11,5 +11,3 @@ function ClassHelper() {
         </main>
     )
 }
-
-export default ClassHelper

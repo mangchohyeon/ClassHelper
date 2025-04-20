@@ -5,7 +5,7 @@ import Layout from '@layout/Layout';  // 위에서 만든 Layout 컴포넌트
 import Home from '@pages/Home/Home';
 import EngWords from '@pages/EngWords/EngWords';
 import Kodle from '@pages/EngWords/Kodle/Kodle';
-import ClassHelper from '@pages/Teacher/ClassHelper'
+import Teacher from '@/pages/Teacher/Teacher'
 import ChangeClass from '@pages/Teacher/ChangeClass/ChangeClass';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 
@@ -33,8 +33,8 @@ function App() {
               <Route index element={<Home />} />
               <Route path="/EngWords" element={<EngWords />} />
               <Route path="/EngWords/kodle" element={<Kodle />} />
-              <Route path="/Teacher" element={<ClassHelper />} />
-              <Route path="/Teacher/ChangeClass" element = {<ChangeClass />} />
+              <Route path="/teacher" element={<Teacher />} />
+              <Route path="/teacher/changeclass" element = {<ChangeClass />} />
             </Route>
           </Routes>
         </Router>
