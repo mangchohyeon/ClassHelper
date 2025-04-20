@@ -2,7 +2,6 @@ import { Outlet } from 'react-router-dom';
 import styles from './Layout.module.css';
 import Logo from '@assets/Logo.svg';
 import Swal from 'sweetalert2';
-import { Navigate } from '@hooks/Navigate';
 import  HStack from '@components/HStack';
 import Svg from '@components/Svg';
 import Text from '@components/Text';
@@ -98,33 +97,6 @@ function Layout() {
               </Link>
             </div>
           </HStack>
-        </HStack>
-
-        <HStack
-        className={styles.Navigation2}>
-          <div
-          className={styles.Navigation2Menu}>
-            <Link
-            className={styles.Navigation2Link}
-            to="/EngWords">
-              <Text
-              className={styles.Navigation2LinkText}>
-                영단어 학습하기
-              </Text>
-            </Link>
-          </div>
-
-          <div
-          className={styles.Navigation2Menu}>
-            <Link
-            className={styles.Navigation2Link}
-            to="/teacher">
-              <Text
-              className={styles.Navigation2LinkText}>
-                선생님 페이지
-              </Text>
-            </Link>
-          </div>
         </HStack>
       </VStack>
 

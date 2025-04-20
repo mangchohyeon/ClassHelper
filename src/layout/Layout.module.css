@@ -9,9 +9,9 @@
   width: 100%;
   max-width: 100%;
   min-width: 98%;
-  height : 25vh;
-  max-height: 25vh;
-  min-height: 20vh;
+  height : 12vh;
+  max-height: 12vh;
+  min-height: 10vh;
   color: inherit;
   font-family: "KakaoBigSans-ExtraBold";
   font-weight: 800;
@@ -109,7 +109,7 @@
   align-items: center;
   justify-content: flex-start;
   padding-left: 3%;
-  margin-top: 1%;
+  margin-top: 0.5%;
 }
 
 .Navigation2Menu {
@@ -122,11 +122,19 @@
   cursor: pointer;
 }
 
+.Navigation2Menu :hover {
+  color : black;
+}
+
+.Navigation2Link {
+  color : inherit;
+}
+
 .Navigation2LinkText {
   font-family: inherit;
-  font-weight: inherit;
+  font-weight: 500;
   font-size: 1.3rem;
-  color : rgb(82, 82, 91);
+  color : inherit;
 }
 
 #BlogWrapper {

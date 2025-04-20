@@ -3,10 +3,13 @@ import Text from '@components/Text';
 import Highlight from '@components/Highlight';
 import Svg from '@components/Svg';
 import Card from '@components/Card';
+import Naviagation2 from '@layout/Naviagion2';
 
 function Home() {
     return (
         <div className={styles.Main}>
+            <Naviagation2 OnMenuList={[false, false]} />
+
             <header
             className={styles.Heading}>
                 <Text 
