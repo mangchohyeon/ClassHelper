@@ -46,7 +46,12 @@ function Layout() {
               alt="로고"
               onClick={AlertMessage}
               /> 
-              ClassHelper
+              <Link
+              className={styles.HomeLink}
+              to="/">
+                <Text
+                className={styles.HomeLinkText}>ClassHelper</Text>
+              </Link>
             </HStack>
 
             <HStack
@@ -60,41 +65,31 @@ function Layout() {
           className={styles.Navigation1_2}>
             <div
             className={styles.MenuTextWrapper}
-            id={styles.BlogWrapper}>
-              <Link
-              className={styles.MenuLink}
-              to="/blog">
-                <Text
-                className={styles.MenuText}>
-                  블로그
-                </Text>
-              </Link>
+            id={styles.BlogWrapper}
+            onClick={AlertMessage}>
+              <Text
+              className={styles.MenuText}>
+                블로그
+              </Text>
             </div>
 
             <div
-            className={styles.MenuTextWrapper}>
-              <Link
-              className={styles.MenuLink}
-              to="/about">
-                <Text
-                className={styles.MenuText}>
-                  가이드
-                </Text>
-              </Link>
+            className={styles.MenuTextWrapper}
+            onClick={AlertMessage}>
+              <Text
+              className={styles.MenuText}>
+                가이드
+              </Text>
             </div>          
             
             <div
             className={styles.MenuTextWrppaer}
-            id={styles.LoginWrapper}>
-              <Link
-              className={styles.MenuLink}
-              to="/login">
-                <Text
-                onClick={AlertMessage}
-                className={styles.MenuText}>
-                  로그인
-                </Text>
-              </Link>
+            id={styles.LoginWrapper}
+            onClick={AlertMessage}>
+              <Text
+              className={styles.MenuText}>
+                로그인
+              </Text>
             </div>
           </HStack>
         </HStack>

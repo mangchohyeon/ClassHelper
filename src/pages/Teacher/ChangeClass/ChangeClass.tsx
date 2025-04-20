@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styles from './ChangeClass.module.css';
-import HBlock from '@components/HBlock';
 import QuestionCircleIcon from '@components/QuestionCircleIcon';
 import MySlider from '@components/MySlider';
 import { Button, ButtonProps} from "@/components/Button";
@@ -172,14 +171,14 @@ function ChangeClass() {
     return (
         <main className={styles.Main}>
             <header className={styles.Header}>
-                <HBlock num={1}
+                <div
                 style={{
                     fontSize : "1.5em",
                     width : "100%"
                 }}
                 className={styles.Title}>
                     &lt;자리바꾸기&gt;
-                </HBlock>
+                </div>
             </header>
 
             <section className={styles.QuestionSection}>
@@ -200,10 +199,10 @@ function ChangeClass() {
                     defaultValue={[tempColumnNum]}
                     width="40%"
                     color="gray"
-                    Label={<HBlock num={2} 
+                    Label={<div
                     className={styles.Label1}>
                         분단 수
-                        </HBlock>}
+                        </div>}
                         
                     ValueText={true}
                     min={1}
@@ -221,11 +220,10 @@ function ChangeClass() {
                     min={1}
                     max={10}
 
-                    Label= { <HBlock 
-                        num={2}
+                    Label= { <div 
                         className={styles.Label1}>
                             행의 수
-                        </HBlock> }
+                        </div> }
 
                     ValueText={true}
                     id="SliderRowNum"
@@ -242,11 +240,10 @@ function ChangeClass() {
                     color="gray"
                     rounded="lg"
                     onClick={handleGenerateTable}>
-                        <HBlock 
-                        num={2}
+                        <div 
                         className={styles.Label2}>
                             자리 생성하기
-                        </HBlock>
+                        </div>
                     </Button2>
                     
                     {/**자리 배치하기 버튼 */}
@@ -257,11 +254,10 @@ function ChangeClass() {
                     color="gray"
                     rounded="lg"
                     onClick={ShuffleSeats}>
-                        <HBlock 
-                        num={2}
+                        <div 
                         className={styles.Label2}>
                             자리 배치하기
-                        </HBlock>
+                        </div>
                     </Button2>
                 </div>
             </section>
