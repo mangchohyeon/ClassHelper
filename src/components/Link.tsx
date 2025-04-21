@@ -8,6 +8,7 @@ interface LinkProps extends ComponentsProps {
     | 'yellow' | 'green' | 'teal' | 'blue' 
     | 'cyan' | 'purple' | 'pink';
     to : string;
+    target? : "_blank" | "_self" | "_parent" | "_top"; 
 }
 
 export function Link(props : LinkProps) {
@@ -18,7 +19,8 @@ export function Link(props : LinkProps) {
         style={props.style}
         href={props.to}
         variant={props.variant}
-        colorPalette={props.color}>
+        colorPalette={props.color}
+        {...props.target && {target : props.target}}>
             {props.children}
         </ChakraLink>
     )
