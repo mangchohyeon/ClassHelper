@@ -34,16 +34,11 @@ html, body {
   padding: 0;
   overflow-y: auto;
   font-family: var(--Kakaofont);
+  background-color: white;
+  color : black;
 }
 
-@media (prefer-color-scheme : light) {
-  html, body {
-    background-color: white;
-    color : black;
-  }
-}
-
-@media (prefer-color-scheme : dark) {
+@media (prefers-color-scheme : dark) {
   html, body {
     background-color: white;
     color : black;
