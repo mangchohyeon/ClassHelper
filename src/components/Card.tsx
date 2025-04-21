@@ -1,39 +1,41 @@
-import { Card as CardTemp } from '@chakra-ui/react';
+import { Card as ChakraCard } from '@chakra-ui/react';
 import ComponentsProps from '@/types/ComponentsProps';
 
 interface CardProps extends ComponentsProps {
     gap? : number;
+    Img? : React.ReactNode;
     Title? : React.ReactNode;
     Description? : React.ReactNode;
-    Body? : React.ReactNode;
     Footer? : React.ReactNode;
     variant? : "elevated" | "outline" | "subtle";
     size? : "sm" | "md" | "lg";
+    Direction? : "column" | "row";
 }
 
 export default function Card(props : CardProps) {
     return (
-        <CardTemp.Root
+        <ChakraCard.Root
         className={props.className}
         id={props.id}
         style={props.style}
         gap={props.gap}
         variant={props.variant}
-        size={props.size}>
-            <CardTemp.Body>
-                {props.Body}
-                <CardTemp.Title>
+        size={props.size}
+        flexDirection={props.Direction || "column"}>
+            <ChakraCard.Body>
+                {props.Img ? props.Img : null}
+                <ChakraCard.Title>
                     {props.Title}
-                </CardTemp.Title>
+                </ChakraCard.Title>
 
-                <CardTemp.Description>
+                <ChakraCard.Description>
                     {props.Description}
-                </CardTemp.Description>
-            </CardTemp.Body>
+                </ChakraCard.Description>
+            </ChakraCard.Body>
 
-            <CardTemp.Footer>
+            <ChakraCard.Footer>
                 {props.Footer}
-            </CardTemp.Footer>
-        </CardTemp.Root>
+            </ChakraCard.Footer>
+        </ChakraCard.Root>
     )
 }
