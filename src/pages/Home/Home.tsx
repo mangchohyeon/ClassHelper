@@ -3,12 +3,14 @@ import Text from '@components/Text';
 import Highlight from '@components/Highlight';
 import Svg from '@components/Svg';
 import Card from '@components/Card';
-import Naviagation2 from '@layout/Naviagion2';
+import Naviagation2 from '@layout/Navigation2';
 
 function Home() {
     return (
         <div className={styles.Main}>
-            <Naviagation2 OnMenuList={[false, false]} />
+            <Naviagation2 
+            OnMenuList={[false, false]}
+            MenuLists={[["/engwords", "영단어 학습하기"], ["/teacher", "선생님 메뉴"]]} />
 
             <header
             className={styles.Heading}>
