@@ -31,8 +31,8 @@ function App() {
             <Route path="/" element={<Layout />}>
               {/* index 라우트: 기본 경로 ("/")에 해당하는 컴포넌트 */}
               <Route index element={<Home />} />
-              <Route path="/EngWords" element={<EngWords />} />
-              <Route path="/EngWords/kodle" element={<Kodle />} />
+              <Route path="/engwords" element={<EngWords />} />
+              <Route path="/engwords/kodle" element={<Kodle />} />
               <Route path="/teacher" element={<Teacher />} />
               <Route path="/teacher/changeclass" element = {<ChangeClass />} />
             </Route>
