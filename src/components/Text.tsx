@@ -1,10 +1,7 @@
-import { Text as TextTemp, TextProps as TextPropsTemp } from "@chakra-ui/react";
+import { Text as ChakraText } from "@chakra-ui/react";
+import ComponentsProps from '@/types/ComponentsProps';
 
-interface TextProps extends TextPropsTemp {
-    className? : string;
-    id? : string;
-    style? : React.CSSProperties;
-    title? : string;
+interface TextProps extends ComponentsProps {
     fontFamily? : string;
     fontSize? : string;
     fontWeight? : string;
@@ -13,7 +10,7 @@ interface TextProps extends TextPropsTemp {
 
 export default function Text(props : TextProps) {
     return (
-        <text 
+        <ChakraText 
         className={props.className}
         id={props.id}
         style={{
@@ -25,6 +22,8 @@ export default function Text(props : TextProps) {
         }}
         >
             {props.children}
-        </text>
+        </ChakraText>
     )
 }
+
+export { TextProps, Text }
