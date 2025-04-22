@@ -15,7 +15,7 @@ interface CardProps extends ComponentsProps {
     FooterProps? : ComponentsProps;
 }
 
-export function Card(props : CardProps) {
+export default function Card(props : CardProps) {
     return (
         <ChakraCard.Root
         className={props.className}
@@ -48,7 +48,7 @@ interface HCardProps extends CardProps {
     BoxProps? : ComponentsProps;
 }
 
-export function HCard(props : HCardProps) {
+function HCard(props : HCardProps) {
     return (
         <ChakraCard.Root  
         className={props.className}
@@ -81,3 +81,4 @@ export function HCard(props : HCardProps) {
         </ChakraCard.Root>   
     )
 }
+
