@@ -1,4 +1,4 @@
-import { Button as ButtonTemp } from "@chakra-ui/react";
+import { Button as ChakraButton } from "@chakra-ui/react";
 import ComponentsProps from '@/types/ComponentsProps';
 
 interface ButtonProps extends ComponentsProps {
@@ -11,9 +11,9 @@ interface ButtonProps extends ComponentsProps {
   onClick? : any;
 }
 
-function Button(props : ButtonProps) {
+export default function Button(props : ButtonProps) {
   return (
-    <ButtonTemp
+    <ChakraButton
       size={props.size}
       variant={props.variant}
       colorPalette={props.color}
@@ -23,9 +23,9 @@ function Button(props : ButtonProps) {
       onClick={() => props.onClick()}
       >
       {props.children}
-    </ButtonTemp>
+    </ChakraButton>
 
   )
 }
 
-export { Button, ButtonProps}
+export { Button , ButtonProps }
