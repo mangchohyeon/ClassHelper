@@ -1,4 +1,4 @@
-import { Card as ChakraCard } from '@chakra-ui/react';
+import { Card as ChakraCard, Box } from '@chakra-ui/react';
 import ComponentsProps from '@/types/ComponentsProps';
 
 interface CardProps extends ComponentsProps {
@@ -9,10 +9,13 @@ interface CardProps extends ComponentsProps {
     Footer? : React.ReactNode;
     variant? : "elevated" | "outline" | "subtle";
     size? : "sm" | "md" | "lg";
-    Direction? : "column" | "row";
+    BodyProps? : ComponentsProps;
+    TitleProps? : ComponentsProps;
+    DescriptionProps? : ComponentsProps;
+    FooterProps? : ComponentsProps;
 }
 
-export default function Card(props : CardProps) {
+export function Card(props : CardProps) {
     return (
         <ChakraCard.Root
         className={props.className}
@@ -20,22 +23,61 @@ export default function Card(props : CardProps) {
         style={props.style}
         gap={props.gap}
         variant={props.variant}
-        size={props.size}
-        flexDirection={props.Direction || "column"}>
-            <ChakraCard.Body>
+        size={props.size}>
+            <ChakraCard.Body className="ChakraCardBody">
                 {props.Img ? props.Img : null}
-                <ChakraCard.Title>
+                <ChakraCard.Title className="ChakraCardTitle">
                     {props.Title}
                 </ChakraCard.Title>
 
-                <ChakraCard.Description>
+                <ChakraCard.Description className="ChakraCardDescription">
                     {props.Description}
                 </ChakraCard.Description>
+
+                {props.children}
             </ChakraCard.Body>
 
-            <ChakraCard.Footer>
+            <ChakraCard.Footer className="ChakraCardFooter">
                 {props.Footer}
             </ChakraCard.Footer>
         </ChakraCard.Root>
+    )
+}
+
+interface HCardProps extends CardProps {
+    BoxProps? : ComponentsProps;
+}
+
+export function HCard(props : HCardProps) {
+    return (
+        <ChakraCard.Root  
+        className={props.className}
+        id={props.id}
+        style={props.style}
+        flexDirection="row"
+        gap={props.gap}
+        variant={props.variant}
+        size={props.size}>
+            {props.Img && props.Img}
+
+            <Box className={props.BoxProps?.className} 
+            id={props.BoxProps?.id} style={props.BoxProps?.style}>
+                <ChakraCard.Body >
+                    <ChakraCard.Title className={props.TitleProps?.className}>
+                        {props.Title}
+                    </ChakraCard.Title>
+
+                    <ChakraCard.Description className={props.DescriptionProps?.className}>
+                        {props.Description}
+                    </ChakraCard.Description>
+
+                    {props.children && props.children}
+
+                    <ChakraCard.Footer className={props.FooterProps?.className}>
+                        {props.Footer}
+                    </ChakraCard.Footer>
+                </ChakraCard.Body>
+            </Box>
+        </ChakraCard.Root>   
     )
 }
