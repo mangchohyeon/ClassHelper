@@ -12,8 +12,11 @@ export default function Highlight(props : HighlightProps) {
         <HighLight
         className={props.className}
         id={props.id}
+        style={props.style}
         query={props.query}
         text={props.children}
         matchAll={props.matchAll} />
     )
 }
+
+export { Highlight, HighlightProps }
