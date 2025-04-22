@@ -2,7 +2,7 @@ import styles from './Home.module.css';
 import Text from '@components/Text';
 import Highlight from '@components/Highlight';
 import Svg from '@components/Svg';
-import Card from '@components/Card';
+import { Card } from '@components/Card';
 import Naviagation2 from '@layout/Navigation2';
 
 function Home() {
@@ -10,7 +10,9 @@ function Home() {
         <div className={styles.Main}>
             <Naviagation2 
             OnMenuList={[false, false]}
-            MenuLists={[["/engwords", "영단어 학습하기"], ["/teacher", "선생님 메뉴"]]} />
+            MenuLists={[["/engwords", "영단어 학습하기"], ["/teacher", "선생님 메뉴"]]}
+            className={styles.Navigation2} 
+            />
 
             <header
             className={styles.Heading}>
