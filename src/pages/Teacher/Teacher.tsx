@@ -51,19 +51,29 @@ export default function Teacher() {
                         자리 바꾸기에서는 Excel파일로 된 학생 명단을 업로드하고, <br />
                         자리 배치를 선택하면 <br />
                         학생들의 자리를 간편하게 바꿀수 있습니다!<br />
-                        <Text>Excel파일에는 첫번째 세로줄에 학생명단이 있어야 합니다.</Text>
+                        <Text
+                        className={styles.SubmenuCardHelperText}>
+                            Excel파일에는 첫번째 세로줄에 학생명단이 있어야 합니다.
+                        </Text>
+                    </section>}
+
+                    Footer={
                         <section
-                        className={styles.SubmenuCardFooter}>
+                        className={styles.ButtonLinkWrapper}>
                             <ButtonLink
                             className={styles.SubmenuCardButtonLink}>
                                 <Link to="/teacher/changeclass">
-                                <Text>바로가기</Text>
+                                <Text className={styles.SubmenuCardLink}>
+                                    바로가기
+                                </Text>
                                 </Link>
                             </ButtonLink>
                         </section>
-                    </section>}
+                    }
 
-        
+                    FooterProps={{
+                        className : styles.SubmenuCardFooter
+                    }}
                 />
             
             {/**팀 나누기 카드 */}

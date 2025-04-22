@@ -68,6 +68,11 @@
     margin-bottom: 5%;
 }
 
+.SubmenuCardHelperText {
+    display : inline-block;
+    margin-top : 2%;
+}
+
 .SubmenuCardFooter {
     width : 100%;
     height : auto;
@@ -75,5 +80,12 @@
 }
 
 .SubmenuCardButtonLink {
-    
+    color : white;
+    margin-top: auto;
+}
+
+
+.SubmenuCardLink {
+    font-family: inherit;
+    color : white;
 }
