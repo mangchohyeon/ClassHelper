@@ -82,3 +82,4 @@ function HCard(props : HCardProps) {
     )
 }
 
+export { Card, HCard };
