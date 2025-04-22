@@ -14,6 +14,7 @@
   font-family: "KakaoBigSans-ExtraBold";
   font-weight: 800;
   padding-top : 1%;
+  margin-bottom: 2vh;
   color : black;
 }
 
@@ -95,12 +96,9 @@
   align-items: center;
   justify-content: flex-start;
   padding-left: 3%;
-  margin-top : 2px;
+  border-top : 1px solid #8a8a8a;
 }
 
-.Navigation2 {
-  border-bottom : 1px solid #8a8a8a;
-} 
 
 
 .Navigation2Menu {
