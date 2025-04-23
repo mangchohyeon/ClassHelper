@@ -8,6 +8,6 @@ export default function TeacherNavy(props : TeacherNavyProps) {
     return (
         <Naviagation2 
         OnMenuList={props.OnMenuList}
-        MenuLists={[["/changeclass", "자리 바꾸기"], ["divideteam", "자리 나누기"]]} />
+        MenuLists={[["/teacher/changeclass", "자리 바꾸기"], ["/teacher/divideteam", "자리 나누기"]]} />
     )
 }
