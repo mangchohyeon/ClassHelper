@@ -102,9 +102,11 @@
 }
 
 .StudentsTableData {
+    display : flex;
+    flex-direction: column;
     border: 2px solid black;
+    justify-content: center;
     text-align: center;
-    vertical-align: middle;
     border-collapse: collapse;
     border-radius: 10%;
     padding: 0;

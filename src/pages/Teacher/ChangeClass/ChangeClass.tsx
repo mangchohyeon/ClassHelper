@@ -8,6 +8,8 @@ import { TableListsProps } from '@/components/TableLists/TableLists'
 import { getArray, get2DArray } from '@utils/getArray';
 import { v4 as uuidv4 } from 'uuid';
 import { shuffle } from '@/utils/shuffle';
+import TeacherNavy from '../TeacherNavy';
+import { useEffect } from 'react';
 
 
 interface Button2Props extends ButtonProps {
@@ -40,8 +42,16 @@ function ChangeClass() {
     const [tableRowNum, setTableRowNum] = useState(6);
     const [tableColumnNum, setTableColumnNum] = useState(5);
     
+    //Td 크기
+    const [Size, setSize] = useState(50/tableColumnNum);
+
+    //Td 크기 조정하는 함수
+    function handleTableDataSize() {
+        setSize(50/tableColumnNum);
+    }
+
     //학생명단 리스트
-    const [StudentsNames, setStudentsNames] = useState(["구도회", "권효섭", 
+    const [StudentsNames, setStudentsNames] = useState<(string | undefined)[]>(["구도회", "권효섭", 
         "김기용", "김범서", "김용환", "김재민", "김형민", "맹기현", "박건", "박건우", 
         "변주용", "석진우", "성혁준", "윤시운", "윤정탁", "윤지민", "이세현", "이용재", 
         "이찬현", "이채훈", "장현빈", "전재혁", "최정욱", "뇌종무", "편승우", "허태양", 
@@ -91,6 +101,9 @@ function ChangeClass() {
         setTableRowNum(tempRowNum);
         setTableColumnNum(tempColumnNum);
         setisAssignable(get2DArray<boolean>(tempColumnNum, tempRowNum, true)); // 이 줄 추가
+        handleTableDataSize();
+        // 리렌더링 될때는 ""
+        setStudentsNames(getArray<string>(tableColumnNum * tableRowNum, ""));
     }
 
     //자리 배치해주는 함수
@@ -110,8 +123,6 @@ function ChangeClass() {
 
         setStudentsNames(TempStudentsNames);
     }
-
-    
 
     //TableLists2
     function TableLists2(props : TableListsProps) {
@@ -168,8 +179,15 @@ function ChangeClass() {
         )
     }
 
+    useEffect(() => {
+        setStudentsNames(getArray<string>(tableColumnNum * tableRowNum, ""));
+    }, [])
+
     return (
         <main className={styles.Main}>
+            <TeacherNavy 
+            OnMenuList={[true, false]}/>
+
             <header className={styles.Header}>
                 <div
                 style={{
@@ -278,19 +296,19 @@ function ChangeClass() {
                         className: styles.StudentsTableRow,
                         style : {
                             flexDirection : 'row',
-                            height: `${35/(tableColumnNum +2)}vw`,
+                            height: `${Size}vw`,
 
                         }
                     }}
                     TdProps={{
                         className: styles.StudentsTableData,
                         style: {
-                            width: `${35/(tableColumnNum +2)}vw`,
-                            height: `${35/(tableColumnNum +2)}vw`, // 정사각형 셀을 만들기 위해 width와 동일하게 설정
+                            width: `${Size}vw`,
+                            height: `${Size}vw`, // 정사각형 셀을 만들기 위해 width와 동일하게 설정
                             backgroundColor: '#1ecf0e', // 초기 배경색 추가
                         }
                     }}
-                    TdLists={StudentsNames}
+                    TdLists={StudentsNames as string[]}
                 />
             </section>
         </main>
