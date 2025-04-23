@@ -1,7 +1,7 @@
 import styles from './Teacher.module.css';
 import HBlock from '@components/HBlock';
 import TeacherNavy from './TeacherNavy';
-import { Card, HCard } from '@components/Card';
+import { HCard } from '@components/Card';
 import Text from '@components/Text';
 import Svg from '@components/Svg';
 import ChangeClassIcon from '@assets/ChangeClassIcon.svg';
@@ -9,6 +9,7 @@ import { Link } from '@components/Link';
 import DivideTeamIcon from '@assets/DivideTeamIcon.svg';
 import HighlightText from '@components/MyHighlightText';
 import ButtonLink from '@components/ButtonLink';
+import RequireStar from '@/components/RequireStar';
 
 export default function Teacher() {
     return (
@@ -48,12 +49,11 @@ export default function Teacher() {
 
                 Description={<section
                     className={styles.SubmenuCardDescriptionSection}>
-                        자리 바꾸기에서는 Excel파일로 된 학생 명단을 업로드하고, <br />
-                        자리 배치를 선택하면 <br />
-                        학생들의 자리를 간편하게 바꿀수 있습니다!<br />
+                        자리 바꾸기에서는 Excel파일로 된 학생 명단을 업로드한 후에 <br />
+                        자리 배치를 선택하면 학생들의 자리를 간편하게 바꿀수 있습니다!<br />
                         <Text
                         className={styles.SubmenuCardHelperText}>
-                            Excel파일에는 첫번째 세로줄에 학생명단이 있어야 합니다.
+                            <RequireStar />Excel파일에는 첫번째 세로줄에 학생명단이 있어야 합니다.
                         </Text>
                     </section>}
 
@@ -78,31 +78,53 @@ export default function Teacher() {
             
             {/**팀 나누기 카드 */}
             <HCard
-            className={styles.SubmenuCard}
-            Img={<div
-                className={styles.SubmenuCardImgWrapper}>
-                    <Svg
-                    className={styles.SubmenuCardImg}
-                    src={DivideTeamIcon}
-                    />
-                </div>}
+                className={styles.SubmenuCard}
+                Img={<div
+                    className={styles.SubmenuCardImgWrapper}>
+                        <Svg
+                        className={styles.SubmenuCardImg}
+                        src={DivideTeamIcon}
+                        />
+                    </div>}
 
-            Title={<Text
-                className={styles.SubmenuCardTitle}>
-                    팀 나누기
-                </Text>}
+                BoxProps={{
+                    className : styles.SubmenuCardContent
+                }}
 
-            Description={<section
-                className={styles.SubmenuCardDescriptionSection}>
-                    팀 나누기에서는 학생 번호를 선택하고 <br />
-                    원하는 팀의 수를 입력하면 <br />
-                    학생들의 팀을 간편하게 나눌 수 있습니다!<br />
-                </section>}
+                Title={<Text
+                    className={styles.SubmenuCardTitle}>
+                        팀 바꾸기 
+                    </Text>}
 
-            Footer={<Link to="/teacher/changeclass">
-                <Text>팀 나누기 바로가기</Text>
-            </Link>}
-            />
+                Description={<section
+                    className={styles.SubmenuCardDescriptionSection}>
+                        팀 나누기에서는 학생 번호를 선택하고 원하는 팀의 수를 입력하면 <br />
+                        학생들의 팀을 간편하게 나눌 수 있습니다!<br />
+                        <Text
+                        className={styles.SubmenuCardHelperText}>
+                            <RequireStar />팀은 학생 명단이 아닌 번호순으로 나누어 집니다.
+                        </Text>
+                    </section>}
+
+                    Footer={
+                        <section
+                        className={styles.ButtonLinkWrapper}>
+                            <ButtonLink
+                            className={styles.SubmenuCardButtonLink}>
+                                <Link to="/teacher/divideteam">
+                                <Text className={styles.SubmenuCardLink}>
+                                    바로가기
+                                </Text>
+                                </Link>
+                            </ButtonLink>
+                        </section>
+                    }
+
+                    FooterProps={{
+                        className : styles.SubmenuCardFooter
+                    }}
+                />
+
             </section>
         </main>
     )
