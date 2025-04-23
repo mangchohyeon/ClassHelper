@@ -6,9 +6,12 @@ export function getArray<T>(num: number, value? : any): (T | undefined)[] {
 export function get2DArray<T>(num1 : number, num2 : number, value? : any) : (T | undefined)[][] {
   let res : (T | undefined)[][] = [];
   for(let i = 0; i < num2; i++) {
-    let Arr : (T | undefined)[] = new Array(num1).fill(value);
+    let Arr : (T | undefined)[] = [];
+    for(let j = 0; j < num1; j++) {
+      Arr.push(value);
+    }
     res.push(Arr);
   }
 
   return (res);
-}
+};
