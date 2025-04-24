@@ -1,20 +1,21 @@
-import { Button, FileUpload } from "@chakra-ui/react"
-import { HiUpload } from "react-icons/hi"
-import ComponentsProps from "@/types/ComponentsProps"
-import { FileAcceptDetails } from "@chakra-ui/react/dist/types/components/file-upload/namespace";
+import { Button, FileUpload } from "@chakra-ui/react";
+import ComponentsProps from "@/types/ComponentsProps";
+import Svg from './Svg';
+import UploadIcon from '@assets/UploadIcon.svg';
 
 interface FileUploadBtnProps extends ComponentsProps {
     maxFiles? : number;
     maxFileSize? : number;
     minFileSize? : number;
     accept? : string| string[];
-    onFileAccept? : (details : FileAcceptDetails) => void;
-    onFileChange? : (details : FileAcceptDetails) => void;
-    onFileReject? : (details : FileAcceptDetails) => void;
+    onFileAccept? : any;
+    onFileChange? : any;
+    onFileReject? : any;
     variant? : "outline" | "solid" | "subtle" | 
     "surface" | "ghost" | "plain" | undefined;
     size? : "sm" | "md" | "lg" | "xl" | "2xl" | "2xs" | "xs" | undefined;
     label? : string;
+    UploadIconProps : ComponentsProps;
 }
 
 export default function FileUploadBtn(props : FileUploadBtnProps) {
@@ -46,7 +47,11 @@ export default function FileUploadBtn(props : FileUploadBtnProps) {
         size={Size}
         onClick={() => props.onClick}
         >
-        <HiUpload /> {props.label}
+        <Svg
+        {...props.UploadIconProps}
+        src={UploadIcon}
+        alt="파일 업로드 아이콘" /> 
+        {props.label}
         </Button>
     </FileUpload.Trigger>
     <FileUpload.List />
