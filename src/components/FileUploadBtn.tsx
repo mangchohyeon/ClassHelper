@@ -14,8 +14,7 @@ interface FileUploadBtnProps extends ComponentsProps {
     variant? : "outline" | "solid" | "subtle" | 
     "surface" | "ghost" | "plain" | undefined;
     size? : "sm" | "md" | "lg" | "xl" | "2xl" | "2xs" | "xs" | undefined;
-    label? : string;
-    UploadIconProps : ComponentsProps;
+    UploadIconProps? : ComponentsProps;
 }
 
 export default function FileUploadBtn(props : FileUploadBtnProps) {
@@ -51,7 +50,7 @@ export default function FileUploadBtn(props : FileUploadBtnProps) {
         {...props.UploadIconProps}
         src={UploadIcon}
         alt="파일 업로드 아이콘" /> 
-        {props.label}
+        {props.children}
         </Button>
     </FileUpload.Trigger>
     <FileUpload.List />
