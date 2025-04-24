@@ -86,3 +86,8 @@ min-height: 98%;
 max-height: 100%;
 object-fit: contain;
 }
+
+/*chakra ui slider 관련 css 추가*/
+.chakra-slider__thumb, .chakra-slider__track {
+  cursor : pointer;
+}
