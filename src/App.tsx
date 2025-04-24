@@ -3,9 +3,6 @@ import React from 'react';
 import { useEffect } from 'react';
 import Layout from '@layout/Layout';  // 위에서 만든 Layout 컴포넌트
 import Home from '@pages/Home/Home';
-import EngWords from '@pages/EngWords/EngWords';
-import Kodle from '@pages/EngWords/Kodle/Kodle';
-import Teacher from '@/pages/Teacher/Teacher'
 import ChangeClass from '@pages/Teacher/ChangeClass/ChangeClass';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 
@@ -31,10 +28,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               {/* index 라우트: 기본 경로 ("/")에 해당하는 컴포넌트 */}
               <Route index element={<Home />} />
-              <Route path="/engwords" element={<EngWords />} />
-              <Route path="/engwords/kodle" element={<Kodle />} />
-              <Route path="/teacher" element={<Teacher />} />
-              <Route path="/teacher/changeclass" element = {<ChangeClass />} />
+              <Route path="/changeclass" element = {<ChangeClass />} />
             </Route>
           </Routes>
         </Router>
