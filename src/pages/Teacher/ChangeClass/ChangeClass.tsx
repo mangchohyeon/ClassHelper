@@ -12,29 +12,12 @@ import TeacherNavy from '../TeacherNavy';
 import { useEffect } from 'react';
 import Dialog from '@components/Dialog';
 import FileUploadBtn from '@components/FileUploadBtn';
-
-
-interface Button2Props extends ButtonProps {
-    onClick? : () => void;
-}
-
-
-function Button2(props : Button2Props) {
-    return (
-        <Button
-            size={props.size}
-            variant={props.variant}
-            color={props.color}
-            rounded={props.rounded}
-            className={props.className}
-            id={props.id}
-            onClick={() => props.onClick !== undefined 
-            ? props.onClick() 
-            : undefined}>
-          {props.children}
-        </Button>
-      )
-}
+import UploadIconWhite from '@assets/UploadIconWhite.svg';
+import Svg from '@components/Svg';
+import Text from '@components/Text';
+import getFirstColumn from '@utils/Excel';
+import HStack from '@components/HStack';
+import VStack from '@components/VStack';
 
 function ChangeClass() {
     // 슬라이더 값을 위한 state
@@ -56,18 +39,13 @@ function ChangeClass() {
     //학생 명단 파일
     const [file, setFile] = useState<File | null>(null);
 
+    //파일 처리 완료되었는지 아닌지 나타내줄 state
+    const [isFileLoading, setisFileLoading] = useState(false);
+
     //학생명단 리스트
-    const [StudentsNames, setStudentsNames] = useState<(string | undefined)[]>(["구도회", "권효섭", 
-        "김기용", "김범서", "김용환", "김재민", "김형민", "맹기현", "박건", "박건우", 
-        "변주용", "석진우", "성혁준", "윤시운", "윤정탁", "윤지민", "이세현", "이용재", 
-        "이찬현", "이채훈", "장현빈", "전재혁", "최정욱", "뇌종무", "편승우", "허태양", 
-        "홍석현", "장재형"]);
+    const [StudentsNames, setStudentsNames] = useState<(string | undefined | null)[]>([null]);
     
-    const StudentsName2 = ["구도회", "권효섭", 
-        "김기용", "김범서", "김용환", "김재민", "김형민", "맹기현", "박건", "박건우", 
-        "변주용", "석진우", "성혁준", "윤시운", "윤정탁", "윤지민", "이세현", "이용재", 
-        "이찬현", "이채훈", "장현빈", "전재혁", "최정욱", "뇌종무", "편승우", "허태양", 
-        "홍석현", "장재형"];
+    const [OriginalStudentsNames, setOriginalStudentsNames] = useState<any[]>([]);
 
     //배치될지 말지 정하는 state
     const [isAssignable, setisAssignable] = useState(() => 
@@ -82,6 +60,7 @@ function ChangeClass() {
         setTempColumnNum(CN);
     }
 
+    //학생 명단 파일 가져오는 함수
     function getFile(details : any) {
         setFile(details.acceptedFiles[0]);
     }
@@ -118,7 +97,7 @@ function ChangeClass() {
 
     //자리 배치해주는 함수
     function ShuffleSeats() {
-        let TempStudentsNames = Array.from(StudentsName2);
+        let TempStudentsNames = Array.from(OriginalStudentsNames);
         
         shuffle(TempStudentsNames);
         let count = 0;
@@ -215,9 +194,9 @@ function ChangeClass() {
                 </button>
             </section>
 
-            {/**Slider들감싸주는 section */}
-            <section className={styles.InputWrapper}>
-                <Stack className={styles.Stack}
+            {/**Slider들감싸주는 section*/}
+            <VStack className={styles.InputWrapper}>
+                <VStack className={styles.SliderWrapper}
                 width="100%"
                 gap="6">
                     {/**분단 개수 입력받기기*/}
@@ -227,7 +206,7 @@ function ChangeClass() {
                     width="40%"
                     color="gray"
                     Label={<div
-                    className={styles.Label1}>
+                    className={styles.Label}>
                         분단 수
                         </div>}
                         
@@ -248,7 +227,7 @@ function ChangeClass() {
                     max={10}
 
                     Label= { <div 
-                        className={styles.Label1}>
+                        className={styles.Label}>
                             행의 수
                         </div> }
 
@@ -256,48 +235,59 @@ function ChangeClass() {
                     id="SliderRowNum"
                     className={styles.Slider}
                     getValue={(v : number) => handleRowNumChange(v)}/>
-                </Stack>
+                </VStack>
                 
-                <div className={styles.SubmitBtnWrapper}>                    
+                <HStack className={styles.SubmitBtnSection}>                    
                     {/**자리 생성하기 버튼*/}
-                    <Button2
-                    className={styles.SubmitBtn}
-                    size="md"
-                    variant="solid"
-                    color="gray"
-                    rounded="lg"
-                    onClick={handleGenerateTable}>
-                        <div 
-                        className={styles.Label2}>
-                            자리 생성하기
-                        </div>
-                    </Button2>
+                    <div
+                    className={styles.SubmitBtnWrapper}>
+                        <Button
+                        className={styles.SubmitBtn}
+                        size="md"
+                        variant="solid"
+                        color="gray"
+                        rounded="lg"
+                        onClick={handleGenerateTable}>
+                            <Text className={styles.Label}> 자리 생성하기 </Text>
+                        </Button>
+                    </div>
+
+                    <div
+                    className={styles.SubmitBtnWrapper}>
+                        {/**자리 배치하기 버튼 */}
+                        <Button
+                        className={styles.SubmitBtn}
+                        size="md"
+                        variant="solid"
+                        color="gray"
+                        rounded="lg"
+                        onClick={ShuffleSeats}>
+                            <Text className={styles.Label}>자리 배치하기</Text>
+                        </Button>
+                    </div>
                     
-                    {/**자리 배치하기 버튼 */}
-                    <Button2
-                    className={styles.SubmitBtn}
-                    size="md"
-                    variant="solid"
-                    color="gray"
-                    rounded="lg"
-                    onClick={ShuffleSeats}>
-                        <div 
-                        className={styles.Label2}>
-                            자리 배치하기
-                        </div>
-                    </Button2>
-                    
-                    {/**파일 업로드하기 버튼 */}
-                    <FileUploadBtn
-                    className={styles.SubmitBtn}
-                    maxFiles={1}
-                    accept={["xlsx", "csv"]}
-                    onFileAccept={setFile}>
-                       파일 업로드하기
-                    </FileUploadBtn>
-                    
-                </div>
-            </section>
+                    <div
+                    className={styles.SubmitBtnWrapper}>
+                        {/**파일 업로드하기 버튼 */}
+                        <FileUploadBtn
+                        className={styles.SubmitBtn}
+                        id={styles.FileUploadBtn}
+                        maxFiles={1}
+                        accept={["xlsx", "csv"]}
+                        onFileAccept={getFile}
+                        size="md"
+                        color="gray"
+                        rounded="lg"
+                        >
+                            <Svg
+                            className={styles.FileUploadIcon}
+                            src={UploadIconWhite}
+                            />
+                        <Text className={styles.Label}>파일 업로드하기</Text>
+                        </FileUploadBtn>
+                    </div>
+                </HStack>
+            </VStack>
 
             <section 
                 className={styles.StudentsTableSection}
