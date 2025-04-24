@@ -3,7 +3,6 @@ import Text from '@components/Text';
 import Highlight from '@components/Highlight';
 import Svg from '@components/Svg';
 import { Card, HCard } from '@components/Card';
-import Naviagation2 from '@layout/Navigation2';
 import ChangeClassIcon from '@assets/ChangeClassIcon.svg';
 import { Link } from '@components/Link';
 import DivideTeamIcon from '@assets/DivideTeamIcon.svg';
@@ -14,11 +13,6 @@ import RequireStar from '@/components/RequireStar';
 function Home() {
     return (
         <div className={styles.Main}>
-            <Naviagation2 
-            OnMenuList={[false, false]}
-            MenuLists={[["/changeclass", "자리 바꾸기"], ["/divideteam", "팀 나누기"]]}
-            />
-
             <header
             className={styles.Header}>
                 <Text 
