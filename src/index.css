@@ -91,3 +91,16 @@ object-fit: contain;
 .chakra-slider__thumb, .chakra-slider__track {
   cursor : pointer;
 }
+
+.chakra-slider__thumb {
+  background-color: white;
+  border : 2px solid black;
+}
+
+.chakra-slider__range {
+  background-color: black;
+}
+
+.chakra-slider__track {
+  background-color: #ebebeb;
+}
