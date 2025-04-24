@@ -94,12 +94,11 @@
   max-height: 7vh;
   min-height: 6vh;
   align-items: center;
-  justify-content: flex-start;
   padding-left: 3%;
   border-top : 1px solid #8a8a8a;
+  margin-top: 1%;
+  padding-top: 1%;
 }
-
-
 
 .Navigation2Menu {
   width : auto;

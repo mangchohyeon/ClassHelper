@@ -7,6 +7,7 @@ import Svg from '@components/Svg';
 import Text from '@components/Text';
 import VStack from '@components/VStack';
 import { Link } from '@components/Link';
+import { useLocation } from 'react-router-dom';
 
 function AlertMessage() {
   Swal.fire({
@@ -27,7 +28,9 @@ function AlertMessage() {
 
 
 function Layout() {
-  
+  const Location = useLocation();
+  const CurrentPath = Location.pathname;
+
   return (
     <>
       <VStack
@@ -92,6 +95,43 @@ function Layout() {
               </Text>
             </div>
           </HStack>
+        </HStack>
+
+        <HStack
+        className={styles.Navigation2}>
+          <div
+          className={styles.Navigation2Menu}
+          style={
+            CurrentPath == "/changeclass"
+            ? {color : 'black'} 
+            : {color : "#bfbfbf"}
+          }>
+            <Link
+            className={styles.Navigation2Link}
+            to={"/changeclass"}>
+              <Text
+              className={styles.Navigation2LinkText}>
+                자리 바꾸기
+              </Text>
+            </Link>
+          </div>
+
+          <div
+          className={styles.Navigation2Menu}
+          style={
+            CurrentPath == "/divideteam"
+            ? {color : 'black'} 
+            : {color : "#bfbfbf"}
+          }>
+            <Link
+            className={styles.Navigation2Link}
+            to={"/divideteam"}>
+              <Text
+              className={styles.Navigation2LinkText}>
+                팀 나누기
+              </Text>
+            </Link>
+          </div>
         </HStack>
       </VStack>
 
