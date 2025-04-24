@@ -136,6 +136,14 @@ function Layout() {
       </VStack>
 
       <Outlet />
+
+      <footer
+      className={styles.Footer}>
+        <VStack className={styles.FooterVStack}>
+          <div className={styles.FooterItem}>개발자</div>
+          <div className={styles.FooterItem}>문의하기</div>
+        </VStack>
+      </footer>
     </>
   );
 };

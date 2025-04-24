@@ -130,3 +130,20 @@
 #BlogWrapper {
   margin-right : 1%;
 }
+
+.Footer {
+  display : flex;
+  flex-direction: row;
+  width : 100%;
+  background-color: black;
+  color : white;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding : 2%;
+}
+
+.FooterItem {
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
