@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import styles from './ChangeClass.module.css';
 import QuestionCircleIcon from '@components/QuestionCircleIcon';
-import MySlider from '@components/MySlider';
+import Slider from '@components/Slider';
 import { Button, ButtonProps} from "@/components/Button";
-import { Stack } from '@chakra-ui/react';
 import { TableListsProps } from '@/components/TableLists/TableLists'
 import { getArray, get2DArray } from '@utils/getArray';
 import { v4 as uuidv4 } from 'uuid';
@@ -18,6 +17,7 @@ import Text from '@components/Text';
 import getFirstColumn from '@utils/Excel';
 import HStack from '@components/HStack';
 import VStack from '@components/VStack';
+import ProcessCircle from '@components/ProgressCircle';
 
 function ChangeClass() {
     // 슬라이더 값을 위한 state
@@ -71,19 +71,7 @@ function ChangeClass() {
         TempisAssignable[row][column] = !TempisAssignable[row][column];
         setisAssignable(TempisAssignable);
         return TempisAssignable[row][column];
-    }
-
-    //색깔 바꾸는 함수
-    function ChangeBackgoundColor(e : React.MouseEvent<HTMLLIElement>,
-        Row : number, Column : number) {
-        const Flag = ChangeisAssignable(Row, Column);
-        if(Flag) {
-            e.currentTarget.style.backgroundColor = "#1ecf0e";
-        }
-        else {
-            e.currentTarget.style.backgroundColor = "#EB0000";
-        }
-    }    
+    } 
     
     //자리 생성하는 함수
     function handleGenerateTable() {
@@ -137,8 +125,7 @@ function ChangeClass() {
                           ...props.TdProps?.style,
                           backgroundColor: isAssignable[i][j] ? '#1ecf0e' : '#EB0000'
                       }}
-                      key={uuidv4()}
-                      onClick={(e) => ChangeBackgoundColor(e, i, j)}>
+                      key={uuidv4()}>
                           {props.TdLists[count]}
                       </li>
                   );
@@ -200,7 +187,7 @@ function ChangeClass() {
                 width="100%"
                 gap="6">
                     {/**분단 개수 입력받기기*/}
-                    <MySlider
+                    <Slider
                     variant="outline"
                     defaultValue={[tempColumnNum]}
                     width="40%"
@@ -218,7 +205,7 @@ function ChangeClass() {
                     getValue={(v : number) => handleColumnNumChange(v)}/>
 
                     {/**분단의 학생수 입력받기기 */}
-                    <MySlider
+                    <Slider
                     variant="outline"
                     defaultValue={[tempRowNum]}
                     width="40%"
@@ -261,7 +248,8 @@ function ChangeClass() {
                         variant="solid"
                         color="gray"
                         rounded="lg"
-                        onClick={ShuffleSeats}>
+                        onClick={ShuffleSeats}
+                        >
                             <Text className={styles.Label}>자리 배치하기</Text>
                         </Button>
                     </div>
