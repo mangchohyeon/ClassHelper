@@ -10,14 +10,20 @@
 
 
 .Header {
-    width : 100%;
-    align-items: center;
-}
-
-.Header .Title {
-    width : 100%;
+    width : auto;
     align-items: center;
     text-align: center;
+    margin-top : 10%;
+    overflow: auto;
+}
+
+.Title {
+    width : auto;
+    display : inline-block;
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: inherit;
+    overflow: auto;
 }
 
 .QuestionSection {

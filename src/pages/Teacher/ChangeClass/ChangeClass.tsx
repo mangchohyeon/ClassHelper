@@ -10,11 +10,14 @@ import { v4 as uuidv4 } from 'uuid';
 import { shuffle } from '@/utils/shuffle';
 import TeacherNavy from '../TeacherNavy';
 import { useEffect } from 'react';
+import Dialog from '@components/Dialog';
+import FileUploadBtn from '@components/FileUploadBtn';
 
 
 interface Button2Props extends ButtonProps {
     onClick? : () => void;
 }
+
 
 function Button2(props : Button2Props) {
     return (
@@ -190,20 +193,19 @@ function ChangeClass() {
 
             <header className={styles.Header}>
                 <div
-                style={{
-                    fontSize : "1.5em",
-                    width : "100%"
-                }}
                 className={styles.Title}>
-                    &lt;자리바꾸기&gt;
+                    자리바꾸기
                 </div>
             </header>
 
             <section className={styles.QuestionSection}>
-                <QuestionCircleIcon className={styles.QuestionIcon} 
-                alt="자리 바꾸기 아이콘"
-                width="auto"
-                />
+                <button
+                className={styles.QuestionBtn}>
+                    <QuestionCircleIcon className={styles.QuestionIcon} 
+                    alt="자리 바꾸기 아이콘"
+                    width="auto"
+                    />
+                </button>
             </section>
 
             {/**Slider들감싸주는 section */}
@@ -277,6 +279,8 @@ function ChangeClass() {
                             자리 배치하기
                         </div>
                     </Button2>
+
+                    
                 </div>
             </section>
 
