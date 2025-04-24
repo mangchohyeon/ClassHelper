@@ -1,8 +1,8 @@
-import { Slider, HStack } from "@chakra-ui/react";
+import { Slider as ChakraSlider, HStack } from "@chakra-ui/react";
 import ComponentsProps from '@/types/ComponentsProps';
 import { useState } from 'react'
 
-interface MySliderProps extends ComponentsProps {
+interface SliderProps extends ComponentsProps {
     defaultValue : number[];
     min? : number;
     max? : number;
@@ -18,7 +18,7 @@ interface MySliderProps extends ComponentsProps {
 }
 
 
-export default function MySlider(props : MySliderProps) {
+export default function Slider(props : SliderProps) {
     const [value, setValue] = useState(props.defaultValue);
 
     function onVChange(val : number) {
@@ -29,7 +29,7 @@ export default function MySlider(props : MySliderProps) {
     }
     
     return (
-        <Slider.Root
+        <ChakraSlider.Root
         maxW={props.maxW}
         width={props.width}
         size={props.size}
@@ -39,22 +39,21 @@ export default function MySlider(props : MySliderProps) {
         max={props.max}
         step={props.step}
         colorPallete={props.color}
-        variant={props.variant}
-        >
+        variant={props.variant}>
             <HStack justify="space-between">
-                <Slider.Label>{props.Label}</Slider.Label>
+                <ChakraSlider.Label>{props.Label}</ChakraSlider.Label>
                 {props.ValueText != undefined
-                ? <Slider.ValueText />
+                ? <ChakraSlider.ValueText />
                 : ""}
             </HStack>
 
-            <Slider.Control>
-                <Slider.Track>
-                    <Slider.Range />
-                </Slider.Track>
-                <Slider.Thumbs />
-            </Slider.Control>
-        </Slider.Root>
+            <ChakraSlider.Control>
+                <ChakraSlider.Track>
+                    <ChakraSlider.Range />
+                </ChakraSlider.Track>
+                <ChakraSlider.Thumbs />
+            </ChakraSlider.Control>
+        </ChakraSlider.Root>
 
 
     );
