@@ -1,9 +1,7 @@
-import { Button, FileUpload } from "@chakra-ui/react";
-import ComponentsProps from "@/types/ComponentsProps";
-import Svg from './Svg';
-import UploadIcon from '@assets/UploadIcon.svg';
+import { FileUpload } from "@chakra-ui/react";
+import { Button, ButtonProps } from './Button';
 
-interface FileUploadBtnProps extends ComponentsProps {
+interface FileUploadBtnProps extends ButtonProps {
     maxFiles? : number;
     maxFileSize? : number;
     minFileSize? : number;
@@ -11,45 +9,30 @@ interface FileUploadBtnProps extends ComponentsProps {
     onFileAccept? : any;
     onFileChange? : any;
     onFileReject? : any;
-    variant? : "outline" | "solid" | "subtle" | 
-    "surface" | "ghost" | "plain" | undefined;
     size? : "sm" | "md" | "lg" | "xl" | "2xl" | "2xs" | "xs" | undefined;
-    UploadIconProps? : ComponentsProps;
 }
 
 export default function FileUploadBtn(props : FileUploadBtnProps) {
-    const Variant = props.variant != undefined
-    ? props.variant
-    : "outline";
-
-    const Size = props.size != undefined 
-    ? props.size
-    : "md";
-
     return (
     <FileUpload.Root 
     maxFiles={props.maxFiles}
     maxFileSize={props.maxFileSize}
     minFileSize={props.minFileSize}
-    accept={props.accept}>
-    <FileUpload.HiddenInput 
+    accept={props.accept}
     onFileAccept={props.onFileAccept}
     onFileChange={props.onFileChange}
-    onFileReject={props.onFileReject}
-    />
+    onFileReject={props.onFileReject}>
+    <FileUpload.HiddenInput />
     <FileUpload.Trigger>
         <Button 
         className={props.className}
         id={props.id}
         style={props.style}
-        variant={Variant}
-        size={Size}
+        variant={props.variant}
+        size={props.size}
         onClick={() => props.onClick}
-        >
-        <Svg
-        {...props.UploadIconProps}
-        src={UploadIcon}
-        alt="파일 업로드 아이콘" /> 
+        color={props.color}
+        rounded={props.rounded}>
         {props.children}
         </Button>
     </FileUpload.Trigger>
