@@ -7,7 +7,6 @@ import { TableListsProps } from '@/components/TableLists/TableLists'
 import { getArray, get2DArray } from '@utils/getArray';
 import { v4 as uuidv4 } from 'uuid';
 import { shuffle } from '@/utils/shuffle';
-import TeacherNavy from '../TeacherNavy';
 import { useEffect } from 'react';
 import Dialog from '@components/Dialog';
 import FileUploadBtn from '@components/FileUploadBtn';
@@ -161,8 +160,6 @@ function ChangeClass() {
 
     return (
         <main className={styles.Main}>
-            <TeacherNavy 
-            OnMenuList={[true, false]}/>
 
             <header className={styles.Header}>
                 <div
