@@ -32,7 +32,8 @@ export default function FileUploadBtn(props : FileUploadBtnProps) {
         size={props.size}
         onClick={() => props.onClick}
         color={props.color}
-        rounded={props.rounded}>
+        rounded={props.rounded}
+        loading={props.loading}>
         {props.children}
         </Button>
     </FileUpload.Trigger>

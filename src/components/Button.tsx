@@ -9,6 +9,8 @@ interface ButtonProps extends ComponentsProps {
   | "cyan" | "orange" | "yellow";
   rounded? : "11" | "12" | "13" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
   onClick? : any;
+  loading? : boolean;
+  loadingText? : string;
 }
 
 export default function Button(props : ButtonProps) {
@@ -21,6 +23,8 @@ export default function Button(props : ButtonProps) {
       className={props.className}
       id={props.id}
       onClick={() => props.onClick()}
+      loading={props.loading}
+      loadingText={props.loadingText || ""}
       >
       {props.children}
     </ChakraButton>
