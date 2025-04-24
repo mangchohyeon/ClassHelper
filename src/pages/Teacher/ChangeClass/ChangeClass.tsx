@@ -53,6 +53,9 @@ function ChangeClass() {
         setSize(50/tableColumnNum);
     }
 
+    //학생 명단 파일
+    const [file, setFile] = useState<File | null>(null);
+
     //학생명단 리스트
     const [StudentsNames, setStudentsNames] = useState<(string | undefined)[]>(["구도회", "권효섭", 
         "김기용", "김범서", "김용환", "김재민", "김형민", "맹기현", "박건", "박건우", 
@@ -77,6 +80,10 @@ function ChangeClass() {
 
     function handleColumnNumChange(CN: number) {
         setTempColumnNum(CN);
+    }
+
+    function getFile(details : any) {
+        setFile(details.acceptedFiles[0]);
     }
 
     //isAssignable state업데이트 하는 함수
@@ -279,7 +286,15 @@ function ChangeClass() {
                             자리 배치하기
                         </div>
                     </Button2>
-
+                    
+                    {/**파일 업로드하기 버튼 */}
+                    <FileUploadBtn
+                    className={styles.SubmitBtn}
+                    maxFiles={1}
+                    accept={["xlsx", "csv"]}
+                    onFileAccept={setFile}>
+                       파일 업로드하기
+                    </FileUploadBtn>
                     
                 </div>
             </section>
