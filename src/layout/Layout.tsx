@@ -3,7 +3,7 @@ import styles from './Layout.module.css';
 import Logo from '@assets/Logo.svg';
 import Swal from 'sweetalert2';
 import  HStack from '@components/HStack';
-import Svg from '@components/Svg';
+import Svg from '@/components/Img';
 import Text from '@components/Text';
 import VStack from '@components/VStack';
 import { Link } from '@components/Link';
