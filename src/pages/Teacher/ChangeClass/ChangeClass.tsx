@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { shuffle } from '@/utils/shuffle';
 import { useEffect } from 'react';
 import Dialog from '@components/Dialog';
-import FileUploadBtn from '@components/FileUploadBtn';
+import { FileUploadBtn, FileAcceptDetails } from '@components/FileUploadBtn';
 import UploadIconWhite from '@assets/UploadIconWhite.svg';
 import Img from '@/components/Img';
 import Text from '@components/Text';
@@ -59,12 +59,24 @@ function ChangeClass() {
     }
 
     //학생 명단 파일 가져오는 함수
-    function getFile(details : any) {
-        setFile(details.acceptedFiles[0]);
+    async function getFile(details: FileAcceptDetails) {
         setisFileLoading(true);
-        const Arr = getFirstColumn(file);
+        const UploadedFlie = details.acceptedFiles[0];
+        if(UploadedFlie) {
+            setFile(UploadedFlie);
+        }
+    
+        try {
+        // getFirstColumn이 Promise를 반환하므로 await 사용
+        const Arr = await getFirstColumn(UploadedFlie);
         setOriginalStudentsNames(Arr);
-    }
+        } catch (error) {
+        console.error('파일 읽기 오류:', error);
+        } finally {
+        setisFileLoading(false);
+        }
+  }
+  
 
     //isAssignable state업데이트 하는 함수
     function ChangeisAssignable(row: number, column: number) {
@@ -264,11 +276,14 @@ function ChangeClass() {
                         id={styles.FileUploadBtn}
                         maxFiles={1}
                         accept={["xlsx", "csv"]}
-                        onFileAccept={getFile}
+                        onFileAccept={(details : FileAcceptDetails) => {
+                            getFile(details);
+                          }}
                         size="md"
                         color="gray"
                         rounded="lg"
                         loading={isFileLoading}
+                        FileUploadLists={true}
                         >
                             <Img
                             className={styles.FileUploadIcon}
