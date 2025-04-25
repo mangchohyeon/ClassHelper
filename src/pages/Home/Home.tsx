@@ -1,8 +1,8 @@
 import styles from './Home.module.css';
 import Text from '@components/Text';
 import Highlight from '@components/Highlight';
-import Svg from '@components/Svg';
-import { Card, HCard } from '@components/Card';
+import Img from '@/components/Img';
+import { HCard } from '@components/Card';
 import ChangeClassIcon from '@assets/ChangeClassIcon.svg';
 import { Link } from '@components/Link';
 import DivideTeamIcon from '@assets/DivideTeamIcon.svg';
@@ -41,7 +41,7 @@ function Home() {
                 className={styles.SubmenuCard}
                 Img={<div
                     className={styles.SubmenuCardImgWrapper}>
-                        <Svg
+                        <Img
                         className={styles.SubmenuCardImg}
                         src={ChangeClassIcon}
                         />
@@ -90,7 +90,7 @@ function Home() {
                 className={styles.SubmenuCard}
                 Img={<div
                     className={styles.SubmenuCardImgWrapper}>
-                        <Svg
+                        <Img
                         className={styles.SubmenuCardImg}
                         src={DivideTeamIcon}
                         />
