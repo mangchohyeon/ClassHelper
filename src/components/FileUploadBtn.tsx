@@ -10,11 +10,12 @@ interface FileUploadBtnProps extends ButtonProps {
     onFileChange? : any;
     onFileReject? : any;
     size? : "sm" | "md" | "lg" | "xl" | "2xl" | "2xs" | "xs" | undefined;
+    FileUploadLists? : boolean;
 }
 
-export default function FileUploadBtn(props : FileUploadBtnProps) {
+export default function FileUploadBtn(props: FileUploadBtnProps) {
     return (
-    <FileUpload.Root 
+    <FileUpload.Root
     maxFiles={props.maxFiles}
     maxFileSize={props.maxFileSize}
     minFileSize={props.minFileSize}
@@ -22,22 +23,22 @@ export default function FileUploadBtn(props : FileUploadBtnProps) {
     onFileAccept={props.onFileAccept}
     onFileChange={props.onFileChange}
     onFileReject={props.onFileReject}>
-    <FileUpload.HiddenInput />
-    <FileUpload.Trigger>
-        <Button 
+      <FileUpload.HiddenInput />
+      <FileUpload.Trigger asChild>
+        <Button
         className={props.className}
         id={props.id}
         style={props.style}
-        variant={props.variant}
         size={props.size}
-        onClick={() => props.onClick}
+        variant={props.variant}
         color={props.color}
         rounded={props.rounded}
-        loading={props.loading}>
-        {props.children}
+        loading={props.loading}
+        onClick={props.onClick}>
+          {props.children}
         </Button>
-    </FileUpload.Trigger>
-    <FileUpload.List />
+      </FileUpload.Trigger>
+      {props.FileUploadLists ? <FileUpload.List /> : null}
     </FileUpload.Root>
-  )
+  );
 }
