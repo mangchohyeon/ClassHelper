@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './ChangeClass.module.css';
 import QuestionCircleIcon from '@components/QuestionCircleIcon';
 import Slider from '@components/Slider';
-import { Button, ButtonProps} from "@/components/Button";
+import { Button } from "@/components/Button";
 import { TableListsProps } from '@/components/TableLists/TableLists'
 import { getArray, get2DArray } from '@utils/getArray';
 import { v4 as uuidv4 } from 'uuid';
@@ -11,12 +11,11 @@ import { useEffect } from 'react';
 import Dialog from '@components/Dialog';
 import FileUploadBtn from '@components/FileUploadBtn';
 import UploadIconWhite from '@assets/UploadIconWhite.svg';
-import Svg from '@components/Svg';
+import Img from '@/components/Img';
 import Text from '@components/Text';
 import getFirstColumn from '@utils/Excel';
 import HStack from '@components/HStack';
 import VStack from '@components/VStack';
-import ProcessCircle from '@components/ProgressCircle';
 
 function ChangeClass() {
     // 슬라이더 값을 위한 state
@@ -62,6 +61,9 @@ function ChangeClass() {
     //학생 명단 파일 가져오는 함수
     function getFile(details : any) {
         setFile(details.acceptedFiles[0]);
+        setisFileLoading(true);
+        const Arr = getFirstColumn(file);
+        setOriginalStudentsNames(Arr);
     }
 
     //isAssignable state업데이트 하는 함수
@@ -124,7 +126,8 @@ function ChangeClass() {
                           ...props.TdProps?.style,
                           backgroundColor: isAssignable[i][j] ? '#1ecf0e' : '#EB0000'
                       }}
-                      key={uuidv4()}>
+                      key={uuidv4()}
+                      onClick={() => ChangeisAssignable(i, j)}>
                           {props.TdLists[count]}
                       </li>
                   );
@@ -231,7 +234,8 @@ function ChangeClass() {
                         variant="solid"
                         color="gray"
                         rounded="lg"
-                        onClick={handleGenerateTable}>
+                        onClick={handleGenerateTable}
+                        loading={isFileLoading}>
                             <Text className={styles.Label}> 자리 생성하기 </Text>
                         </Button>
                     </div>
@@ -246,6 +250,7 @@ function ChangeClass() {
                         color="gray"
                         rounded="lg"
                         onClick={ShuffleSeats}
+                        loading={isFileLoading}
                         >
                             <Text className={styles.Label}>자리 배치하기</Text>
                         </Button>
@@ -263,8 +268,9 @@ function ChangeClass() {
                         size="md"
                         color="gray"
                         rounded="lg"
+                        loading={isFileLoading}
                         >
-                            <Svg
+                            <Img
                             className={styles.FileUploadIcon}
                             src={UploadIconWhite}
                             />
