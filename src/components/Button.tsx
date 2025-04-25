@@ -1,16 +1,10 @@
-import { Button as ChakraButton } from "@chakra-ui/react";
-import ComponentsProps from '@/types/ComponentsProps';
+import { Button as ChakraButton, ButtonProps as ChakraButtonProps } from "@chakra-ui/react";
 
-interface ButtonProps extends ComponentsProps {
-  children? : React.ReactNode;
-  size? : "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "2xs";
-  variant? : "solid" | "subtle" | "surface" | "outline" | "ghost" | "plain";
-  color? : "gray" | "red" | "green" | "blue" | "teal" | "pink" | "purple"
-  | "cyan" | "orange" | "yellow";
-  rounded? : "11" | "12" | "13" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
-  onClick? : any;
-  loading? : boolean;
-  loadingText? : string;
+interface ButtonProps extends Omit<ChakraButtonProps, "colorPalette" | "onClick"> {
+  children?: React.ReactNode;
+  color?: "gray" | "red" | "green" | "blue" | "teal" | "pink" | "purple" | "cyan" | "orange" | "yellow";
+  onClick?: any;
+  ref?: React.RefObject<HTMLButtonElement>;
 }
 
 export default function Button(props : ButtonProps) {
@@ -25,11 +19,10 @@ export default function Button(props : ButtonProps) {
       onClick={() => props.onClick()}
       loading={props.loading}
       loadingText={props.loadingText || ""}
-      >
+      ref={props.ref}>
       {props.children}
     </ChakraButton>
+  );
+};
 
-  )
-}
-
-export { Button , ButtonProps }
+export { Button, ButtonProps };
