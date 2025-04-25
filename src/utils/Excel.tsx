@@ -1,15 +1,18 @@
 import * as XLSX from 'xlsx';
 
-function getFirstColumn(file: File | null | undefined) {
-  if (file == null) {
+async function getFirstColumn(file: File | null | undefined): Promise<any[]> {
+  if (!file) {
     return [null];
   }
 
-  const arrayBuffer = file.arrayBuffer();
-  const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  const buffer = await file.arrayBuffer();          // :contentReference[oaicite:3]{index=3}
+
+  const workbook = XLSX.read(buffer, { type: 'array' });  // :contentReference[oaicite:4]{index=4}
+  const sheetName = workbook.SheetNames[0];
+  const sheet = workbook.Sheets[sheetName];
+
+  const result: any[] = [];
   let row = 1;
-  let result: any[] = [];
   while (true) {
     const cellAddress = `A${row}`;
     const cell = sheet[cellAddress];
@@ -21,6 +24,6 @@ function getFirstColumn(file: File | null | undefined) {
     }
   }
   return result;
-};
+}
 
 export default getFirstColumn;
