@@ -1,6 +1,6 @@
 import { ImgProps } from "@/types/ImgTypes";
 
-export default function Svg(props: ImgProps ) {
+export default function Img(props: ImgProps ) {
     return (
         <img 
         className={props.className}
