@@ -1,6 +1,6 @@
 import { Link as ChakraLink } from '@chakra-ui/react';
 import ComponentsProps from '@/types/ComponentsProps';
-import { LuExternalLink } from "react-icons/lu"
+import { LuExternalLink } from "react-icons/lu";
 
 interface LinkProps extends ComponentsProps {
     variant? : "underline" | "plain";
@@ -11,7 +11,7 @@ interface LinkProps extends ComponentsProps {
     target? : "_blank" | "_self" | "_parent" | "_top"; 
 }
 
-export function Link(props : LinkProps) {
+export default function Link(props : LinkProps) {
     return(
         <ChakraLink
         className={props.className}
@@ -26,7 +26,7 @@ export function Link(props : LinkProps) {
     )
 }
 
-export function ExternalLink(props : LinkProps) {
+function ExternalLink(props : LinkProps) {
     return(
         <ChakraLink
         className={props.className}
@@ -39,3 +39,5 @@ export function ExternalLink(props : LinkProps) {
         </ChakraLink>
     )
 }
+
+export { Link, ExternalLink, LinkProps }

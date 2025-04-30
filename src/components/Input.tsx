@@ -25,7 +25,8 @@ export default function Input(props : InputProps) {
             id={props.id}
             style={props.style}
             variant={props.variant}
-            size={props.size} />
+            size={props.size}
+            type={Type} />
             {props.HelperText != undefined
             ? <Field.HelperText>
                 {props.HelperText}

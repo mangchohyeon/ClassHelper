@@ -1,4 +1,5 @@
 import { Button as ChakraButton, ButtonProps as ChakraButtonProps } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
 
 interface ButtonProps extends Omit<ChakraButtonProps, "colorPalette" | "onClick"> {
   children?: React.ReactNode;
@@ -7,20 +8,16 @@ interface ButtonProps extends Omit<ChakraButtonProps, "colorPalette" | "onClick"
   ref?: React.RefObject<HTMLButtonElement>;
 }
 
-export default function Button(props : ButtonProps) {
+export default function Button({color, loading=false,  children, loadingText, ...rest} : ButtonProps) {
+  const [Loading, setLoading] = useState<boolean | undefined>(loading);
+
+  useEffect(() => {
+    loading == undefined ? setLoading(false) : setLoading(loading);
+  })
+
   return (
-    <ChakraButton
-      size={props.size}
-      variant={props.variant}
-      colorPalette={props.color}
-      rounded={props.rounded}
-      className={props.className}
-      id={props.id}
-      onClick={() => props.onClick()}
-      loading={props.loading}
-      loadingText={props.loadingText || ""}
-      ref={props.ref}>
-      {props.children}
+    <ChakraButton {...rest} color={color} loading={Loading} loadingText={loadingText || ""}>
+      {children}
     </ChakraButton>
   );
 };

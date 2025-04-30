@@ -10,7 +10,7 @@ interface ProgressCircleProps {
 function ProgressCircle(props : ProgressCircleProps) {
   return (
     <ChakraProgressCircle.Root value={null} size={props.size} 
-    colorPallete={props.color}>
+    colorPalette={props.color}>
       <ChakraProgressCircle.Circle>
         <ChakraProgressCircle.Track />
         <ChakraProgressCircle.Range />
