@@ -1,7 +1,6 @@
 import styles from './KeyboardConvert.module.css';
 
 const KeyboardConvert = () => {
-    type Mode = "ko2en" | "en2ko";
 
     return (
         <main className={styles.Main}>
