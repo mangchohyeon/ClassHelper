@@ -7,3 +7,5 @@ export default interface ComponentsProps {
     width? : string;
     height? : string;
 }
+
+export { ComponentsProps } ;
