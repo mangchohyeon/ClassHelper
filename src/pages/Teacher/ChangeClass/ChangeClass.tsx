@@ -8,8 +8,7 @@ import { getArray, get2DArray } from '@utils/getArray';
 import { v4 as uuidv4 } from 'uuid';
 import { shuffle } from '@/utils/shuffle';
 import { useEffect } from 'react';
-import Dialog from '@components/Dialog';
-import { FileUploadBtn, FileAcceptDetails } from '@components/FileUploadBtn';
+import { FileUploadBtn, FileAcceptDetails  } from '@components/FileUploadBtn';
 import UploadIconWhite from '@assets/UploadIconWhite.svg';
 import Img from '@/components/Img';
 import Text from '@components/Text';
@@ -43,7 +42,8 @@ function ChangeClass() {
     //학생명단 리스트
     const [StudentsNames, setStudentsNames] = useState<(string | undefined | null)[]>([null]);
     
-    const [OriginalStudentsNames, setOriginalStudentsNames] = useState<any[]>([]);
+    //원본 학생 명단 리스트(수정되지 않은 값)
+    const [OriginalStudentsNames, setOriginalStudentsNames] = useState<string[]>([]);
 
     //배치될지 말지 정하는 state
     const [isAssignable, setisAssignable] = useState(() => 
@@ -61,9 +61,12 @@ function ChangeClass() {
     //학생 명단 파일 가져오는 함수
     async function getFile(details: FileAcceptDetails) {
         setisFileLoading(true);
-        const UploadedFlie = details.acceptedFiles[0];
+        const UploadedFiles = await details.files;
+        console.log(`length of UploadedFiles : ${UploadedFiles.length}`);
+        const UploadedFlie = await UploadedFiles[0];
+        console.log(`UploadedFile : ${UploadedFlie}`);
         if(UploadedFlie) {
-            setFile(UploadedFlie);
+            await setFile(UploadedFlie);
         }
     
         try {
@@ -74,6 +77,11 @@ function ChangeClass() {
         console.error('파일 읽기 오류:', error);
         } finally {
         setisFileLoading(false);
+        const TempArr = await OriginalStudentsNames;
+        console.log(`TempArr's length : ${TempArr.length}`);
+        for(let i = 0; i < TempArr.length; i++) {
+            console.log(TempArr[i]);
+        }
         }
   }
   
