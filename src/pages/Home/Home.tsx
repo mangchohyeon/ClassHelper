@@ -15,10 +15,10 @@ function Home() {
         <div className={styles.Main}>
             <header
             className={styles.Header}>
-                <Text 
+                <div 
                 className={styles.ClassHelperText}>
                     ClassHelper{"     \n"}
-                </Text>
+                </div>
                 <Highlight
                 query={["편리하고 간편한 학습", "교육 혁신 플랫폼"]}
                 className={styles.HighlightText}> 
@@ -60,10 +60,10 @@ function Home() {
                     className={styles.SubmenuCardDescriptionSection}>
                         자리 바꾸기에서는 Excel파일로 된 학생 명단을 업로드한 후에 <br />
                         자리 배치를 선택하면 학생들의 자리를 간편하게 바꿀수 있습니다!<br />
-                        <Text
+                        <div
                         className={styles.SubmenuCardHelperText}>
                             <RequireStar />Excel파일에는 첫번째 세로줄에 학생명단이 있어야 합니다.
-                        </Text>
+                        </div>
                     </section>}
 
                     Footer={
