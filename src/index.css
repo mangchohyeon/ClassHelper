@@ -28,6 +28,12 @@
   src : url("./fonts/KakaoBigSans-ExtraBold.ttf") format("trutype");
 }
 
+.HTML-Title {
+  font-family: var(--Kakaofont);
+  font-weight: 800;
+  font-size: 3.2rem;
+}
+
 html, body {
   min-height: 100%;
   margin: 0;
