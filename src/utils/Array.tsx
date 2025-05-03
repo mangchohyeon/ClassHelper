@@ -15,3 +15,7 @@ export function get2DArray<T>(num1 : number, num2 : number, value? : any) : (T |
 
   return (res);
 };
+
+export function del(Arr : any[], index : number) {
+  Arr.splice(index, 1);
+}
