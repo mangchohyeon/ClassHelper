@@ -4,7 +4,7 @@ import QuestionCircleIcon from '@components/QuestionCircleIcon';
 import Slider from '@components/Slider';
 import { Button } from "@/components/Button";
 import { TableListsProps } from '@/components/TableLists/TableLists'
-import { getArray, get2DArray } from '@utils/getArray';
+import { getArray, get2DArray, del } from '@/utils/Array';
 import { v4 as uuidv4 } from 'uuid';
 import { shuffle } from '@/utils/shuffle';
 import { useEffect } from 'react';
@@ -12,7 +12,6 @@ import { FileUploadBtn, FileAcceptDetails  } from '@components/FileUploadBtn';
 import UploadIconWhite from '@assets/UploadIconWhite.svg';
 import Img from '@/components/Img';
 import Text from '@components/Text';
-import getFirstColumn from '@utils/Excel';
 import HStack from '@components/HStack';
 import VStack from '@components/VStack';
 
@@ -63,27 +62,28 @@ function ChangeClass() {
         setisFileLoading(true);
         const UploadedFiles = await details.files;
         console.log(`length of UploadedFiles : ${UploadedFiles.length}`);
-        const UploadedFlie = await UploadedFiles[0];
-        console.log(`UploadedFile : ${UploadedFlie}`);
-        if(UploadedFlie) {
-            await setFile(UploadedFlie);
+        const UploadedFile = await UploadedFiles[0];
+        console.log(`UploadedFile : ${UploadedFile}`);
+        console.log(`type of file : ${typeof(UploadedFile)}`);
+        console.log(`UploadedFile's File Name : ${UploadedFile.name}`);
+
+        if(UploadedFile) {
+            await setFile(UploadedFile);
         }
-    
-        try {
-        // getFirstColumn이 Promise를 반환하므로 await 사용
-        const Arr = await getFirstColumn(UploadedFlie);
-        setOriginalStudentsNames(Arr);
-        } catch (error) {
-        console.error('파일 읽기 오류:', error);
-        } finally {
+
+        const FileText = await UploadedFile.text();
+        console.log("FileText");
+        console.log(FileText);
+        const TempNames = FileText.split('\r\n');
+        for(let i = 0; i < TempNames.length; i++) {
+            if(TempNames[i] == '') del(TempNames, i);
+        }
+
+        console.log("Names");
+        console.log(TempNames);
+        setOriginalStudentsNames(TempNames);
         setisFileLoading(false);
-        const TempArr = await OriginalStudentsNames;
-        console.log(`TempArr's length : ${TempArr.length}`);
-        for(let i = 0; i < TempArr.length; i++) {
-            console.log(TempArr[i]);
-        }
-        }
-  }
+    }
   
 
     //isAssignable state업데이트 하는 함수
@@ -144,7 +144,7 @@ function ChangeClass() {
                       id={`TableListsData${i}-${j}`}
                       style={{
                           ...props.TdProps?.style,
-                          backgroundColor: isAssignable[i][j] ? '#1ecf0e' : '#EB0000'
+                          backgroundColor: isAssignable[i][j] ? '#4ADE80' : '#EB0000'
                       }}
                       key={uuidv4()}
                       onClick={() => ChangeisAssignable(i, j)}>
@@ -297,41 +297,49 @@ function ChangeClass() {
                             className={styles.FileUploadIcon}
                             src={UploadIconWhite}
                             />
-                        <Text className={styles.Label}>파일 업로드하기</Text>
+                        <Text className={styles.Label}>파일 업로드하기(csv)</Text>
                         </FileUploadBtn>
                     </div>
                 </HStack>
             </VStack>
 
             <section 
-                className={styles.StudentsTableSection}
-                id={"TableSection"}>
-                {/**StudentsTable */}
-               <TableLists2
-                    className={styles.StudentsTable}
-                    id="StudentsTable"
-                    style={{
-                        padding : "1%",
-                    }}
-                    row={tableRowNum}
-                    column={tableColumnNum}
-                    RowProps={{
-                        className: styles.StudentsTableRow,
-                        style : {
-                            flexDirection : 'row',
-                            height: `${Size}vw`,
+            className={styles.StudentsTableSection}
+            id={"TableSection"}>
+                {/**칠판 */}
+                <Button 
+                className={styles.WhiteBoard} 
+                bgColor="green.500"
+                color="#000000">
+                    칠판
+                </Button>    
 
-                        }
-                    }}
-                    TdProps={{
-                        className: styles.StudentsTableData,
-                        style: {
-                            width: `${Size}vw`,
-                            height: `${Size}vw`, // 정사각형 셀을 만들기 위해 width와 동일하게 설정
-                            backgroundColor: '#1ecf0e', // 초기 배경색 추가
-                        }
-                    }}
-                    TdLists={StudentsNames as string[]}
+                {/**StudentsTable */}
+                <TableLists2
+                className={styles.StudentsTable}
+                id="StudentsTable"
+                style={{
+                    padding : "1%",
+                }}
+                row={tableRowNum}
+                column={tableColumnNum}
+                RowProps={{
+                    className: styles.StudentsTableRow,
+                    style : {
+                        flexDirection : 'row',
+                        height: `${Size}vw`,
+
+                    }
+                }}
+                TdProps={{
+                    className: styles.StudentsTableData,
+                    style: {
+                        width: `${Size}vw`,
+                        height: `${Size}vw`, // 정사각형 셀을 만들기 위해 width와 동일하게 설정
+                        backgroundColor: '#4ADE80', // 초기 배경색 추가
+                    }
+                }}
+                TdLists={StudentsNames as string[]}
                 />
             </section>
         </main>
