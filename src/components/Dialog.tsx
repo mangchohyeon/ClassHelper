@@ -18,7 +18,7 @@ interface DialogProps extends ComponentsProps {
 export default function Dialog(props : DialogProps) {
     const OpenControl = useDialog();
     return (
-        <ChakraDialog.RootProvider>
+        <ChakraDialog.RootProvider value={OpenControl}>
             <ChakraDialog.Trigger>
                 {props.Trigger}
             </ChakraDialog.Trigger>

@@ -38,7 +38,7 @@ export default function Slider(props : SliderProps) {
         min={props.min}
         max={props.max}
         step={props.step}
-        colorPallete={props.color}
+        color={props.color}
         variant={props.variant}>
             <HStack justify="space-between">
                 <ChakraSlider.Label>{props.Label}</ChakraSlider.Label>
