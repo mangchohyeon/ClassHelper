@@ -1,6 +1,8 @@
-import { HStack as ChakraHStack, StackProps } from "@chakra-ui/react";
+import { HStack as ChakraHStack } from "@chakra-ui/react";
+import type { StackProps } from "@chakra-ui/react";
+import React from "react";
 
-export default function HStack(props : StackProps) {
+function TempHStack(props : StackProps) {
   return (
     <ChakraHStack
     className={props.className}
@@ -12,3 +14,7 @@ export default function HStack(props : StackProps) {
     </ChakraHStack>
   )
 }
+
+const HStack = React.memo(TempHStack);
+export default HStack;
+export {HStack, StackProps as HStackProps};

@@ -1,5 +1,6 @@
 import { Card as ChakraCard, Box } from '@chakra-ui/react';
 import ComponentsProps from '@/types/ComponentsProps';
+import React from 'react';
 
 interface CardProps extends ComponentsProps {
     gap? : number;
@@ -15,7 +16,7 @@ interface CardProps extends ComponentsProps {
     FooterProps? : ComponentsProps;
 }
 
-export default function Card(props : CardProps) {
+function TempCard(props : CardProps) {
     return (
         <ChakraCard.Root
         className={props.className}
@@ -44,11 +45,13 @@ export default function Card(props : CardProps) {
     )
 }
 
+const Card = React.memo(TempCard);
+
 interface HCardProps extends CardProps {
     BoxProps? : ComponentsProps;
 }
 
-function HCard(props : HCardProps) {
+function TempHCard(props : HCardProps) {
     return (
         <ChakraCard.Root  
         className={props.className}
@@ -82,4 +85,7 @@ function HCard(props : HCardProps) {
     )
 }
 
-export { Card, HCard };
+const HCard = React.memo(TempHCard);
+
+export default Card;
+export {Card, CardProps, HCard, HCardProps};

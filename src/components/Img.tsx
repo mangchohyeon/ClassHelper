@@ -1,6 +1,7 @@
-import { ImgProps } from "@/types/ImgTypes";
+import type { ImgProps } from "@/types/ImgTypes";
+import React from "react";
 
-export default function Img(props: ImgProps ) {
+function TempImg(props: ImgProps ) {
     return (
         <img 
         className={props.className}
@@ -12,3 +13,6 @@ export default function Img(props: ImgProps ) {
     )
 }
 
+const Img = React.memo(TempImg);
+export default Img;
+export {Img, ImgProps};

@@ -1,6 +1,7 @@
 import { Highlight, HighlightProps }from "./Highlight";
+import React from "react";
 
-export default function HighlightText(props : Omit<HighlightProps, "query">) {
+function TempHighlightText(props : Omit<HighlightProps, "query">) {
     return (
         <Highlight
         className={props.className}
@@ -15,3 +16,7 @@ export default function HighlightText(props : Omit<HighlightProps, "query">) {
         </Highlight>
     )
 }
+
+const HighlightText = React.memo(TempHighlightText);
+export default HighlightText;
+export {HighlightText};

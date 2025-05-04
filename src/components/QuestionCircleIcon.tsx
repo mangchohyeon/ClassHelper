@@ -1,9 +1,11 @@
 import { ImgProps } from "@/types/ImgTypes";
 import QuestionIcon from '@assets/QuestionCircleIcon.svg';
+import React from "react";
+
 interface QuestionIconProps extends Omit<ImgProps, 'src'> {
 }
 
-export default function QuestionCircleIcon(props: QuestionIconProps ) {
+function TempQuestionCircleIcon(props: QuestionIconProps ) {
     return (
         <img 
         className={props.className}
@@ -15,3 +17,6 @@ export default function QuestionCircleIcon(props: QuestionIconProps ) {
     )
 }
 
+const QuestionCircleIcon = React.memo(TempQuestionCircleIcon);
+export default QuestionCircleIcon;
+export {QuestionCircleIcon, QuestionIconProps};

@@ -7,7 +7,7 @@ interface NavigationRowProps extends ComponentsProps {
   Menu : React.ReactNode;
 }
 
-export default function NavigationRow(props : NavigationRowProps) {
+function TempNavigationRow(props : NavigationRowProps) {
   return (
     <HStack
     className={props.className}
@@ -17,4 +17,8 @@ export default function NavigationRow(props : NavigationRowProps) {
       {props.Menu}
     </HStack>
   )
-}
+};
+
+const NavigationRow = React.memo(TempNavigationRow);
+export default NavigationRow;
+export {NavigationRow, NavigationRowProps};

@@ -1,5 +1,6 @@
 import { Input as ChakraInput, Field } from '@chakra-ui/react';
 import ComponentsProps from '@/types/ComponentsProps';
+import React from "react";
 
 interface InputProps extends ComponentsProps {
     type? : string;
@@ -10,7 +11,7 @@ interface InputProps extends ComponentsProps {
     HelperText? : React.ReactNode;
 }
 
-export default function Input(props : InputProps) {
+function TempInput(props : InputProps) {
     const Type = props.type != undefined ? props.type : "text";
 
     return (
@@ -35,3 +36,7 @@ export default function Input(props : InputProps) {
         </Field.Root>
     )
 }
+
+const Input = React.memo(TempInput);
+export default Input;
+export {Input, InputProps};

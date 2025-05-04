@@ -1,4 +1,5 @@
 import { ProgressCircle as ChakraProgressCircle } from "@chakra-ui/react"
+import React from "react";
 
 interface ProgressCircleProps {
     color? : 'gray' | 'red' | 'orange' | 'yellow' 
@@ -7,7 +8,7 @@ interface ProgressCircleProps {
     size? : 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
-function ProgressCircle(props : ProgressCircleProps) {
+function TempProgressCircle(props : ProgressCircleProps) {
   return (
     <ChakraProgressCircle.Root value={null} size={props.size} 
     colorPalette={props.color}>
@@ -19,6 +20,6 @@ function ProgressCircle(props : ProgressCircleProps) {
   )
 }
 
+const ProgressCircle = React.memo(TempProgressCircle);
 export default ProgressCircle;
-
-export { ProgressCircle };
+export {ProgressCircle, ProgressCircleProps};

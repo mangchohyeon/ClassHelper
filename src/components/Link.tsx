@@ -1,6 +1,7 @@
 import { Link as ChakraLink } from '@chakra-ui/react';
 import ComponentsProps from '@/types/ComponentsProps';
 import { LuExternalLink } from "react-icons/lu";
+import React from "react";
 
 interface LinkProps extends ComponentsProps {
     variant? : "underline" | "plain";
@@ -11,7 +12,7 @@ interface LinkProps extends ComponentsProps {
     target? : "_blank" | "_self" | "_parent" | "_top"; 
 }
 
-export default function Link(props : LinkProps) {
+function TempLink(props : LinkProps) {
     return(
         <ChakraLink
         className={props.className}
@@ -26,7 +27,9 @@ export default function Link(props : LinkProps) {
     )
 }
 
-function ExternalLink(props : LinkProps) {
+const Link = React.memo(TempLink);
+
+function TempExternalLink(props : LinkProps) {
     return(
         <ChakraLink
         className={props.className}
@@ -40,4 +43,7 @@ function ExternalLink(props : LinkProps) {
     )
 }
 
-export { Link, ExternalLink, LinkProps }
+const ExternalLink = React.memo(TempExternalLink);
+
+export default Link;
+export {Link, ExternalLink, LinkProps};

@@ -1,6 +1,7 @@
 import ComponentsProps from '@/types/ComponentsProps';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './Table.module.css';
+import React from "react";
 
 interface TableProps extends ComponentsProps {
   row: number;
@@ -12,7 +13,7 @@ interface TableProps extends ComponentsProps {
   TdLists : React.ReactNode[][];
 }
 
-function Table(props : TableProps) {
+function TempTable(props : TableProps) {
   const TableClass = `${props.className || styles.Table}`;
 
   const TBodyClass = (props.TBodyProps?.className || '') + (props.TBodyProps?.style != undefined
@@ -65,4 +66,6 @@ function Table(props : TableProps) {
   )
 }
 
+const Table = React.memo(TempTable);
+export default Table;
 export { TableProps, Table };

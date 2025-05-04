@@ -1,4 +1,5 @@
 import ComponentsProps from '@/types/ComponentsProps';
+import React from "react";
 
 interface HBlockProps extends ComponentsProps{
   num: number;
@@ -6,7 +7,7 @@ interface HBlockProps extends ComponentsProps{
   children: React.ReactNode;
 }
 
-const HBlock: React.FC<HBlockProps> = ({ num, id, style, onClick, children, className }) => {
+const TempHBlock: React.FC<HBlockProps> = ({ num, id, style, onClick, children, className }) => {
   return (
     <div 
       className={`${className || ''} hblock-${num}`}
@@ -19,4 +20,6 @@ const HBlock: React.FC<HBlockProps> = ({ num, id, style, onClick, children, clas
   );
 };
 
+const HBlock = React.memo(TempHBlock);
 export default HBlock;
+export {HBlock, HBlockProps};

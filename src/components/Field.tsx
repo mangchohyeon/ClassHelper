@@ -1,6 +1,8 @@
 import { Field as ChakraField } from "@chakra-ui/react"
 import ComponentsProps from '@/types/ComponentsProps';
-import { useState } from 'react';
+import React from "react";
+import { defaultMaxListeners } from "events";
+import Fie from './Field';
 
 interface FieldProps extends ComponentsProps {
     invalid? : boolean;
@@ -10,7 +12,7 @@ interface FieldProps extends ComponentsProps {
     require? : boolean;
 }
 
-export default function Field({invalid=false, require=true, Label, 
+function TempField({invalid=false, require=true, Label, 
   children, HelperText, ErrorText, ...rest} : FieldProps) {
     const isError = invalid;
 
@@ -24,4 +26,7 @@ export default function Field({invalid=false, require=true, Label,
     )
 };
 
-export { FieldProps, Field };
+
+const Field = React.memo(TempField);
+export default Field;
+export {Field, FieldProps};

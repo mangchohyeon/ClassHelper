@@ -1,5 +1,6 @@
 import { Stack as ChakraStack} from "@chakra-ui/react";
 import ComponentsProps from '@/types/ComponentsProps';
+import React from "react";
 
 interface StackProps extends ComponentsProps {
     width? : string;
@@ -9,7 +10,7 @@ interface StackProps extends ComponentsProps {
     children? : React.ReactNode;
 }
 
-export default function Stack(props : StackProps) {
+function TempStack(props : StackProps) {
     return (
         <ChakraStack
         width={props.width}
@@ -23,3 +24,7 @@ export default function Stack(props : StackProps) {
         </ChakraStack>
     );
 }
+
+const Stack = React.memo(TempStack);
+export default Stack;
+export {Stack, StackProps};

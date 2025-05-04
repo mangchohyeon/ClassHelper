@@ -1,6 +1,6 @@
 import { NumberInput as ChakraNumInput, NumberInputValueChangeDetails } from '@chakra-ui/react';
 import ComponentsProps from '@/types/ComponentsProps';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface NumInputProps extends ComponentsProps {
     max? : number;
@@ -23,7 +23,7 @@ interface NumInputProps extends ComponentsProps {
     ControlProps? : ComponentsProps;
 };
 
-export default function NumInput({defaultValue, readOnly=false, required=false,
+function TempNumInput({defaultValue, readOnly=false, required=false,
     disabled=false, invaild: invalid=false, min=-1*Infinity, max=Infinity,
     onValueChange, InputProps, ControlProps, ref, 
     ...rest} : NumInputProps) {
@@ -71,4 +71,6 @@ export default function NumInput({defaultValue, readOnly=false, required=false,
     )
 }
 
+const NumInput = React.memo(TempNumInput);
+export default NumInput;
 export { NumInputProps, NumInput }; 

@@ -1,13 +1,14 @@
 import { Button, ButtonProps } from './Button';
 import { Link, LinkProps } from './Link';
 import ComponentsProps from '@/types/ComponentsProps';
+import React from 'react';
 
 interface ButtonLinkProps extends ComponentsProps {
     ButtonProps? : ButtonProps;
     LinkProps? : LinkProps;
 }
 
-export default function ButtonLink(props : ButtonLinkProps) {
+function TempButtonLink(props : ButtonLinkProps) {
     return (
         <Button
         size={props.ButtonProps?.size}
@@ -29,4 +30,9 @@ export default function ButtonLink(props : ButtonLinkProps) {
             </Link>
         </Button>
     )
-}
+};
+
+const ButtonLink = React.memo(TempButtonLink);
+
+export {ButtonLink, ButtonLinkProps};
+export default ButtonLink;

@@ -1,6 +1,6 @@
 import { Slider as ChakraSlider, HStack } from "@chakra-ui/react";
 import ComponentsProps from '@/types/ComponentsProps';
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 interface SliderProps extends ComponentsProps {
     defaultValue : number[];
@@ -17,8 +17,7 @@ interface SliderProps extends ComponentsProps {
     getValue? : (v : number) => void
 }
 
-
-export default function Slider(props : SliderProps) {
+function TempSlider(props : SliderProps) {
     const [value, setValue] = useState(props.defaultValue);
 
     function onVChange(val : number) {
@@ -54,8 +53,9 @@ export default function Slider(props : SliderProps) {
                 <ChakraSlider.Thumbs />
             </ChakraSlider.Control>
         </ChakraSlider.Root>
-
-
     );
-    
 }
+
+const Slider = React.memo(TempSlider);
+export default Slider;
+export {Slider, SliderProps};

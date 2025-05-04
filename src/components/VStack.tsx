@@ -1,6 +1,8 @@
-import { VStack as Vstack, StackProps } from "@chakra-ui/react";
+import { VStack as Vstack } from "@chakra-ui/react";
+import type { StackProps } from "@chakra-ui/react";
+import React from 'react';
 
-export default function VStack(props : StackProps) {
+function TempVStack(props : StackProps) {
   return (
     <Vstack
     className={props.className}
@@ -12,3 +14,7 @@ export default function VStack(props : StackProps) {
     </Vstack>
   )
 }
+
+const VStack = React.memo(TempVStack);
+export default VStack;
+export {VStack, StackProps};

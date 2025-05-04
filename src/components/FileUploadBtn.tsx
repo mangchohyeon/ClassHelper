@@ -1,52 +1,50 @@
+import { FileUpload } from "@chakra-ui/react";
+import type { FileUploadFileAcceptDetails as FileAcceptDetails } from "@chakra-ui/react";
 import { Button, ButtonProps } from './Button';
-import { FileUpload } from '@chakra-ui/react';
-import type { FileUploadFileAcceptDetails as FileAcceptDetails,
-  FileUploadFileChangeDetails as FileChangeDetails,
-  FileUploadFileRejectDetails as FileRejectDetails
-} from "@chakra-ui/react";
+import React from "react";
 
 interface FileUploadBtnProps extends ButtonProps {
     maxFiles? : number;
     maxFileSize? : number;
     minFileSize? : number;
     accept? : string| string[];
-    onFileAccept? : (details : FileAcceptDetails) => void;
-    onFileChange? : (details : FileChangeDetails) => void;
-    onFileReject? : (detilas : FileRejectDetails) => void;
+    onFileAccept? : (deatils : FileAcceptDetails) => void;
+    onFileChange? : any;
+    onFileReject? : any;
     size? : "sm" | "md" | "lg" | "xl" | "2xl" | "2xs" | "xs" | undefined;
     FileUploadLists? : boolean;
 }
 
-export default function FileUploadBtn({ maxFiles, maxFileSize, minFileSize = 0,
-  accept, onFileAccept, onFileChange, onFileReject, 
-  children, FileUploadLists, ...rest} : FileUploadBtnProps) 
-  {
+function TempFileUploadBtn(props: FileUploadBtnProps) {
     return (
     <FileUpload.Root
-    maxFiles={maxFiles}
-    maxFileSize={maxFileSize}
-    minFileSize={minFileSize}
-    accept={accept}
-    onFileAccept={onFileAccept 
-      ? (details : FileAcceptDetails) => onFileAccept(details)
-    : undefined}
-    onFileChange={onFileChange
-      ? (details : FileChangeDetails) => onFileChange(details)
-    : undefined}
-    onFileReject={onFileReject
-      ? (details : FileRejectDetails) => onFileReject(details)
-    : undefined}>
+    maxFiles={props.maxFiles}
+    maxFileSize={props.maxFileSize}
+    minFileSize={props.minFileSize}
+    accept={props.accept}
+    onFileAccept={props.onFileAccept}
+    onFileChange={props.onFileChange}
+    onFileReject={props.onFileReject}>
       <FileUpload.HiddenInput />
       <FileUpload.Trigger asChild>
         <Button
-        {...rest}>
-          {children}
+        className={props.className}
+        id={props.id}
+        style={props.style}
+        size={props.size}
+        variant={props.variant}
+        color={props.color}
+        rounded={props.rounded}
+        loading={props.loading}
+        onClick={props.onClick}>
+          {props.children}
         </Button>
       </FileUpload.Trigger>
-      {FileUploadLists ? <FileUpload.List /> : null}
+      {props.FileUploadLists ? <FileUpload.List /> : null}
     </FileUpload.Root>
   );
 }
 
-export { FileUploadBtn, FileUploadBtnProps, 
-  FileAcceptDetails, FileChangeDetails, FileRejectDetails }
+const FileUploadBtn = React.memo(TempFileUploadBtn);
+export default FileUploadBtn;
+export {FileUploadBtn, FileUploadBtnProps, FileAcceptDetails };

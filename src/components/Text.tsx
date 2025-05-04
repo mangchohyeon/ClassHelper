@@ -1,5 +1,6 @@
 import { Text as ChakraText } from "@chakra-ui/react";
 import ComponentsProps from '@/types/ComponentsProps';
+import React from "react";
 
 interface TextProps extends ComponentsProps {
     fontFamily? : string;
@@ -8,7 +9,7 @@ interface TextProps extends ComponentsProps {
     fontColor? : string;
 }
 
-export default function Text(props : TextProps) {
+function TempText(props : TextProps) {
     return (
         <ChakraText 
         className={props.className}
@@ -26,4 +27,6 @@ export default function Text(props : TextProps) {
     )
 }
 
+const Text  = React.memo(TempText);
+export default Text;
 export { TextProps, Text }

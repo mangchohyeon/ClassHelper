@@ -1,7 +1,7 @@
 import ComponentsProps from "@/types/ComponentsProps";
+import React from "react";
 
-
-export default function RequireStar(props : ComponentsProps) {
+function TempRequireStar(props : ComponentsProps) {
     return (
         <div
         className={props.className}
@@ -14,3 +14,6 @@ export default function RequireStar(props : ComponentsProps) {
         }}>*</div>
     );
 }
+
+const RequireStar = React.memo(TempRequireStar);
+export default RequireStar;
