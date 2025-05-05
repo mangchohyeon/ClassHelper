@@ -318,7 +318,7 @@ function ChangeClass() {
                         className={styles.SubmitBtn}
                         id={styles.FileUploadBtn}
                         maxFiles={1}
-                        accept={["xlsx", "csv"]}
+                        accept=".csv"
                         onFileAccept={(details : FileAcceptDetails) => {
                             getFile(details);
                           }}
