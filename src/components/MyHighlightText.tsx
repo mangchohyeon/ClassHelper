@@ -11,7 +11,7 @@ function TempHighlightText(props : Omit<HighlightProps, "query">) {
             color : "#38a5ff",
             backgroundColor : "#d1faff",
         }}
-        query={props.children}>
+        query={props.children as string}>
             {props.children}
         </Highlight>
     )
