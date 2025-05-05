@@ -14,6 +14,23 @@ import Img from '@/components/Img';
 import Text from '@components/Text';
 import HStack from '@components/HStack';
 import VStack from '@components/VStack';
+import Alert from '@utils/Alert';
+
+function AlertMessage(Case : number) {
+    const title = (Case == 1)
+    ? "파일이 업로드 되지 않았습니다!"
+    :  "파일에서 학생들의 이름을 읽어오지 못하였습니다😭";
+
+    const text = (Case == 1) 
+    ? "파일이 업로드 되어야지 학생들의 이름을 읽어올 수가 있습니다!"
+    : "파일에서 첫번째 열의 학생들의 이름이 담겨있어야지 정상적으로 읽어올 수 있습니다😢"
+
+    Alert({
+        title : title,
+        text : text,
+        icon : "error"
+    })
+}
 
 function ChangeClass() {
     // 슬라이더 값을 위한 state
@@ -106,6 +123,24 @@ function ChangeClass() {
 
     //자리 배치해주는 함수
     function ShuffleSeats() {
+        if(file == null) {
+            AlertMessage(1);
+            return ;
+        }
+
+        let flag = false;
+        for(let i = 0; i < OriginalStudentsNames.length; i++) {
+            if(OriginalStudentsNames[i] != "") {
+                flag = true;
+                break;
+            }
+        }
+        
+        if(!flag) {
+            AlertMessage(2);
+            return ;
+        }
+
         let TempStudentsNames = Array.from(OriginalStudentsNames);
         
         shuffle(TempStudentsNames);
@@ -209,7 +244,7 @@ function ChangeClass() {
                     {/**분단 개수 입력받기기*/}
                     <Slider
                     variant="outline"
-                    defaultValue={[tempColumnNum]}
+                    defaultValue={tempColumnNum}
                     width="40%"
                     color="gray"
                     Label={<div
@@ -222,12 +257,12 @@ function ChangeClass() {
                     max={10}
                     id="SliderColumnNum"
                     className={styles.Slider}
-                    getValue={(v : number) => handleColumnNumChange(v)}/>
+                    onValueChange={(v : number) => handleColumnNumChange(v)}/>
 
                     {/**분단의 학생수 입력받기기 */}
                     <Slider
                     variant="outline"
-                    defaultValue={[tempRowNum]}
+                    defaultValue={tempRowNum}
                     width="40%"
                     color="gray"
                     min={1}
@@ -241,7 +276,7 @@ function ChangeClass() {
                     ValueText={true}
                     id="SliderRowNum"
                     className={styles.Slider}
-                    getValue={(v : number) => handleRowNumChange(v)}/>
+                    onValueChange={(v : number) => handleRowNumChange(v)}/>
                 </VStack>
                 
                 <HStack className={styles.SubmitBtnSection}>                    
