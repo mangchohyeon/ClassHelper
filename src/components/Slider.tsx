@@ -3,7 +3,7 @@ import ComponentsProps from '@/types/ComponentsProps';
 import React, { useState } from 'react'
 
 interface SliderProps extends ComponentsProps {
-    defaultValue : number[];
+    defaultValue : number;
     min? : number;
     max? : number;
     step? : number;
@@ -14,17 +14,19 @@ interface SliderProps extends ComponentsProps {
     Label? : string | React.ReactNode;
     color? : string;
     ValueText? : boolean;
-    getValue? : (v : number) => void
+    onValueChange? : (v : number) => void;
 }
 
 function TempSlider(props : SliderProps) {
     const [value, setValue] = useState(props.defaultValue);
 
     function onVChange(val : number) {
-        setValue([val]);
-        if(props.getValue) {
-            props.getValue(val);
+        setValue(val);
+        if(props.onValueChange) {
+            props.onValueChange(val);
         }
+        console.log("Slider에서 작성");
+        console.log(`Slider Value : ${val}`);
     }
     
     return (
@@ -32,7 +34,7 @@ function TempSlider(props : SliderProps) {
         maxW={props.maxW}
         width={props.width}
         size={props.size}
-        defaultValue={value}
+        defaultValue={[value]}
         onValueChange={(e : any) => onVChange(e.value)}
         min={props.min}
         max={props.max}
