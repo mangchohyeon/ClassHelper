@@ -28,8 +28,15 @@
   src : url("./fonts/KakaoBigSans-ExtraBold.ttf") format("trutype");
 }
 
+/*기본 카카오 폰트*/
+@font-face {
+  font-family: 'KakaoFont';
+  font-weight: 100;
+  src : url("./fonts/KakaoBigSans-Regular.ttf") format("trutype");
+}
+
 .HTML-Title {
-  font-family: var(--Kakaofont);
+  font-family: "KakaoFont";
   font-weight: 800;
   font-size: 3.2rem;
 }
@@ -39,7 +46,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-y: auto;
-  font-family: var(--Kakaofont);
+  font-family: "KakaoFont";
   background-color: white;
   color : black;
 }
