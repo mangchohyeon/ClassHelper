@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './ChangeClass.module.css';
 import QuestionCircleIcon from '@components/QuestionCircleIcon';
 import Slider from '@components/Slider';
@@ -7,7 +7,6 @@ import { TableListsProps } from '@/components/TableLists/TableLists'
 import { getArray, get2DArray, del } from '@/utils/Array';
 import { v4 as uuidv4 } from 'uuid';
 import { shuffle } from '@/utils/shuffle';
-import { useEffect } from 'react';
 import { FileUploadBtn, FileAcceptDetails  } from '@components/FileUploadBtn';
 import UploadIconWhite from '@assets/UploadIconWhite.svg';
 import Img from '@/components/Img';
@@ -15,6 +14,7 @@ import Text from '@components/Text';
 import HStack from '@components/HStack';
 import VStack from '@components/VStack';
 import Alert from '@utils/Alert';
+import Dialog from '@components/Dialog';
 
 function AlertMessage(Case : number) {
     const title = (Case == 1)
@@ -65,7 +65,10 @@ function ChangeClass() {
     const [isAssignable, setisAssignable] = useState(() => 
         get2DArray<boolean>(tableColumnNum, tableRowNum, true));
 
-    //슬라이더 state변경하는 함수
+    //QuestionIconBtn의 ref
+    const QuestionBtnRef = useRef<HTMLButtonElement>(null);
+
+    //^슬라이더 state변경하는 함수
     function handleRowNumChange(RN: number) {
         setTempRowNum(RN);
     }
@@ -74,7 +77,7 @@ function ChangeClass() {
         setTempColumnNum(CN);
     }
 
-    //학생 명단 파일 가져오는 함수
+    //^학생 명단 파일 가져오는 함수
     async function getFile(details: FileAcceptDetails) {
         setisFileLoading(true);
         const UploadedFiles = await details.files;
@@ -103,7 +106,7 @@ function ChangeClass() {
     }
   
 
-    //isAssignable state업데이트 하는 함수
+    //^isAssignable state업데이트 하는 함수
     function ChangeisAssignable(row: number, column: number) {
         const TempisAssignable = isAssignable.map(row => [...row]);
         TempisAssignable[row][column] = !TempisAssignable[row][column];
@@ -111,7 +114,7 @@ function ChangeClass() {
         return TempisAssignable[row][column];
     } 
     
-    //자리 생성하는 함수
+    //^자리 생성하는 함수
     function handleGenerateTable() {
         setTableRowNum(tempRowNum);
         setTableColumnNum(tempColumnNum);
@@ -121,7 +124,7 @@ function ChangeClass() {
         setStudentsNames(getArray<string>(tableColumnNum * tableRowNum, ""));
     }
 
-    //자리 배치해주는 함수
+    //^자리 배치해주는 함수
     function ShuffleSeats() {
         if(file == null) {
             AlertMessage(1);
@@ -156,6 +159,11 @@ function ChangeClass() {
 
         setStudentsNames(TempStudentsNames);
     }
+
+    //Dialog
+    const MyDialog = <Dialog 
+    
+    />
 
     //TableLists2
     function TableLists2(props : TableListsProps) {
@@ -214,7 +222,10 @@ function ChangeClass() {
 
     useEffect(() => {
         setStudentsNames(getArray<string>(tableColumnNum * tableRowNum, ""));
-    }, [])
+    }, []);
+
+    //Dialog
+
 
     return (
         <main className={styles.Main}>
@@ -227,13 +238,14 @@ function ChangeClass() {
             </header>
 
             <section className={styles.QuestionSection}>
-                <button
-                className={styles.QuestionBtn}>
+                <Button
+                className={styles.QuestionBtn}
+                ref={QuestionBtnRef}>
                     <QuestionCircleIcon className={styles.QuestionIcon} 
-                    alt="자리 바꾸기 아이콘"
+                    alt="도움말 아이콘"
                     width="auto"
                     />
-                </button>
+                </Button>
             </section>
 
             {/**Slider들감싸주는 section*/}
@@ -248,11 +260,14 @@ function ChangeClass() {
                     width="40%"
                     color="gray"
                     Label={<div
-                    className={styles.Label}>
+                    className={styles.SliderLabel}>
                         분단 수
                         </div>}
                         
                     ValueText={true}
+                    ValueTextProps={{
+                        className : styles.SliderValueText
+                    }}
                     min={1}
                     max={10}
                     id="SliderColumnNum"
@@ -269,11 +284,14 @@ function ChangeClass() {
                     max={10}
 
                     Label= { <div 
-                        className={styles.Label}>
+                        className={styles.SliderLabel}>
                             행의 수
                         </div> }
 
                     ValueText={true}
+                    ValueTextProps={{
+                        className : styles.SliderValueText
+                    }}
                     id="SliderRowNum"
                     className={styles.Slider}
                     onValueChange={(v : number) => handleRowNumChange(v)}/>
@@ -291,7 +309,7 @@ function ChangeClass() {
                         rounded="lg"
                         onClick={handleGenerateTable}
                         loading={isFileLoading}>
-                            <Text className={styles.Label}> 자리 생성하기 </Text>
+                            <Text className={styles.SubmitBtnText}> 자리 생성하기 </Text>
                         </Button>
                     </div>
 
@@ -307,7 +325,7 @@ function ChangeClass() {
                         onClick={ShuffleSeats}
                         loading={isFileLoading}
                         >
-                            <Text className={styles.Label}>자리 배치하기</Text>
+                            <Text className={styles.SubmitBtnText}>자리 배치하기</Text>
                         </Button>
                     </div>
                     
@@ -332,7 +350,7 @@ function ChangeClass() {
                             className={styles.FileUploadIcon}
                             src={UploadIconWhite}
                             />
-                        <Text className={styles.Label}>파일 업로드하기(csv)</Text>
+                        <Text className={styles.SubmitBtnText}>파일 업로드하기(csv)</Text>
                         </FileUploadBtn>
                     </div>
                 </HStack>

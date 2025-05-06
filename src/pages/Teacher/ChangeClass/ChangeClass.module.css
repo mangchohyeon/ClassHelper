@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "KaKaofont";
+    src: url("../../../fonts/KakaoBigSans-Regular.ttf");
+    font-weight: 100;
+}
+
 .Main {
     width: 100%;
     min-height: calc(var(--vh, 1vh) * 120);
@@ -7,7 +13,6 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
-
 
 .Header {
     width : auto;
@@ -35,6 +40,12 @@
     padding-right: 10%; /* 오른쪽 여백 */
 }
 
+.QuestionBtn {
+    background-color: white;
+    width : auto;
+    height : auto;
+}
+
 .QuestionIcon {
     height : 10vh;
     cursor : pointer;
@@ -57,13 +68,19 @@
     margin-left : 10%;
 }
 
-.Label {
+.SliderLabel {
     display : inline-block;
     font-family: inherit;
     font-size: 1.3rem;
     font-weight: inherit;
-    color : white;
+    color : black;
     vertical-align: center;
+}
+
+.SliderValueText {
+    font-family: "KakaoFont" !important;
+    font-size: 1.2rem;
+    font-weight : 700;
 }
 
 .SubmitBtnSection {
@@ -84,6 +101,13 @@
     background-color: black;
     color : white;
     font-family: inherit;
+}
+
+.SubmitBtnText {
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: inherit;
+    color : white;
 }
 
 .StudentsTableSection {
