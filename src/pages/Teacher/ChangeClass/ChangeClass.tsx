@@ -160,7 +160,7 @@ function ChangeClass() {
         setStudentsNames(TempStudentsNames);
     }
 
-    //Dialog
+    //TODO Dialog
     const MyDialog = <Dialog 
     
     />
