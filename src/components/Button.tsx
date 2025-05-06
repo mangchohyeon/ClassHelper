@@ -5,7 +5,7 @@ interface ButtonProps extends Omit<ChakraButtonProps, "colorPalette" | "onClick"
   children?: React.ReactNode;
   color?: string;
   onClick?: any;
-  ref?: React.RefObject<HTMLButtonElement>;
+  ref?: React.RefObject<HTMLButtonElement | null>;
 }
 
 function Button({color, loading=false,  children, loadingText, ...rest} : ButtonProps) {
