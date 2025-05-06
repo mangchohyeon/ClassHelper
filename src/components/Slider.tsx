@@ -14,6 +14,7 @@ interface SliderProps extends ComponentsProps {
     Label? : string | React.ReactNode;
     color? : string;
     ValueText? : boolean;
+    ValueTextProps? : ComponentsProps;
     onValueChange? : (v : number) => void;
 }
 
@@ -44,7 +45,7 @@ function TempSlider(props : SliderProps) {
             <HStack justify="space-between">
                 <ChakraSlider.Label>{props.Label}</ChakraSlider.Label>
                 {props.ValueText != undefined
-                ? <ChakraSlider.ValueText />
+                ? <ChakraSlider.ValueText {...props.ValueTextProps}/>
                 : ""}
             </HStack>
 
