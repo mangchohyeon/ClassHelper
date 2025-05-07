@@ -4,6 +4,7 @@ import ComponentsProps from "@/types/ComponentsProps";
 
 interface ColorSwatchProps extends ComponentsProps {
     value? : string;
+    size? : "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 }
 
 function TempColorSwatch(props : ColorSwatchProps) {
