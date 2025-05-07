@@ -51,15 +51,11 @@
     cursor : pointer;
 }
 
-.Dialog {
-    width : 100vw;
-}
-
 .DialogTitle, .DialogListTitle {
     display : inline-block;
     font-family: inherit;
-    font-size : 1.5rem;
-    font-weight: inherit;
+    font-size : 1.7rem;
+    font-weight: 570;
     line-height: 1.5;
     margin-top: 2%;
     margin-bottom: 2%;
@@ -73,21 +69,40 @@
     height : auto;
     font-family: inherit;
     font-size: 1.2rem;
-    font-weight : inherit;
+    font-weight : 450;
     line-height: 1.5;
     vertical-align: middle;
     margin-top: 2%;
     margin-bottom: 2%;
 }
 
-.DialogFileCell {
-    display : inline-block;
-    border : 1px solid black;
+.DialogTable {
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
-    margin-top: 1%;
-    margin-bottom: 1%;
+    table-layout: fixed;
+    width : 10%;
+}
+
+.DialogTable tbody {
+    table-layout: fixed;
+    width : 10%;
+}
+
+.DialogTableRow {
+    width : 10%;
+}
+
+.DialogTable, .DialogTableRow, .DialogTableCell {
+    border : 1px solid black;
+    border-collapse: collapse;
+}
+
+.DialogTableCell {
+    text-align: center;
+    padding : 3%;
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
 .InputWrapper {
@@ -198,5 +213,5 @@
     cursor: pointer;
     font-family: inherit;
     font-size: 1.5rem;
-    font-weight: 550;
+    font-weight: 600;
 }
