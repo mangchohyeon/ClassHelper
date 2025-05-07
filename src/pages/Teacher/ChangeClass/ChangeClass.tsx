@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './ChangeClass.module.css';
 import QuestionCircleIcon from '@components/QuestionCircleIcon';
 import Slider from '@components/Slider';
@@ -16,6 +16,7 @@ import VStack from '@components/VStack';
 import Alert from '@utils/Alert';
 import Dialog from '@components/Dialog';
 import ColorSwatch from '@components/ColorSwatch';
+import MyHilightText from '@components/MyHighlightText';
 
 function AlertMessage(Case : number) {
     const title = (Case == 1)
@@ -169,32 +170,48 @@ function ChangeClass() {
     //TODO Dialog
     const MyDialog = <Dialog 
     className={styles.Dialog}
+    size="md"
+    scrollBehavior="inside"
     HeaderProps={{className : styles.DialogHeader}}
     Title={<Text className={styles.DialogTitleText}>자리바꾸기 사용법</Text>}
     TitleProps={{className : styles.DialogTitle}}
     Body={
         <VStack className={styles.DialogBody}>
             <div className={styles.DialogList}>
-                <Text className={styles.DialogListTitle}>1. 자리배치</Text>
-                슬라이더를 움직여서 분단 수와, 분단당 행의 수를 바꿀 수 있습니다.
+                <Text className={styles.DialogListTitle}>1. 자리배치</Text><br />
+                슬라이더를 움직여서 분단 수와, 분단 당 행의 수를 바꿀 수 있습니다. <br />
                 그 후 자리배치 버튼을 누르면 자리배치가 바뀌게 됩니다!
             </div>
 
             <div className={styles.DialogList}>
-                <Text className={styles.DialogTitle}>2. 학생들의 자리</Text>
-                기본적으로 학생들의 자리의 색깔은 모두 <ColorSwatch className={styles.ColorSwatch} 
-                value="#4ADE80" />입니다.
-                <ColorSwatch className={styles.ColorSwatch} value="#4ADE80"/>색의 자리를 클릭하게 되면,
-                <ColorSwatch className={styles.ColorSwatch} value="#EB0000"/>색으로 바뀌게 됩니다!
-                <ColorSwatch className={styles.ColorSwatch} value="#4ADE80"/>색의 자리에는 학생이 배치될 수 
-                있고, <ColorSwatch className={styles.ColorSwatch} value="#EB0000"/>색의 자리에는 학생이 
-                배치될 수 없습니다.
+                <Text className={styles.DialogListTitle}>2. 학생들의 자리</Text><br />
+                기본적으로 학생들의 자리의 색깔은 모두 <ColorSwatch className={styles.ColorSwatch} size="2xs"
+                value="#4ADE80" />색 입니다. <br />
+                자리를 클릭하게 된다면 &nbsp;
+                <ColorSwatch className={styles.ColorSwatch} size="2xs" value="#4ADE80"/>색의 자리는  
+                &nbsp; <ColorSwatch className={styles.ColorSwatch} size="2xs" value="#EB0000"/> 
+                색으로, <br /> 
+                <ColorSwatch className={styles.ColorSwatch} size="2xs" value="#EB0000"/>색의 
+                &nbsp;자리는 &nbsp;
+                <ColorSwatch className={styles.ColorSwatch} size="2xs" value="#4ADE80"/>
+                색으로 바뀌게 됩니다. <br /> <br />
+                <ColorSwatch className={styles.ColorSwatch} size="2xs" value="#4ADE80"/> 색의 자리에는 
+                &nbsp;학생이 배치될 수 있고 , &nbsp; 
+                <ColorSwatch className={styles.ColorSwatch} size="2xs" value="#EB0000"/>색의 자리에는 
+                학생이 배치될 수 없습니다.
             </div>
 
             <div className={styles.DialogList}>
-                <Text className={styles.DialogListTitle}>3. 파일 형식</Text>
+                <Text className={styles.DialogListTitle}>3. 파일 형식</Text><br />
                 파일의 형식(확장자)는 csv(Excel 파일의 한 종류)여야 합니다.
                 학생들의 이름은 파일의 첫번째 세로줄의 칸마다 적혀있어야 합니다.
+                <br /> <br /> 
+                예시 <br />
+                <br />
+                <div className={styles.DialogFileCell}>구도회</div> <br />
+                <div className={styles.DialogFileCell}>권효섭</div> <br />
+                <div className={styles.DialogFileCell}>김기용</div> <br />
+                <div className={styles.DialogFileCell}>김범서</div> <br />
             </div>
         </VStack>
     }
@@ -274,11 +291,9 @@ function ChangeClass() {
             </header>
 
             <section className={styles.QuestionSection}>
-                {QuestionIconBtn}
+                {/**Dialog */}
+                {MyDialog}
             </section>
-
-            {/**Dialog */}
-            {MyDialog}
 
             {/**Slider들감싸주는 section*/}
             <VStack className={styles.InputWrapper}>
