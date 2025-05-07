@@ -479,4 +479,4 @@ function ChangeClass() {
     )
 }
 
-export default ChangeClass
+export default ChangeClass;
