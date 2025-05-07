@@ -7,6 +7,8 @@ import Text from './Text';
 import Button from './Button';
 
 interface DialogProps extends Omit<ComponentsProps, "children"> {
+    size? : "xs" | "sm" | "md" | "lg" | "cover" | "full";
+    placement? : "top" | "center" | "bottom";
     Trigger? : React.ReactNode;
     Header? : React.ReactNode;
     HeaderProps? : ComponentsProps;
@@ -47,6 +49,7 @@ function dialog({Trigger, Header, HeaderProps,
                             <ChakraDialog.Title {...TitleProps}>
                                 {Title}
                             </ChakraDialog.Title>
+                            {Header}
                         </ChakraDialog.Header>
 
                         <ChakraDialog.Body {...BodyProps}>
@@ -83,7 +86,7 @@ interface SequentDialogProps extends Omit<DialogProps, "Header" | "HeaderProps" 
 }
 
 function sequentDialog({HeaderList, TitleList, BodyList, FooterList, 
-    PrevBtnProps,NextBtnProps,
+    PrevBtnProps,NextBtnProps, size,
 PrevBtn=<Text style={{color : "white", fontFamily : "inherit"}}>이전</Text>,
 NextBtn=<Text style={{color : "white", fontFamily : "inherit"}}>다음</Text>,
 onOpenChange, Trigger, CloseBtnProps} : SequentDialogProps) {
@@ -113,7 +116,7 @@ onOpenChange, Trigger, CloseBtnProps} : SequentDialogProps) {
     }
 
     return (
-        <ChakraDialog.Root open={isOpen} 
+        <ChakraDialog.Root open={isOpen} size={size} 
         onOpenChange={(e : DialogOpenChangeEvent) => handleOpenChange(e)}>
             <ChakraDialog.Trigger asChild>
                 {Trigger}
