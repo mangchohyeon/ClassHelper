@@ -63,6 +63,8 @@
     line-height: 1.5;
     margin-top: 2%;
     margin-bottom: 2%;
+    color : black;
+    background-color: white;
 }
 
 .DialogList {
