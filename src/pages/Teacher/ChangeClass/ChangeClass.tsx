@@ -15,6 +15,7 @@ import HStack from '@components/HStack';
 import VStack from '@components/VStack';
 import Alert from '@utils/Alert';
 import Dialog from '@components/Dialog';
+import ColorSwatch from '@components/ColorSwatch';
 
 function AlertMessage(Case : number) {
     const title = (Case == 1)
@@ -65,8 +66,13 @@ function ChangeClass() {
     const [isAssignable, setisAssignable] = useState(() => 
         get2DArray<boolean>(tableColumnNum, tableRowNum, true));
 
-    //QuestionIconBtn의 ref
-    const QuestionBtnRef = useRef<HTMLButtonElement>(null);
+    //QuestionIconBtn
+    const QuestionIconBtn = <Button
+    className={styles.QuestionBtn}>
+        <QuestionCircleIcon className={styles.QuestionIcon} 
+        alt="도움말 아이콘"
+        width="auto"/>
+    </Button>
 
     //^슬라이더 state변경하는 함수
     function handleRowNumChange(RN: number) {
@@ -162,7 +168,37 @@ function ChangeClass() {
 
     //TODO Dialog
     const MyDialog = <Dialog 
-    
+    className={styles.Dialog}
+    HeaderProps={{className : styles.DialogHeader}}
+    Title={<Text className={styles.DialogTitleText}>자리바꾸기 사용법</Text>}
+    TitleProps={{className : styles.DialogTitle}}
+    Body={
+        <VStack className={styles.DialogBody}>
+            <div className={styles.DialogList}>
+                <Text className={styles.DialogListTitle}>1. 자리배치</Text>
+                슬라이더를 움직여서 분단 수와, 분단당 행의 수를 바꿀 수 있습니다.
+                그 후 자리배치 버튼을 누르면 자리배치가 바뀌게 됩니다!
+            </div>
+
+            <div className={styles.DialogList}>
+                <Text className={styles.DialogTitle}>2. 학생들의 자리</Text>
+                기본적으로 학생들의 자리의 색깔은 모두 <ColorSwatch className={styles.ColorSwatch} 
+                value="#4ADE80" />입니다.
+                <ColorSwatch className={styles.ColorSwatch} value="#4ADE80"/>색의 자리를 클릭하게 되면,
+                <ColorSwatch className={styles.ColorSwatch} value="#EB0000"/>색으로 바뀌게 됩니다!
+                <ColorSwatch className={styles.ColorSwatch} value="#4ADE80"/>색의 자리에는 학생이 배치될 수 
+                있고, <ColorSwatch className={styles.ColorSwatch} value="#EB0000"/>색의 자리에는 학생이 
+                배치될 수 없습니다.
+            </div>
+
+            <div className={styles.DialogList}>
+                <Text className={styles.DialogListTitle}>3. 파일 형식</Text>
+                파일의 형식(확장자)는 csv(Excel 파일의 한 종류)여야 합니다.
+                학생들의 이름은 파일의 첫번째 세로줄의 칸마다 적혀있어야 합니다.
+            </div>
+        </VStack>
+    }
+    Trigger={QuestionIconBtn}
     />
 
     //TableLists2
@@ -187,7 +223,7 @@ function ChangeClass() {
                       id={`TableListsData${i}-${j}`}
                       style={{
                           ...props.TdProps?.style,
-                          backgroundColor: isAssignable[i][j] ? '#4ADE80' : '#EB0000'
+                          backgroundColor: isAssignable[i][j] ? "#4ADE80" : "#EB0000"
                       }}
                       key={uuidv4()}
                       onClick={() => ChangeisAssignable(i, j)}>
@@ -238,15 +274,11 @@ function ChangeClass() {
             </header>
 
             <section className={styles.QuestionSection}>
-                <Button
-                className={styles.QuestionBtn}
-                ref={QuestionBtnRef}>
-                    <QuestionCircleIcon className={styles.QuestionIcon} 
-                    alt="도움말 아이콘"
-                    width="auto"
-                    />
-                </Button>
+                {QuestionIconBtn}
             </section>
+
+            {/**Dialog */}
+            {MyDialog}
 
             {/**Slider들감싸주는 section*/}
             <VStack className={styles.InputWrapper}>
