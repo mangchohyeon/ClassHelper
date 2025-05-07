@@ -1,6 +1,5 @@
-import { Dialog as ChakraDialog, Portal, CloseButton, 
-    DialogOpenChangeDetails as DialogOpenChangeEvent } 
-from '@chakra-ui/react';
+import { Dialog as ChakraDialog, Portal, CloseButton} from '@chakra-ui/react';
+import type { DialogOpenChangeDetails as DialogOpenChangeEvent } from '@chakra-ui/react';
 import ComponentsProps from '@/types/ComponentsProps';
 import React, { useState } from 'react';
 import Text from './Text';
@@ -9,6 +8,7 @@ import Button from './Button';
 interface DialogProps extends Omit<ComponentsProps, "children"> {
     size? : "xs" | "sm" | "md" | "lg" | "cover" | "full";
     placement? : "top" | "center" | "bottom";
+    scrollBehavior? : "inside" | "outside";
     Trigger? : React.ReactNode;
     Header? : React.ReactNode;
     HeaderProps? : ComponentsProps;
@@ -23,8 +23,8 @@ interface DialogProps extends Omit<ComponentsProps, "children"> {
 }
 
 function dialog({Trigger, Header, HeaderProps,
-    Title, TitleProps, Body, BodyProps, Footer, FooterProps, 
-    CloseBtnProps, onOpenChange } : DialogProps) {
+    Title, TitleProps, Body, BodyProps, Footer, FooterProps, CloseBtnProps, onOpenChange, 
+    className, id, style, ...rest} : DialogProps) {
     const [isOpen, setIsOpen] = useState(false);
     
     function handleOpenChange(e : DialogOpenChangeEvent) {
@@ -35,7 +35,7 @@ function dialog({Trigger, Header, HeaderProps,
     }
 
     return (
-        <ChakraDialog.Root open={isOpen} 
+        <ChakraDialog.Root open={isOpen} {...rest}
         onOpenChange={(e : DialogOpenChangeEvent) => handleOpenChange(e)}>
             <ChakraDialog.Trigger asChild>
                 {Trigger}
@@ -44,7 +44,7 @@ function dialog({Trigger, Header, HeaderProps,
             <Portal>
                 <ChakraDialog.Backdrop />
                 <ChakraDialog.Positioner>
-                    <ChakraDialog.Content>
+                    <ChakraDialog.Content className={className} id={id} style={style}>
                         <ChakraDialog.Header {...HeaderProps}>
                             <ChakraDialog.Title {...TitleProps}>
                                 {Title}
