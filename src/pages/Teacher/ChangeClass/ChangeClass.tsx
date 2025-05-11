@@ -14,7 +14,7 @@ import Text from '@components/Text';
 import HStack from '@components/HStack';
 import VStack from '@components/VStack';
 import Alert from '@utils/Alert';
-import Dialog from '@components/Dialog';
+import QuestionCircleDialog from '@components/QuestionCircleDialog';
 import ColorSwatch from '@components/ColorSwatch';
 import { ExternalLink } from '@components/Link';
 
@@ -66,14 +66,6 @@ function ChangeClass() {
     //배치될지 말지 정하는 state
     const [isAssignable, setisAssignable] = useState(() => 
         get2DArray<boolean>(tableColumnNum, tableRowNum, true));
-
-    //QuestionIconBtn
-    const QuestionIconBtn = <Button
-    className={styles.QuestionBtn}>
-        <QuestionCircleIcon className={styles.QuestionIcon} 
-        alt="도움말 아이콘"
-        width="auto"/>
-    </Button>
 
     //^슬라이더 state변경하는 함수
     function handleRowNumChange(RN: number) {
@@ -167,8 +159,8 @@ function ChangeClass() {
         setStudentsNames(TempStudentsNames);
     }
 
-    //TODO Dialog
-    const MyDialog = <Dialog 
+    //Dialog
+    const MyDialog = <QuestionCircleDialog 
     className={styles.Dialog}
     size="cover"
     scrollBehavior="inside"
@@ -248,7 +240,8 @@ function ChangeClass() {
             </div>
         </VStack>
     }
-    Trigger={QuestionIconBtn}
+    ButtonProps={{className : styles.QuestionBtn}}
+    QuestionCircleIconProps={{className : styles.QuestionIcon}}
     />
 
     //TableLists2
