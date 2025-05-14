@@ -6,4 +6,5 @@ export interface ImgProps extends ComponentsProps{
     width? : string;
     height? : string;
     objectFit? : string;
+    onClick? : () => void;
 }

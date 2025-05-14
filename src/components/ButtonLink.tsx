@@ -6,6 +6,7 @@ import React from 'react';
 interface ButtonLinkProps extends ComponentsProps {
     ButtonProps? : ButtonProps;
     LinkProps? : LinkProps;
+    onClick? : () => void;
 }
 
 function TempButtonLink(props : ButtonLinkProps) {
@@ -17,7 +18,7 @@ function TempButtonLink(props : ButtonLinkProps) {
         rounded={props.ButtonProps?.rounded}
         className={props.className}
         id={props.id}
-        onClick={() => props.onClick()}
+        onClick={props.onClick ? props.onClick : undefined}
         asChild>
             <Link 
             className={props.LinkProps?.className}
